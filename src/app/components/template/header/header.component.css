@@ -1,0 +1,17 @@
+.container{
+    /* display: grid; */
+    background-color: #333;
+    height: 15%;
+    
+}
+.titulo {
+    color: #9FC5F8;
+    font-size: 25px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.menu-button{
+    justify-content: flex-end;
+}
