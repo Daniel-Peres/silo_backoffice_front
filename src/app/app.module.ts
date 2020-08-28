@@ -15,7 +15,12 @@ import { ManterUsuariosComponent } from './components/views/manter-usuarios/mant
 import { ManterVeiculosComponent } from './components/views/manter-veiculos/manter-veiculos.component';
 import { ManterEquipamentosComponent } from './components/views/manter-equipamentos/manter-equipamentos.component';
 import { MostrarNivelLotacaoComponent } from './components/views/mostrar-nivel-lotacao/mostrar-nivel-lotacao.component';
-import { ConfigurarFuncionalidadesComponent } from './components/views/configurar-funcionalidades/configurar-funcionalidades.component';
+import { LoginComponent } from './components/views/login/login.component';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,7 @@ import { ConfigurarFuncionalidadesComponent } from './components/views/configura
     ManterVeiculosComponent,
     ManterEquipamentosComponent,
     MostrarNivelLotacaoComponent,
-    ConfigurarFuncionalidadesComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,12 @@ import { ConfigurarFuncionalidadesComponent } from './components/views/configura
     AppRoutingModule,
     MatToolbarModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatButtonModule,
+    MatCardModule,
+    FormsModule,
+    MatFormFieldModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

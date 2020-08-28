@@ -28,10 +28,7 @@ export class MenuButtonComponent implements OnInit {
   navigateToMostrarNivelLotacao(): void {
     this.router.navigate(['mostrar_nivel_lotacao']);
   }
-  navigateToConfigurarFuncionalidades(): void {
-    this.router.navigate(['configurar_funcionalidades']);
-  }
-
-
-
+  navigateToLogin(): void {
+    this.router.navigate(['login']);
+  }   
 }

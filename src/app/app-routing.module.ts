@@ -1,4 +1,4 @@
-import { ConfigurarFuncionalidadesComponent } from './components/views/configurar-funcionalidades/configurar-funcionalidades.component';
+import { LoginComponent } from './components/views/login/login.component';
 import { MostrarNivelLotacaoComponent } from './components/views/mostrar-nivel-lotacao/mostrar-nivel-lotacao.component';
 import { ManterEquipamentosComponent } from './components/views/manter-equipamentos/manter-equipamentos.component';
 import { ManterVeiculosComponent } from './components/views/manter-veiculos/manter-veiculos.component';
@@ -7,8 +7,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ManterUsuariosComponent } from './components/views/manter-usuarios/manter-usuarios.component';
 
-
 const routes: Routes = [
+  {
+    path: "login",
+    component: LoginComponent
+  },
   {
     path: "home",
     component: HomeComponent
@@ -29,10 +32,7 @@ const routes: Routes = [
     path: "mostrar_nivel_lotacao",
     component: MostrarNivelLotacaoComponent
   },
-  {
-    path: "configurar_funcionalidades",
-    component: ConfigurarFuncionalidadesComponent
-  },
+  
 ];
 
 @NgModule({

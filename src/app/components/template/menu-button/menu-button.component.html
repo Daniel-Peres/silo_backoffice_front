@@ -1,7 +1,6 @@
 <!--Botão Menu-->
 <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
-    <!-- <h4>menu</h4> -->
 </button>
 
 <mat-menu #menu="matMenu" class="menu-buttons">
@@ -25,8 +24,10 @@
         <mat-icon class="color-icon">visibility</mat-icon>
         <span class="text-menu">Mostrar Nível de Lotação</span>
     </button>
-    <button mat-menu-item (click) = "navigateToConfigurarFuncionalidades()">
-        <mat-icon class="color-icon">settings</mat-icon>
-        <span class="text-menu">Configurar Funcionalidades</span>
+
+    <button mat-menu-item (click) = "navigateToLogin()">
+        <mat-icon class="color-icon">home</mat-icon>
+        <span class="text-menu">Login</span>
     </button>
+   
 </mat-menu>
