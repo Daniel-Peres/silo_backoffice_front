@@ -1,5 +1,6 @@
 .container{
     background-color: #555; 
+    margin: 10px;
 
 }
 .titulo {
@@ -7,4 +8,14 @@
     font-size: 20px;
     text-align: center;
     padding: 25px;
+}
+
+button {
+    background-color: #9FC5F8;
+    margin: 10px;
+    color: black;
+}
+.body {
+    margin-left: 10px;
+    margin-right: 10px;
 }

@@ -1,4 +1,10 @@
 <app-header></app-header>
-<div class="container">
-    <h1 class="titulo"> MANTER USUÁRIOS</h1>
-</div>
+    <button mat-raised-button (click)="navigateToManterUsuarios()">
+        <mat-icon class="color-icon">fiber_new</mat-icon>
+        Novo Usuário
+    </button>
+    <div class="body">
+        <app-usuario-read></app-usuario-read>
+    </div>
+
+

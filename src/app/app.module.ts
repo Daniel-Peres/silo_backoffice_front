@@ -21,6 +21,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { UsuarioReadComponent } from './components/usuario/usuario-read/usuario-read.component';
+import { UsuarioDeleteComponent } from './components/usuario/usuario-delete/usuario-delete.component';
+import { UsuarioCreateComponent } from './components/usuario/usuario-create/usuario-create.component';
+import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usuario-update.component';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +41,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ManterVeiculosComponent,
     ManterEquipamentosComponent,
     MostrarNivelLotacaoComponent,
-    LoginComponent
+    LoginComponent,
+    UsuarioReadComponent,
+    UsuarioDeleteComponent,
+    UsuarioCreateComponent,
+    UsuarioUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +57,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     MatCardModule,
     FormsModule,
-    MatFormFieldModule
-
+    MatFormFieldModule,
+    MatTableModule,
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

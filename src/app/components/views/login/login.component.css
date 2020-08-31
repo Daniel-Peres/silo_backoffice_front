@@ -1,57 +1,29 @@
-.container{
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html,
+  body {
+    height: 100vh;
+  }
+
+  header{
+    background-color: #333;
     display: grid;
     justify-content: center;
-    grid-template-rows: 15vh 85vh;
-    grid-template-columns: 100vw;
-    grid-template-areas: "header"
-                         "body"  
-}
- header{
-    display: flex;
-    flex-direction: column;
-    grid-area: header;
-    background-color: #333;
+    align-content: center;
+    height: 15vh;
+ }
+
+ .titulo {
     color: #9FC5F8;
-    font-size: 25px;
+    font-size: 22px;
+    font-weight: 500;
     padding: 5px;
     text-align: center;
- }
-
- body{
-     grid-area: body;
-     display: flex;
-     background-color: #666;
-     justify-content: center;
-     align-content: center;
-     align-items: center;
-     justify-items: center;
- } 
-
- .botoes {
-     display: flex;
-     color: black;     
-     margin: 5px;
-     text-align: center;     
- }
-
- .entradas{
-     display: flex;
-     flex-direction: column;
-     text-align: center;
- }
-
- .botao{
-     background-color: #9FC5F8;
-     margin: 5px;
-     color: black;
- }
-
- .textoBotao{
-     margin: 5px;
- }
-
- .corIcone{
-     color: black;
+    margin-top: 10px;
  }
 
  .subtitulo{
@@ -59,23 +31,161 @@
     font-size: 20px;
     padding: 5px;
     text-align: center;
- }
+ }   
 
- .frame {
-     display: flex;
-     flex-direction: column;
-     width: 50vw;
-     height: 70vh;
-     background-color: #999999;
-     align-items: center;
-     justify-content: center;     
- }
-
- .textoEntradas {
-    text-align: center;
-    color: black ;
-    font-weight: 500;
-    margin-bottom: 10px;
+  
+  body {
+    background-color: #7159c1;
+    font-family: Roboto, Arial, sans-serif;
+  }
+  
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h1 {
+    font-size: 32px;
+    letter-spacing: 1px;
+    margin: 20px 0;
+    color: white;
+  }
+  
+  form {
+    /* margin: 20px 0; */
+    background-color: white;
+    padding: 30px 25px;
+    border-radius: 5px;
+  }
+  
+  form .input-block {
+    margin-bottom: 20px;
+  }
+  
+  form .input-block label {
+    font-size: 14px;
+    color: black;
+  }
+  
+  form .input-block input {
+    width: 100%;
+    display: block;
+    margin-top: 8px;
+    padding: 7px;
+    font-size: 16px;
+    color: #B6D7A8;
+    border-radius: 2px;
+    border: 1px solid #ccddef;
+    outline-color: #9FC5F8;
+  }
+  
+  .botao{
+    background-color: #9FC5F8;
+    margin: 5px;
+    color: black;
 }
 
+.textoBotao{
+    margin: 5px;
+}
 
+.corIcone{
+    color: black;
+}
+
+@media only screen and (max-width: 510px) {
+  .titulo {
+     /* background-color: #333; */
+     color: #9FC5F8;
+     font-size: 20px;
+     padding: 5px;
+     text-align: center;
+  }
+  .titulo2 {
+    /* display: none; */
+    font-size: 15px;
+  }
+}
+
+  @media only screen and (max-width: 480px) {
+    .titulo {
+       color: #9FC5F8;
+       font-size: 20px;
+       padding: 5px;
+       text-align: center;
+    }
+
+    .titulo2 {
+      font-size: 15px;
+    }
+   
+    .subtitulo{
+       color: #fff;
+       font-size: 20px;
+       padding: 5px;
+       text-align: center;
+    }   
+
+    .botoes {
+       display: flex;
+       flex-direction: column;
+       color: black;     
+       margin: auto;
+       text-align: center;     
+   }
+ }
+
+ @media only screen and (max-width: 359px) {
+  .titulo {
+    font-size: 25px;
+  }
+  .titulo2 {
+    display: none;
+  }
+}
+  
+  /* APARIÇÃO DO FORM */
+  form {
+    overflow: hidden;
+    animation: fade 0.2s;
+  }
+  
+  form .input-block:nth-child(1) {
+    animation: move 500ms;
+  }
+  
+  form .input-block:nth-child(2) {
+    animation: move 400ms;
+    animation-delay: 100ms;
+    animation-fill-mode: backwards;
+  }
+  
+  form .btn-login {
+    animation: move 400ms;
+    animation-delay: 250ms;
+    animation-fill-mode: backwards;
+  }
+  
+  @keyframes move {
+    from {
+      opacity: 0;
+      transform: translateX(-35%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+  
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }

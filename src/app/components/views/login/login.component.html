@@ -1,28 +1,21 @@
-<div class="container">
-
-    <header class="titulo">
-        <h1>S.I.L.O.<br>Sistema de Informação de Lotação de Ônibus</h1>
-    </header>
-
-    <body>        
-        <div class="frame">
-            <div>
-                <h1 class="subtitulo">LOGIN</h1>
+<header>
+    <h1 class="titulo">S.I.L.O.<br><span class="titulo2">Sistema de Informação de Lotação de Ônibus</span></h1>
+</header>
+<section class="form-section">
+    <div>
+        <h1 class="subtitulo">LOGIN</h1>
+    </div>
+    <div class="form-wrapper">
+        <form action="">
+            <div class="input-block">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" />
             </div>
-            <!-- Inputs -->
-            <div class="entradas">
-                <form>
-                    <mat-form-field>
-                        <h4 class="textoEntradas">Usuário</h4>
-                        <input class="textoEntradas" matInput placeholder="Digite seu nome usuário">
-                        <h4 class="textoEntradas">Senha</h4>
-                        <input class="textoEntradas" type="password" matInput placeholder="Digite sua senha">
-                    </mat-form-field>                    
-                </form>
+            <div class="input-block">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" />
             </div>
-
             <div class="botoes">
-                <!-- Botões -->
                 <button class="botao" mat-raised-button (click)="navigateToHome()">
                     <mat-icon class="corIcone">login</mat-icon>
                     <span class="textoBotao">Entrar</span>
@@ -32,8 +25,6 @@
                     <span class="textoBotao">Limpar</span>
                 </button>
             </div>
-
-        </div>
-    </body>
-
-</div>
+        </form>
+    </div>
+</section>
