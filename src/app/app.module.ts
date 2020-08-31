@@ -30,7 +30,6 @@ import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usua
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     AppComponent,

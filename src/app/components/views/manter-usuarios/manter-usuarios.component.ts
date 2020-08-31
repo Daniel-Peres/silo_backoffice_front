@@ -13,8 +13,8 @@ export class ManterUsuariosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  navigateToManterUsuarios(): void {
-    this.router.navigate(['/usuarios/create']); 
-  }
+  // navigateToManterUsuarios(): void {
+  //   this.router.navigate(['/usuarios/create']); 
+  // }
 
 }

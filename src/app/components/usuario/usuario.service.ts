@@ -15,55 +15,25 @@ export class UsuarioService {
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
   create(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.baseUrl, usuario).pipe(
-      map((obj) => obj),
-      catchError(e => this.errorHandler(e))
-    );
+    return this.http.post<Usuario>(this.baseUrl, usuario)
   }
   
   read(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.baseUrl).pipe(
-      map((obj) => obj),
-      catchError(e => this.errorHandler(e))
-    );
+    return this.http.get<Usuario[]>(this.baseUrl)
   }
   
   readById(id: number): Observable<Usuario> {
     const url = `${this.baseUrl}/${id}`;
-    return this.http.get<Usuario>(url).pipe(
-      map((obj) => obj),
-      catchError(e => this.errorHandler(e))
-    );
+    return this.http.get<Usuario>(url)
   }
 
   update(usuario: Usuario): Observable<Usuario> {
     const url = `${this.baseUrl}/${usuario.idUsuario}`;
-    return this.http.put<Usuario>(url, usuario).pipe(
-      map((obj) => obj),
-      catchError(e => this.errorHandler(e))
-    );
+    return this.http.put<Usuario>(url, usuario)
   }
 
   delete(id: number): Observable<Usuario> {
     const url = `${this.baseUrl}/${id}`;
-    return this.http.delete<Usuario>(url).pipe(
-      map((obj) => obj),
-      catchError(e => this.errorHandler(e))
-    );
-  }
-
-  showMessage(msg: string, isError: boolean = false): void {
-    this.snackBar.open(msg, 'X', {
-      duration: 3000,
-      horizontalPosition: "right",
-      verticalPosition: "top",
-      panelClass: isError ? ['msg-error'] : ['msg-sucess']
-    });
-  }
-
-  errorHandler(e: any): Observable<any> {
-    console.log(e);
-    this.showMessage('Ocorreu um erro!', true);
-    return EMPTY;
-  }
+    return this.http.delete<Usuario>(url)
+  } 
 }

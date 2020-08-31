@@ -3,11 +3,11 @@ table {
     padding: 5px;
 }
 
-.edit {
+.update {
     margin-right: 10px;
 }
 
-.edit > i {
+.update > i {
     color: #d9cd26;
 }
 
@@ -18,4 +18,10 @@ table {
 .mat-form-field {
     font-size: 14px;
     width: 100%;
-  }
+}
+
+button {
+    background-color: #9FC5F8;
+    margin: 10px;
+    color: black;
+}

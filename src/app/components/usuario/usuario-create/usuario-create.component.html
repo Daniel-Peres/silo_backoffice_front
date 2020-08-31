@@ -1,1 +1,38 @@
-<p>usuario-create works!</p>
+<app-header></app-header>
+<mat-card>
+    <mat-card-title>Novo Usuário</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Empresa"
+                [(ngModel)]="usuario.empresa" name="empresa" >
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Email"
+                [(ngModel)]="usuario.email" name="email" >
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nome Usuario"
+                [(ngModel)]="usuario.nomeUsuario" name="nomeUsuario" >
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Senha"
+                [(ngModel)]="usuario.senha" name="senha" >
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nivel Acesso"
+                [(ngModel)]="usuario.nivelAcesso" name="nivelAcesso" >
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nome Completo"
+                [(ngModel)]="usuario.nomeCompleto" name="nomeCompleto" >
+        </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="createUsuario()" color="primary">
+        Salvar
+    </button>
+    
+    <button mat-raised-button (click)="cancel()">
+        Cancelar
+    </button>
+</mat-card>
+
