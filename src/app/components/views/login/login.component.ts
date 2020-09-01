@@ -1,3 +1,4 @@
+import { Usuario } from './../../usuario/usuario.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  value = 'Clear me';
+
   constructor(private router: Router ) { }
 
   ngOnInit(): void {
@@ -16,5 +19,4 @@ export class LoginComponent implements OnInit {
   navigateToHome(): void {
     this.router.navigate(['home']);
   }
-
 }

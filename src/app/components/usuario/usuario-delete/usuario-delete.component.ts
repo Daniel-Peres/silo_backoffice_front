@@ -26,8 +26,9 @@ export class UsuarioDeleteComponent implements OnInit {
   }
 
   deleteProduct(): void {
-    this.usuarioService.delete(this.usuario.idUsuario).subscribe(() => {
+    this.usuarioService.delete(this.usuario.codUsuario).subscribe(() => {
       this.router.navigate(['/manter_usuarios'])
+      this.usuarioService.showMessage('Usuário apagado com sucesso!')
     })
   }
 

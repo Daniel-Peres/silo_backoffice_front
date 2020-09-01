@@ -54,7 +54,6 @@
   }
   
   form {
-    /* margin: 20px 0; */
     background-color: white;
     padding: 30px 25px;
     border-radius: 5px;
@@ -75,7 +74,7 @@
     margin-top: 8px;
     padding: 7px;
     font-size: 16px;
-    color: #B6D7A8;
+    color: #9FC5F8;
     border-radius: 2px;
     border: 1px solid #ccddef;
     outline-color: #9FC5F8;
@@ -188,4 +187,8 @@
       opacity: 1;
       transform: scale(1);
     }
+  }
+
+  .example-form-field {
+    width: 200px;
   }

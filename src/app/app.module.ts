@@ -20,6 +20,7 @@ import { LoginComponent } from './components/views/login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { UsuarioReadComponent } from './components/usuario/usuario-read/usuario-read.component';
@@ -59,7 +60,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatTableModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

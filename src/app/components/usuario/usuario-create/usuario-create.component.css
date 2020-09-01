@@ -5,5 +5,10 @@ form {
 }
 
 button {
-    margin: 20px 15px 0px 0px; /* margin: up  right  down  left*/
+    margin: 20px 15px 0px 0px;
+}
+
+input {
+    background-color: none;
+    outline-color: aqua;
 }

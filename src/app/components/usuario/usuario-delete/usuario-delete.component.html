@@ -3,28 +3,32 @@
     <mat-card-title>Excluir Usuário</mat-card-title>
     <form>
         <mat-form-field>
+            <input matInput placeholder="Cód. Usuário"
+                [value]="usuario.codUsuario" name="codUsuario" disabled >
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nome Usuário"
+                [value]="usuario.nomeUsuario" name="nomeUsuario" disabled >
+        </mat-form-field>
+        <mat-form-field>
             <input matInput placeholder="Empresa"
-                [value]="usuario.empresa" name="empresa" disabled >
+                [value]="usuario.empresa" name="empresa" disabled>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Cód. Empresa"
+                [value]="usuario.codEmpresa" name="codEmpresa" disabled >
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Email"
                 [value]="usuario.email" name="email" disabled>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Nome Usuario"
-                [value]="usuario.nomeUsuario" name="nomeUsuario" disabled >
+            <input matInput placeholder="Login"
+                [value]="usuario.login" name="login" disabled >
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Senha"
                 [value]="usuario.senha" name="senha" disabled>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Nivel Acesso"
-                [value]="usuario.nivelAcesso" name="nivelAcesso" disabled >
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Nome Completo"
-                [value]="usuario.nomeCompleto" name="nomeCompleto" disabled>
         </mat-form-field>
     </form>
     <button mat-raised-button (click)="deleteProduct()" color="warn">

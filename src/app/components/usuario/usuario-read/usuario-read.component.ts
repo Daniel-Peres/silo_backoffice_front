@@ -11,14 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class UsuarioReadComponent implements OnInit {
 
   usuarios: Usuario[]
-  displayedColumns = ['idUsuario', 'empresa', 'email', 'nomeUsuario', 'senha', 'nivelAcesso', 'nomeCompleto', 'action']
+  displayedColumns = ['id','codUsuario', 'nomeUsuario', 'empresa', 'codEmpresa', 'email', 'login', 'senha', 'action']
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
     // this.usuarioService.read().subscribe(usuarios => {
     //   this.usuarios = usuarios
-    //   console.log(usuarios)
     // })
   }
 
@@ -29,7 +28,7 @@ export class UsuarioReadComponent implements OnInit {
   listarTodosUsuarios(): void {
     this.usuarioService.read().subscribe(usuarios => {
       this.usuarios = usuarios
-      console.log(usuarios)
+      // this.usuarioService.showMessage('Listagem de usuários realizada com sucesso!')
     })
   }
 
