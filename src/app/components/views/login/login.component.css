@@ -31,14 +31,15 @@
     font-size: 20px;
     padding: 5px;
     text-align: center;
- }   
-
-  
-  body {
-    background-color: #7159c1;
-    font-family: Roboto, Arial, sans-serif;
-  }
-  
+ }
+ 
+ .botoes {
+  display: flex;
+  color: black;     
+  margin: auto;
+  text-align: center; 
+}
+ 
   section {
     display: flex;
     flex-direction: column;
@@ -84,6 +85,7 @@
     background-color: #9FC5F8;
     margin: 5px;
     color: black;
+    width: 100%;
 }
 
 .textoBotao{
@@ -96,14 +98,12 @@
 
 @media only screen and (max-width: 510px) {
   .titulo {
-     /* background-color: #333; */
      color: #9FC5F8;
      font-size: 20px;
      padding: 5px;
      text-align: center;
   }
   .titulo2 {
-    /* display: none; */
     font-size: 15px;
   }
 }
@@ -132,7 +132,7 @@
        flex-direction: column;
        color: black;     
        margin: auto;
-       text-align: center;     
+       text-align: center; 
    }
  }
 
@@ -145,7 +145,6 @@
   }
 }
   
-  /* APARIÇÃO DO FORM */
   form {
     overflow: hidden;
     animation: fade 0.2s;

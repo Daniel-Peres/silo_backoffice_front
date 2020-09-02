@@ -1,9 +1,79 @@
-form {
+.container {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    align-items: center;
+    margin: 10px;
+    padding: 25px;
 }
 
-button {
-    margin: 20px 15px 0px 0px;
+.formulario {
+    display: grid;
+    width: 90vw;
+    margin: 10px;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 12vh 12vh;
+    grid-template-areas: "usuario usuario"
+                         "email email";
+}
+
+.formulario > main {
+    grid-area: usuario;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.formulario > footer {
+    grid-area: email;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.botaoSalvar {
+    background-color: #9FC5F8;
+    color: #333;
+    margin-right: 10px;
+    width: 8rem;    
+}
+
+.botaoCancelar {
+    background-color: #e35e6b;
+    width: 8rem;
+}
+
+.textButton{
+    margin-left: 5px;
+}
+
+mat-form-field.mat-form-field {
+    font-size: 13px;
+}
+
+.inputCod {
+    width: 10%;
+}
+
+.inputNome {
+    width: 35%;
+}
+
+.inputEmail  {
+    width: 42%;
+}
+
+.inputLogin {
+    width: 25%;
+}
+
+.inputSenha {
+    width: 25%;
 }

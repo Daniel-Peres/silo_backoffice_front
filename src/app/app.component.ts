@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private router : Router) { }
 
   ngOnInit(): void {
-    // this.navigateToLogin();
+    this.navigateToLogin();
   }
 
   navigateToLogin(): void {

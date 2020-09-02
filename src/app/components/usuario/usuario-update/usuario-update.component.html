@@ -1,43 +1,48 @@
 <app-header></app-header>
-<mat-card>
-    <mat-card-title>Update Usuário</mat-card-title>
-    <form>
-        <mat-form-field>
-            <input disabled matInput placeholder="Cód. Usuário"
-                [(ngModel)]="usuario.codUsuario" name="codUsuario" >
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Nome Usuario"
-                [(ngModel)]="usuario.nomeUsuario" name="nomeUsuario" >
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Empresa"
-                [(ngModel)]="usuario.empresa" name="empresa" >
-        </mat-form-field>
-        <mat-form-field>
-            <input type="number" matInput placeholder="Cód. Empresa"
-                [(ngModel)]="usuario.codEmpresa" name="codEmpresa" >
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Email"
-                [(ngModel)]="usuario.email" name="email" >
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Login"
-                [(ngModel)]="usuario.login" name="login" >
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Senha"
-                [(ngModel)]="usuario.senha" name="senha" >
-        </mat-form-field>
+<mat-card class="container">
+    <mat-card-title>Atualizar usuário</mat-card-title>
+    <form class="formulario">
+        <main>
+            <mat-form-field class="inputCod" appearance="outline" color="accent">
+                <mat-label>Cód. Usuário</mat-label>
+                <input disabled type="number" matInput [(ngModel)]="usuario.codUsuario" name="codUsuario">
+            </mat-form-field>
+            <mat-form-field class="inputNome" appearance="outline" color="accent">
+                <mat-label>Nome Usuario</mat-label>
+                <input matInput [(ngModel)]="usuario.nomeUsuario" name="nomeUsuario">
+            </mat-form-field>
+            <mat-form-field class="inputCod" appearance="outline" color="accent">
+                <mat-label>Cód. Empresa</mat-label>
+                <input type="number" matInput [(ngModel)]="usuario.codEmpresa" name="codEmpresa">
+            </mat-form-field>
+            <mat-form-field class="inputNome" appearance="outline" color="accent">
+                <mat-label>Empresa</mat-label>
+                <input matInput [(ngModel)]="usuario.empresa" name="empresa">
+            </mat-form-field>
+        </main>
+        <footer>
+            <mat-form-field class="inputEmail" appearance="outline" color="accent">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="usuario.email" name="email">
+            </mat-form-field>
+            <mat-form-field class="inputLogin" appearance="outline" color="accent">
+                <mat-label>Login</mat-label>
+                <input matInput [(ngModel)]="usuario.login" name="login">
+            </mat-form-field>
+            <mat-form-field class="inputSenha" appearance="outline" color="accent">
+                <mat-label>Senha</mat-label>
+                <input matInput [(ngModel)]="usuario.senha" name="senha">
+            </mat-form-field>
+        </footer>
     </form>
-    <button mat-raised-button (click)="updateUsuario()" color="primary">
-        Salvar
-    </button>
-    
-    <button mat-raised-button (click)="cancel()">
-        Cancelar
-    </button>
+    <div class="botoes">
+        <button class="botaoSalvar" mat-raised-button (click)="updateUsuario()" >
+            <mat-icon appearance="outline">save</mat-icon>
+            <span class="textButton">Salvar</span>
+        </button>
+        <button class="botaoCancelar" mat-raised-button (click)="cancel()">
+            <mat-icon>close_outline</mat-icon>
+            <span class="textButton">Cancelar</span>
+        </button>
+    </div>
 </mat-card>
-
-

@@ -1,8 +1,8 @@
 export interface Usuario {
-    codUsuario?: number 
+    codUsuario: number 
     nomeUsuario: string
     empresa: string
-    codEmpresa?: number
+    codEmpresa: number
     email: string
     login: string
     senha: string
