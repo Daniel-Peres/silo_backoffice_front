@@ -8,3 +8,7 @@
     text-align: center;
     padding: 25px;
 } 
+
+mat-grid-tile {
+    background: lightblue;
+}

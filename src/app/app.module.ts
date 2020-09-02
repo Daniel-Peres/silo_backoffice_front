@@ -31,6 +31,8 @@ import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usua
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MatGridListModule } from '@angular/material/grid-list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatSnackBarModule,
     HttpClientModule,
-    MatInputModule
+    MatInputModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
