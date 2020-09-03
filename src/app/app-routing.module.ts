@@ -9,6 +9,7 @@ import { MostrarNivelLotacaoComponent } from './components/views/mostrar-nivel-l
 import { UsuarioCreateComponent } from './components/usuario/usuario-create/usuario-create.component';
 import { UsuarioDeleteComponent } from './components/usuario/usuario-delete/usuario-delete.component';
 import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usuario-update.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,36 +18,45 @@ const routes: Routes = [
   },
   {
     path: "home",
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "manter_veiculos",
-    component: ManterVeiculosComponent
+    component: ManterVeiculosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "manter_equipamentos",
-    component: ManterEquipamentosComponent
+    component: ManterEquipamentosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "manter_usuarios",
-    component: ManterUsuariosComponent
+    component: ManterUsuariosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "mostrar_nivel_lotacao",
-    component: MostrarNivelLotacaoComponent
+    component: MostrarNivelLotacaoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "usuarios/create",
-    component: UsuarioCreateComponent
+    component: UsuarioCreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "usuarios/update/:id",
-    component: UsuarioUpdateComponent
+    component: UsuarioUpdateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "usuarios/delete/:id",
-    component: UsuarioDeleteComponent
+    component: UsuarioDeleteComponent,
+    canActivate: [AuthGuard]
   },
+  { path: '**', redirectTo: 'login'}
 ];
 
 @NgModule({

@@ -6,17 +6,17 @@
         <h1 class="subtitulo">LOGIN</h1>
     </div>
     <div class="form-wrapper">
-        <form action="">
+        <form name="form" (ngSubmit)="f.form.valid && efetuarLogin()" #f="ngForm">
             <div class="input-block">
                 <label for="login-email">Email</label>
-                <input type="email" id="login-email" />
+                <input type="text" id="username" name="username" [(ngModel)]="model.username" />
             </div>
             <div class="input-block">
                 <label for="login-password">Password</label>
-                <input type="password" id="login-password" />
+                <input type="password" id="pasword" name="password" [(ngModel)]="model.password" />
             </div>
             <div class="botoes">
-                <button class="botao" mat-raised-button (click)="navigateToHome()">
+                <button class="botao" mat-raised-button type="submit">
                     <mat-icon class="corIcone">login</mat-icon>
                     <span class="textoBotao">Entrar</span>
                 </button>

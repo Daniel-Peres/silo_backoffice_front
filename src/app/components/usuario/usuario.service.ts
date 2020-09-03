@@ -11,8 +11,13 @@ import { catchError, map } from 'rxjs/operators';
 export class UsuarioService {
 
   baseUrl = "http://localhost:3001/usuarios"
+  baseLoginUrl = "http://localhost:8080/login"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
+
+  login(model) {
+    return this.http.post<Usuario>(this.baseLoginUrl, model).pipe(map(obj => obj), catchError(e => this.errorHandler(e)));
+  }
 
   create(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.baseUrl, usuario)

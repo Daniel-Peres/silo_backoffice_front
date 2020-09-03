@@ -18,7 +18,10 @@ export class UsuarioCreateComponent implements OnInit {
     codEmpresa: null,
     email: '',
     login: '',
-    senha: ''
+    senha: '',
+    jwttoken: '',
+    expireAt: 0,
+    id: 0
   }
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }

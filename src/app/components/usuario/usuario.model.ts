@@ -6,4 +6,7 @@ export interface Usuario {
     email: string
     login: string
     senha: string
+    jwttoken: string
+    expireAt: number
+    id: number
 }
