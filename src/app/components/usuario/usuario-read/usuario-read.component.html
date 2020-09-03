@@ -11,22 +11,28 @@
   </div>
 
   <table mat-table [dataSource]="usuarios" class="mat-elevation-z4">
-    <!-- Id Column -->
+    <!-- id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
       <td mat-cell *matCellDef="let row">{{row.id}}</td>
     </ng-container>
 
-    <!-- Cod Usuario Column -->
-    <ng-container matColumnDef="codUsuario">
-      <th mat-header-cell *matHeaderCellDef>Cod. Usuário</th>
-      <td mat-cell *matCellDef="let row">{{row.codUsuario}}</td>
+    <!-- nome Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Nome (usuário)</th>
+      <td mat-cell *matCellDef="let row">{{row.nome}}</td>
     </ng-container>
 
-    <!-- nomeUsuario Column -->
-    <ng-container matColumnDef="nomeUsuario">
-      <th mat-header-cell *matHeaderCellDef>Nome Usuario</th>
-      <td mat-cell *matCellDef="let row">{{row.nomeUsuario}}</td>
+    <!-- senha Column -->
+    <ng-container matColumnDef="senha">
+      <th mat-header-cell *matHeaderCellDef>Senha</th>
+      <td mat-cell *matCellDef="let row">{{row.senha}}</td>
+    </ng-container>
+
+    <!-- empresaId Column -->
+    <ng-container matColumnDef="empresaId">
+      <th mat-header-cell *matHeaderCellDef>Empresa ID</th>
+      <td mat-cell *matCellDef="let row">{{row.empresaId}}</td>
     </ng-container>
 
     <!-- empresa Column -->
@@ -35,16 +41,10 @@
       <td mat-cell *matCellDef="let row">{{row.empresa}}</td>
     </ng-container>
 
-    <!-- codEmpresa Column -->
-    <ng-container matColumnDef="codEmpresa">
-      <th mat-header-cell *matHeaderCellDef>Cód Empresa</th>
-      <td mat-cell *matCellDef="let row">{{row.codEmpresa}}</td>
-    </ng-container>
-
-    <!-- email Column -->
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef>Email</th>
-      <td mat-cell *matCellDef="let row">{{row.email}}</td>
+    <!-- token Column -->
+    <ng-container matColumnDef="token">
+      <th mat-header-cell *matHeaderCellDef>Token</th>
+      <td mat-cell *matCellDef="let row">{{row.token}}</td>
     </ng-container>
 
     <!-- login Column -->
@@ -53,10 +53,10 @@
       <td mat-cell *matCellDef="let row">{{row.login}}</td>
     </ng-container>
 
-    <!-- senha Column -->
-    <ng-container matColumnDef="senha">
-      <th mat-header-cell *matHeaderCellDef>Senha</th>
-      <td mat-cell *matCellDef="let row">{{row.senha}}</td>
+    <!-- expireAt Column -->
+    <ng-container matColumnDef="expireAt">
+      <th mat-header-cell *matHeaderCellDef>expireAt</th>
+      <td mat-cell *matCellDef="let row">{{row.expireAt}}</td>
     </ng-container>
 
     <!-- Action Column -->

@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class UsuarioReadComponent implements OnInit {
 
   usuarios: Usuario[]
-  displayedColumns = ['id','codUsuario', 'nomeUsuario', 'empresa', 'codEmpresa', 'email', 'login', 'senha', 'action']
+  displayedColumns = ['id','nome', 'senha', 'empresaId', 'empresa', 'token', 'login', 'expireAt', 'action']
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 

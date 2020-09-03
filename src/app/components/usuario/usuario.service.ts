@@ -12,6 +12,10 @@ export class UsuarioService {
 
   baseUrl = "http://localhost:3001/usuarios"
   baseLoginUrl = "http://localhost:8080/login"
+  baseReadUrl = "http://localhost:8080/api/user/"
+  baseCreateUrl = "http://localhost:8080/api/user/"
+  baseDeleteUrl = "http://localhost:8080/api/user/"
+  baseUpdateUrl = "http://localhost:8080/api/user/"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -20,7 +24,7 @@ export class UsuarioService {
   }
 
   create(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.baseUrl, usuario)
+    return this.http.post<Usuario>(this.baseCreateUrl, usuario)
     .pipe(
       map((obj) => obj),
       catchError(e => this.errorHandler(e))
@@ -28,7 +32,7 @@ export class UsuarioService {
   }
   
   read(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.baseUrl)
+    return this.http.get<Usuario[]>(this.baseReadUrl)
     .pipe(
       map((obj) => obj),
       catchError(e => this.errorHandler(e))
@@ -36,7 +40,7 @@ export class UsuarioService {
   }
   
   readById(id: number): Observable<Usuario> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseReadUrl}${id}`;
     return this.http.get<Usuario>(url)
     .pipe(
       map((obj) => obj),
@@ -45,7 +49,7 @@ export class UsuarioService {
   }
 
   update(usuario: Usuario): Observable<Usuario> {
-    const url = `${this.baseUrl}/${usuario.codUsuario}`;
+    const url = `${this.baseUpdateUrl}${usuario.id}`;
     return this.http.put<Usuario>(url, usuario)
     .pipe(
       map((obj) => obj),
@@ -54,7 +58,7 @@ export class UsuarioService {
   }
 
   delete(id: number): Observable<Usuario> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseDeleteUrl}${id}`;
     return this.http.delete<Usuario>(url)
     .pipe(
       map((obj) => obj),

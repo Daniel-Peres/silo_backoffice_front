@@ -12,16 +12,15 @@ import { empty } from 'rxjs';
 export class UsuarioCreateComponent implements OnInit {
 
   usuario: Usuario = {
-    codUsuario: null,
-    nomeUsuario: '',
+    id: null,
+    nome: '',
+    senha: '',
+    empresaId: null,
     empresa: '',
-    codEmpresa: null,
     email: '',
     login: '',
-    senha: '',
     jwttoken: '',
-    expireAt: 0,
-    id: 0
+    expireAt: 0
   }
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }

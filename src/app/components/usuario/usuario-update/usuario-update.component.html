@@ -2,46 +2,34 @@
 <mat-card class="container">
     <mat-card-title>Atualizar usuário</mat-card-title>
     <form class="formulario">
-        <main>
-            <mat-form-field class="inputCod" appearance="outline" color="accent">
-                <mat-label>Cód. Usuário</mat-label>
-                <input disabled type="number" matInput [(ngModel)]="usuario.codUsuario" name="codUsuario">
-            </mat-form-field>
-            <mat-form-field class="inputNome" appearance="outline" color="accent">
-                <mat-label>Nome Usuario</mat-label>
-                <input matInput [(ngModel)]="usuario.nomeUsuario" name="nomeUsuario">
-            </mat-form-field>
-            <mat-form-field class="inputCod" appearance="outline" color="accent">
-                <mat-label>Cód. Empresa</mat-label>
-                <input type="number" matInput [(ngModel)]="usuario.codEmpresa" name="codEmpresa">
-            </mat-form-field>
-            <mat-form-field class="inputNome" appearance="outline" color="accent">
-                <mat-label>Empresa</mat-label>
-                <input matInput [(ngModel)]="usuario.empresa" name="empresa">
-            </mat-form-field>
-        </main>
-        <footer>
-            <mat-form-field class="inputEmail" appearance="outline" color="accent">
-                <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="usuario.email" name="email">
-            </mat-form-field>
-            <mat-form-field class="inputLogin" appearance="outline" color="accent">
-                <mat-label>Login</mat-label>
-                <input matInput [(ngModel)]="usuario.login" name="login">
-            </mat-form-field>
-            <mat-form-field class="inputSenha" appearance="outline" color="accent">
-                <mat-label>Senha</mat-label>
-                <input matInput [(ngModel)]="usuario.senha" name="senha" type="password">
-            </mat-form-field>
-        </footer>
+        <mat-form-field class="inputId" appearance="outline" color="accent">
+            <mat-label>Id</mat-label>
+            <input type="number" matInput  name="id">
+        </mat-form-field>
+        <mat-form-field class="inputNome" appearance="outline" color="accent">
+            <mat-label>Nome (usuário)</mat-label>
+            <input matInput  name="nome">
+        </mat-form-field>
+        <mat-form-field class="inputSenha" appearance="outline" color="accent">
+            <mat-label>Senha</mat-label>
+            <input type="password" matInput  name="senha">
+        </mat-form-field>
+        <mat-form-field class="inputEmpresaId" appearance="outline" color="accent">
+            <mat-label>Empresa ID</mat-label>
+            <input type="number" matInput  name="empresaId">
+        </mat-form-field>
+        <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
+            <mat-label>Empresa</mat-label>
+            <input matInput name="empresa">
+        </mat-form-field>
     </form>
     <div class="botoes">
-        <button class="botaoSalvar" mat-raised-button (click)="updateUsuario()" >
-            <mat-icon appearance="outline">save</mat-icon>
-            <span class="textButton">Salvar</span>
+        <button class="botaoSalvar" mat-raised-button (click)="updateUsuario()">
+            <mat-icon>update</mat-icon>
+            <span class="textButton">Atualizar</span>
         </button>
         <button class="botaoCancelar" mat-raised-button (click)="cancel()">
-            <mat-icon>close_outline</mat-icon>
+            <mat-icon>close</mat-icon>
             <span class="textButton">Cancelar</span>
         </button>
     </div>

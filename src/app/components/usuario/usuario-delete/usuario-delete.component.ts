@@ -1,6 +1,6 @@
+import { Usuario } from './../usuario.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from './../usuario.service';
-import { Usuario } from './../usuario.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -19,14 +19,14 @@ export class UsuarioDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.usuarioService.readById(id).subscribe(usuario => {
-      this.usuario = usuario
-    })
+    // const id = +this.route.snapshot.paramMap.get('id');
+    // this.usuarioService.readById(id).subscribe(usuario => {
+    //   this.usuario = usuario
+    // })
   }
 
-  deleteProduct(): void {
-    this.usuarioService.delete(this.usuario.codUsuario).subscribe(() => {
+  deleteUsuario(): void {
+    this.usuarioService.delete(this.usuario.id).subscribe(() => {
       this.router.navigate(['/manter_usuarios'])
       this.usuarioService.showMessage('Usuário apagado com sucesso!')
     })

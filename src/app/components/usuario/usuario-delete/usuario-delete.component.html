@@ -2,46 +2,34 @@
 <mat-card class="container">
     <mat-card-title>Excluir usuário</mat-card-title>
     <form class="formulario">
-        <main>
-            <mat-form-field class="inputCod" appearance="outline" color="accent">
-                <mat-label>Cód. Usuário</mat-label>
-                <input type="number" matInput [value]="usuario.codUsuario" name="codUsuario" disabled>
-            </mat-form-field>
-            <mat-form-field class="inputNome" appearance="outline" color="accent">
-                <mat-label>Nome Usuario</mat-label>
-                <input matInput [value]="usuario.nomeUsuario" name="nomeUsuario" disabled>
-            </mat-form-field>
-            <mat-form-field class="inputCod" appearance="outline" color="accent">
-                <mat-label>Cód. Empresa</mat-label>
-                <input type="number" matInput [value]="usuario.codEmpresa" name="codEmpresa" disabled>
-            </mat-form-field>
-            <mat-form-field class="inputNome" appearance="outline" color="accent">
-                <mat-label>Empresa</mat-label>
-                <input matInput [value]="usuario.empresa" name="empresa" disabled>
-            </mat-form-field>
-        </main>
-        <footer>
-            <mat-form-field class="inputEmail" appearance="outline" color="accent">
-                <mat-label>Email</mat-label>
-                <input matInput [value]="usuario.email" name="email" disabled>
-            </mat-form-field>
-            <mat-form-field class="inputLogin" appearance="outline" color="accent">
-                <mat-label>Login</mat-label>
-                <input matInput [value]="usuario.login" name="login" disabled>
-            </mat-form-field>
-            <mat-form-field class="inputSenha" appearance="outline" color="accent">
-                <mat-label>Senha</mat-label>
-                <input matInput [value]="usuario.senha" name="senha" type="password" disabled >
-            </mat-form-field>
-        </footer>
+        <mat-form-field class="inputId" appearance="outline" color="accent">
+            <mat-label>Id</mat-label>
+            <input type="number" matInput name="id">
+        </mat-form-field>
+        <mat-form-field class="inputNome" appearance="outline" color="accent">
+            <mat-label>Nome (usuário)</mat-label>
+            <input matInput  name="nome">
+        </mat-form-field>
+        <mat-form-field class="inputSenha" appearance="outline" color="accent">
+            <mat-label>Senha</mat-label>
+            <input type="password" matInput  name="senha">
+        </mat-form-field>
+        <mat-form-field class="inputEmpresaId" appearance="outline" color="accent">
+            <mat-label>Empresa ID</mat-label>
+            <input type="number" matInput  name="empresaId">
+        </mat-form-field>
+        <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
+            <mat-label>Empresa</mat-label>
+            <input matInput  name="empresa">
+        </mat-form-field>
     </form>
     <div class="botoes">
-        <button class="botaoSalvar" mat-raised-button (click)="deleteProduct()" >
-            <mat-icon appearance="outline">delete</mat-icon>
-            <span class="textButton">Excluir</span>
+        <button class="botaoSalvar" mat-raised-button (click)="deleteUsuario()">
+            <mat-icon>save</mat-icon>
+            <span class="textButton">Salvar</span>
         </button>
         <button class="botaoCancelar" mat-raised-button (click)="cancel()">
-            <mat-icon>close_outline</mat-icon>
+            <mat-icon>close</mat-icon>
             <span class="textButton">Cancelar</span>
         </button>
     </div>
