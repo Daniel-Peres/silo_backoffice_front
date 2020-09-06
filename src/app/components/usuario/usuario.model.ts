@@ -1,11 +1,11 @@
 export interface Usuario {
-    id: number 
+    id?: number 
     nome: string
     empresa: string
     empresaId: number
-    email: string
-    login: string
+    email?: string
+    // login?: string
     senha: string
-    jwttoken: string
-    expireAt: number
+    jwttoken?: string
+    expireAt?: number
 }

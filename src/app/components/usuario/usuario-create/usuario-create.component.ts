@@ -2,7 +2,6 @@ import { Usuario } from './../usuario.model';
 import { Router } from '@angular/router';
 import { UsuarioService } from './../usuario.service';
 import { Component, OnInit } from '@angular/core';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-usuario-create',
@@ -10,7 +9,7 @@ import { empty } from 'rxjs';
   styleUrls: ['./usuario-create.component.css']
 })
 export class UsuarioCreateComponent implements OnInit {
-
+  
   usuario: Usuario = {
     id: null,
     nome: '',
@@ -18,10 +17,12 @@ export class UsuarioCreateComponent implements OnInit {
     empresaId: null,
     empresa: '',
     email: '',
-    login: '',
+    // login: '',
     jwttoken: '',
     expireAt: 0
   }
+  
+  senhaCheck: String = '';
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
@@ -30,14 +31,17 @@ export class UsuarioCreateComponent implements OnInit {
   }
 
   createUsuario(): void {
-    this.usuarioService.create(this.usuario).subscribe(() => {
-      this.usuarioService.showMessage('Usuário criado com sucesso!')
-      this.router.navigate(['/manter_usuarios'])
-    })
+    if (this.senhaCheck === this.usuario.senha) {
+      this.usuarioService.create(this.usuario).subscribe(() => {
+        this.usuarioService.showMessage('Usuário criado com sucesso!')
+        this.router.navigate(['/manter_usuarios'])
+      });
+    } else {
+      alert('Senhas não conferem');
+    }
   }
 
   cancel(): void {
     this.router.navigate(['/manter_usuarios'])
   }
-
 }

@@ -4,23 +4,23 @@
     <form class="formulario">
         <mat-form-field class="inputId" appearance="outline" color="accent">
             <mat-label>Id</mat-label>
-            <input type="number" matInput name="id">
+            <input type="number" matInput [value]="usuario.id" name="id" disabled>
         </mat-form-field>
         <mat-form-field class="inputNome" appearance="outline" color="accent">
             <mat-label>Nome (usuário)</mat-label>
-            <input matInput  name="nome">
+            <input matInput [value]="usuario.nome" name="nome" disabled>
         </mat-form-field>
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Senha</mat-label>
-            <input type="password" matInput  name="senha">
+            <input type="password" matInput [value]="usuario.senha" name="senha" disabled>
         </mat-form-field>
         <mat-form-field class="inputEmpresaId" appearance="outline" color="accent">
             <mat-label>Empresa ID</mat-label>
-            <input type="number" matInput  name="empresaId">
+            <input type="number" matInput [value]="usuario.empresaId" name="empresaId" disabled>
         </mat-form-field>
         <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
-            <input matInput  name="empresa">
+            <input matInput [value]="usuario.empresa" name="empresa" disabled>
         </mat-form-field>
     </form>
     <div class="botoes">

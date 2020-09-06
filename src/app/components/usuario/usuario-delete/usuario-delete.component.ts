@@ -10,7 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioDeleteComponent implements OnInit {
 
-  usuario: Usuario
+  // usuario: Usuario
+  usuario: Usuario = {
+    id: null,
+    nome: '',
+    senha: '',
+    empresaId: null,
+    empresa: '',
+    email: '',
+    // login: '',
+    jwttoken: '',
+    expireAt: 0
+  }
 
   constructor(
     private usuarioService: UsuarioService,

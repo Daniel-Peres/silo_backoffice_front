@@ -14,6 +14,10 @@
             <mat-label>Senha</mat-label>
             <input type="password" matInput [(ngModel)]="usuario.senha" name="senha">
         </mat-form-field>
+        <mat-form-field class="inputSenha" appearance="outline" color="accent">
+            <mat-label>Confirmação Senha</mat-label>
+            <input type="password" matInput [(ngModel)]="senhaCheck" name="senha">
+        </mat-form-field>
         <mat-form-field class="inputEmpresaId" appearance="outline" color="accent">
             <mat-label>Empresa ID</mat-label>
             <input type="number" matInput [(ngModel)]="usuario.empresaId" name="empresaId">

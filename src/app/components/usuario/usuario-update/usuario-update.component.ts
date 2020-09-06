@@ -10,7 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioUpdateComponent implements OnInit {
 
-  usuario: Usuario
+  usuario: Usuario = {
+    id: null,
+    nome: '',
+    senha: '',
+    empresaId: null,
+    empresa: '',
+    email: '',
+    // login: '',
+    jwttoken: '',
+    expireAt: 0
+  }
+
+  senhaCheck: String = '';
 
   constructor(
     private usuarioService: UsuarioService,
@@ -26,10 +38,14 @@ export class UsuarioUpdateComponent implements OnInit {
   }
 
   updateUsuario(): void {
-    this.usuarioService.update(this.usuario).subscribe(() => {
-      this.router.navigate(['/manter_usuarios'])
-      this.usuarioService.showMessage('Usuário atualizado com sucesso!')
-    })
+    if (this.senhaCheck === this.usuario.senha) {
+      this.usuarioService.update(this.usuario).subscribe(() => {
+        this.router.navigate(['/manter_usuarios'])
+        this.usuarioService.showMessage('Usuário atualizado com sucesso!')
+      });
+    } else {
+      alert('Senhas não conferem');
+    }
   }
 
   cancel(): void {
