@@ -80,4 +80,13 @@ export class UsuarioService {
     this.showMessage('Ocorreu um erro!', true);
     return EMPTY;
   }
+
+  showMessage2(msg: string): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 2000,
+      horizontalPosition: "right",
+      verticalPosition: "top",
+      panelClass: ['msg-alert'] 
+    });
+  }
 }

@@ -38,18 +38,34 @@ export class UsuarioUpdateComponent implements OnInit {
   }
 
   updateUsuario(): void {
-    if (this.senhaCheck === this.usuario.senha) {
-      this.usuarioService.update(this.usuario).subscribe(() => {
-        this.router.navigate(['/manter_usuarios'])
-        this.usuarioService.showMessage('Usuário atualizado com sucesso!')
-      });
+    if (this.checkCampos()) { // checando campos não preenchidos
+      this.usuarioService.showMessage2('Campos obrigatórios não preenchidos!')
     } else {
-      alert('Senhas não conferem');
+      if (this.senhaCheck === this.usuario.senha) {
+
+        this.usuarioService.update(this.usuario).subscribe(() => {
+          this.router.navigate(['/manter_usuarios']);
+          this.usuarioService.showMessage('Usuário atualizado com sucesso!');
+        });
+
+      } else {
+        this.usuarioService.showMessage2('Senhas não conferem!')
+      }
     }
   }
 
   cancel(): void {
     this.router.navigate(['/manter_usuarios'])
+  }
+
+  // checar campos obrigatórios vazios
+  checkCampos(): Boolean {
+    if (
+      this.usuario.nome === '' ||
+      this.usuario.senha === '' ||
+      this.usuario.empresaId === null ||
+      this.usuario.empresa === ''
+    ) { return true } else { return false; }
   }
 
 }

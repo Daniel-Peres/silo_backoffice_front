@@ -1,7 +1,7 @@
 .container{
     display: flex;    
-    height: 15vh;
-    width: 100vw;
+    height: 15%;
+    width: 100%;
 }
 
 .toolbar {
@@ -12,32 +12,39 @@
 .titulo {
     color: #9FC5F8;
     font-size: 25px;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
     display: flex;
+}
+
+.tituloPequeno{
+    color: #9FC5F8;
+    font-size: 25px;
+    width: 100%;
+    justify-content: center;
+    display: none;
 }
 
 .menu-button{
     display: flex;
     justify-content: flex-end;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 @media only screen and (max-width: 719px) {
     .toolbar {
         flex-direction: column;
+        padding: 0px;
     }
     .titulo {
         background-color: #333;
         color: #9FC5F8;
         font-size: 20px;
-        padding: 5px;
         text-align: center;
      }
     .menu-button{
-        justify-content: center;
-        margin-right: 5px;
         flex-direction: column;
+        justify-content: center;
     }
  }
  @media only screen and (max-width: 500px) {
@@ -48,13 +55,28 @@
         background-color: #333;
         color: #9FC5F8;
         font-size: 15px;
-        padding: 5px;
         text-align: center;
         color: #9FC5F8;
      }
     .menu-button{
+        flex-direction: column;
         justify-content: center;
-        margin-right: 5px;
+    }
+ }
+ @media only screen and (max-width: 380px) {
+    .toolbar {
+        flex-direction: column;
+    }
+    .titulo {
+        display: none;
+     }
+
+     .tituloPequeno{
+        display: flex;
+    }
+
+    .menu-button{
+        justify-content: center;
         flex-direction: column;
     }
  }

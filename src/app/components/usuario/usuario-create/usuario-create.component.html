@@ -4,27 +4,27 @@
     <form class="formulario">
         <mat-form-field class="inputId" appearance="outline" color="accent">
             <mat-label>Id</mat-label>
-            <input type="number" matInput [(ngModel)]="usuario.id" name="id">
+            <input type="number" matInput [(ngModel)]="usuario.id" name="id" required>
         </mat-form-field>
         <mat-form-field class="inputNome" appearance="outline" color="accent">
             <mat-label>Nome (usuário)</mat-label>
-            <input matInput [(ngModel)]="usuario.nome" name="nome">
+            <input matInput [(ngModel)]="usuario.nome" name="nome" required>
         </mat-form-field>
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Senha</mat-label>
-            <input type="password" matInput [(ngModel)]="usuario.senha" name="senha">
+            <input type="password" matInput [(ngModel)]="usuario.senha" name="senha" required>
         </mat-form-field>
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Confirmação Senha</mat-label>
-            <input type="password" matInput [(ngModel)]="senhaCheck" name="senha">
+            <input type="password" matInput [(ngModel)]="senhaCheck" name="senhaCheck" required>
         </mat-form-field>
         <mat-form-field class="inputEmpresaId" appearance="outline" color="accent">
             <mat-label>Empresa ID</mat-label>
-            <input type="number" matInput [(ngModel)]="usuario.empresaId" name="empresaId">
+            <input type="number" matInput [(ngModel)]="usuario.empresaId" name="empresaId" required>
         </mat-form-field>
         <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
-            <input matInput [(ngModel)]="usuario.empresa" name="empresa">
+            <input matInput [(ngModel)]="usuario.empresa" name="empresa" required>
         </mat-form-field>
     </form>
     <div class="botoes">

@@ -21,7 +21,7 @@ export class UsuarioReadComponent implements OnInit {
     // })
   }
 
-  navigateToManterUsuarios(): void {
+  navigateToNovoUsuario(): void {
     this.router.navigate(['/usuarios/create']); 
   }
 
