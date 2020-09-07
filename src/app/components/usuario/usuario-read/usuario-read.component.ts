@@ -28,6 +28,7 @@ export class UsuarioReadComponent implements OnInit {
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
+    this.listarTodosUsuarios();
   }
 
   navigateToNovoUsuario(): void {
@@ -35,7 +36,7 @@ export class UsuarioReadComponent implements OnInit {
   }
 
   listarTodosUsuarios(): void {
-    this.usuarioService.read('', this.paginator.pageSize, this.paginator.pageIndex).subscribe(usuarios => {
+    this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
       this.usuarioService.showMessage('Listagem de usuários realizada com sucesso!')

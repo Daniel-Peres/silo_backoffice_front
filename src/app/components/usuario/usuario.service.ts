@@ -16,9 +16,7 @@ export class UsuarioService {
   baseReadUrl = "http://localhost:8080/api/user/"
   baseCreateUrl = "http://localhost:8080/api/user/"
   baseDeleteUrl = "http://localhost:8080/api/user/"
-  baseUpdateUrl = "http://localhost:8080/api/user/"
-
-  private httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+  baseUpdateUrl = "http://localhost:8080/api/user/" 
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -27,7 +25,8 @@ export class UsuarioService {
   }
 
   create(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.baseCreateUrl, usuario)
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+    return this.http.post<Usuario>(this.baseCreateUrl, usuario, { headers: httpOptions })
     .pipe(
       map((obj) => obj),
       catchError(e => this.errorHandler(e))
@@ -35,11 +34,13 @@ export class UsuarioService {
   }
   
   read(name, pageSize, page): Observable<any> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+
     let params = new HttpParams();
     params = params.append('name', name);
     params = params.append('pageSize', pageSize);
     params = params.append('page', page);
-    return this.http.get<Usuario[]>(this.baseListUrl, { headers: this.httpOptions, params: params})
+    return this.http.get<Usuario[]>(this.baseListUrl, { headers: httpOptions, params: params})
     .pipe(
       map((obj) => obj),
       catchError(e => this.errorHandler(e))
@@ -47,8 +48,9 @@ export class UsuarioService {
   }
   
   readById(id: number): Observable<Usuario> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
     const url = `${this.baseReadUrl}${id}`;
-    return this.http.get<Usuario>(url)
+    return this.http.get<Usuario>(url, { headers: httpOptions })
     .pipe(
       map((obj) => obj),
       catchError(e => this.errorHandler(e))
@@ -56,8 +58,9 @@ export class UsuarioService {
   }
 
   update(usuario: Usuario): Observable<Usuario> {
-    const url = `${this.baseUpdateUrl}${usuario.id}`;
-    return this.http.put<Usuario>(url, usuario)
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+    //const url = `${this.baseUpdateUrl}${usuario.id}`;
+    return this.http.put<Usuario>(this.baseUpdateUrl, usuario, { headers: httpOptions })
     .pipe(
       map((obj) => obj),
       catchError(e => this.errorHandler(e))
