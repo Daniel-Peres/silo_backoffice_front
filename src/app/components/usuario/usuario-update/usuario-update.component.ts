@@ -39,7 +39,7 @@ export class UsuarioUpdateComponent implements OnInit {
 
   updateUsuario(): void {
     if (this.checkCampos()) { // checando campos não preenchidos
-      this.usuarioService.showMessage2('Campos obrigatórios não preenchidos!')
+      this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');
     } else {
       if (this.senhaCheck === this.usuario.senha) {
 
@@ -49,13 +49,13 @@ export class UsuarioUpdateComponent implements OnInit {
         });
 
       } else {
-        this.usuarioService.showMessage2('Senhas não conferem!')
+        this.usuarioService.showMessage2('Senhas não conferem!');
       }
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/manter_usuarios'])
+    this.router.navigate(['/manter_usuarios']);
   }
 
   // checar campos obrigatórios vazios

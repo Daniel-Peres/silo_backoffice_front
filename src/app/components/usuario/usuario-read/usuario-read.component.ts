@@ -10,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioReadComponent implements OnInit {
 
-  usuarios: Usuario[]
-  displayedColumns = ['id','nome', 'senha', 'empresaId', 'empresa', 'token', 'login', 'expireAt', 'action']
+  usuarios: Usuario[];
+  displayedColumns = ['id','nome', 'senha', 'empresaId', 'empresa', 'token', 'login', 'expireAt', 'action'];
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
@@ -27,8 +27,7 @@ export class UsuarioReadComponent implements OnInit {
 
   listarTodosUsuarios(): void {
     this.usuarioService.read().subscribe(usuarios => {
-      this.usuarios = usuarios
-      // this.usuarioService.showMessage('Listagem de usuários realizada com sucesso!')
+      this.usuarios = usuarios;
     })
   }
 

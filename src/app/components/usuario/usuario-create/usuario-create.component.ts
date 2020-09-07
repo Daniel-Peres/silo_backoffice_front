@@ -33,23 +33,23 @@ export class UsuarioCreateComponent implements OnInit {
 
   createUsuario(): void {
     if (this.checkCampos()) {
-      this.usuarioService.showMessage2('Campos obrigatórios não preenchidos!')
+      this.usuarioService.showMessage2('Campos obrigatórios não preenchidos!');
     } else {
       if (this.senhaCheck === this.usuario.senha) {
 
         this.usuarioService.create(this.usuario).subscribe(() => {
-          this.usuarioService.showMessage('Usuário criado com sucesso!')
-          this.router.navigate(['/manter_usuarios'])
+          this.usuarioService.showMessage('Usuário criado com sucesso!');
+          this.router.navigate(['/manter_usuarios']);
         });
 
       } else {
-        this.usuarioService.showMessage2('Senhas não conferem!')
+        this.usuarioService.showMessage2('Senhas não conferem!');
       }
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/manter_usuarios'])
+    this.router.navigate(['/manter_usuarios']);
   }
 
   // checar campos obrigatórios vazios
@@ -59,6 +59,6 @@ export class UsuarioCreateComponent implements OnInit {
       this.usuario.senha === '' ||
       this.usuario.empresaId === null ||
       this.usuario.empresa === ''
-    ) { return true } else { return false; }
+    ) { return true; } else { return false; }
   }
 }
