@@ -1,7 +1,7 @@
 import { Usuario } from './usuario.model';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -12,10 +12,13 @@ export class UsuarioService {
 
   baseUrl = "http://localhost:3001/usuarios"
   baseLoginUrl = "http://localhost:8080/login"
+  baseListUrl = "http://localhost:8080/api/user/list"
   baseReadUrl = "http://localhost:8080/api/user/"
   baseCreateUrl = "http://localhost:8080/api/user/"
   baseDeleteUrl = "http://localhost:8080/api/user/"
   baseUpdateUrl = "http://localhost:8080/api/user/"
+
+  private httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -31,8 +34,12 @@ export class UsuarioService {
     );
   }
   
-  read(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.baseReadUrl)
+  read(name, pageSize, page): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('name', name);
+    params = params.append('pageSize', pageSize);
+    params = params.append('page', page);
+    return this.http.get<Usuario[]>(this.baseListUrl, { headers: this.httpOptions, params: params})
     .pipe(
       map((obj) => obj),
       catchError(e => this.errorHandler(e))

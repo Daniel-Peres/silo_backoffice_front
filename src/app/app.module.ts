@@ -24,6 +24,8 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { UsuarioReadComponent } from './components/usuario/usuario-read/usuario-read.component';
 import { UsuarioDeleteComponent } from './components/usuario/usuario-delete/usuario-delete.component';
@@ -62,12 +64,16 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatFormFieldModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatSnackBarModule,
     HttpClientModule,
     MatInputModule,
     MatGridListModule
   ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [MatTableModule,
+    MatPaginatorModule]
 })
 export class AppModule { }
