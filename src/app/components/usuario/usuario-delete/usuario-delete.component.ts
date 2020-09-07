@@ -30,10 +30,10 @@ export class UsuarioDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // const id = +this.route.snapshot.paramMap.get('id');
-    // this.usuarioService.readById(id).subscribe(usuario => {
-    //   this.usuario = usuario;
-    // })
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.usuarioService.readById(id).subscribe(usuario => {
+      this.usuario = usuario;
+    })
   }
 
   deleteUsuario(): void {

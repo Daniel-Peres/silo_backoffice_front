@@ -68,8 +68,9 @@ export class UsuarioService {
   }
 
   delete(id: number): Observable<Usuario> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
     const url = `${this.baseDeleteUrl}${id}`;
-    return this.http.delete<Usuario>(url)
+    return this.http.delete(url, { headers: httpOptions })
     .pipe(
       map((obj) => obj),
       catchError(e => this.errorHandler(e))
