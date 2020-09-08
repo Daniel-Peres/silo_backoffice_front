@@ -101,7 +101,7 @@ export class UsuarioService {
   errorHandler(e: any): Observable<any> {
     console.log(e);
 
-    if (e.error != undefined) {
+    if (e.error.message != '') {
       this.showMessage(e.error.message, true);
     } else {
       this.showMessage('Ocorreu um erro!', true);

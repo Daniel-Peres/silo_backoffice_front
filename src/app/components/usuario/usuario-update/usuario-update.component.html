@@ -26,6 +26,7 @@
             <mat-label>Empresa</mat-label>
             <input matInput [(ngModel)]="usuario.empresa" name="empresa" required>
         </mat-form-field>
+        <span class="info">(*) preenchimento obrigatório</span>
     </form>
     <div class="botoes">
         <button class="botaoSalvar" mat-raised-button (click)="updateUsuario()">
