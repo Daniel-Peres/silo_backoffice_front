@@ -54,8 +54,7 @@ export class UsuarioCreateComponent implements OnInit {
 
   // checar campos obrigatórios vazios
   checkCampos(): Boolean {
-    if (this.usuario.id === null ||
-      this.usuario.nome === '' ||
+    if (this.usuario.nome === '' ||
       this.usuario.senha === '' ||
       this.usuario.empresaId === null ||
       this.usuario.empresa === ''

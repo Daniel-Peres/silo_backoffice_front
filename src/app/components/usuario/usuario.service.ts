@@ -88,7 +88,12 @@ export class UsuarioService {
 
   errorHandler(e: any): Observable<any> {
     console.log(e);
-    this.showMessage('Ocorreu um erro!', true);
+
+    if(e.error != undefined) {
+      this.showMessage(e.error.message, true);
+    } else {
+      this.showMessage('Ocorreu um erro!', true);
+    }
     return EMPTY;
   }
 
