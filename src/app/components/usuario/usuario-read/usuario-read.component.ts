@@ -41,6 +41,9 @@ export class UsuarioReadComponent implements OnInit {
       this.totalSize = usuarios.totalElements;
       this.usuarioService.showMessage('Listagem de usuários realizada com sucesso!')
 
+      if(this.totalSize == 0)
+        this.usuarioService.showMessage2('Nenhum registro encontrado.')
+
       if(this.dataSource == undefined) {
         this.dataSource = new MatTableDataSource(this.usuarios.content);
         this.dataSource.paginator = this.paginator;
