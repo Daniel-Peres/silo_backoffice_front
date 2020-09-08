@@ -2,6 +2,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from './../usuario.service';
 import { Usuario } from './../usuario.model';
 import { Component, OnInit } from '@angular/core';
+import { isNull } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-usuario-update',
@@ -41,7 +42,7 @@ export class UsuarioUpdateComponent implements OnInit {
     if (this.checkCampos()) { // checando campos não preenchidos
       this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');
     } else {
-      if (this.senhaCheck === this.usuario.senha) {
+      if (this.senhaCheck === this.usuario.senha || this.usuario.senha === null) {
 
         this.usuarioService.update(this.usuario).subscribe(() => {
           this.router.navigate(['/manter_usuarios']);
@@ -62,10 +63,9 @@ export class UsuarioUpdateComponent implements OnInit {
   checkCampos(): Boolean {
     if (
       this.usuario.nome === '' ||
-      this.usuario.senha === '' ||
+      // this.usuario.senha === '' ||
       this.usuario.empresaId === null ||
       this.usuario.empresa === ''
     ) { return true } else { return false; }
   }
-
 }

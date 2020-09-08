@@ -19,6 +19,7 @@ export class UsuarioReadComponent implements OnInit {
     this.paginator = mp;
   }
   usuarios = { content: [] };
+  filter = '';
   displayedColumns = ['id','nome', 'empresaId', 'empresa', 'action']
   public pageSize = 10;
   public currentPage = 0;
@@ -39,7 +40,7 @@ export class UsuarioReadComponent implements OnInit {
     this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
-      this.usuarioService.showMessage('Listagem de usuários realizada com sucesso!')
+      // this.usuarioService.showMessage('Listagem de usuários realizada com sucesso!')
 
       if(this.totalSize == 0)
         this.usuarioService.showMessage2('Nenhum registro encontrado.')
@@ -55,6 +56,21 @@ export class UsuarioReadComponent implements OnInit {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.listarTodosUsuarios();
+  }
+
+  listarUsuariosFiltro(): void {
+    this.usuarioService.read(this.filter, this.pageSize, this.currentPage).subscribe(usuarios => {
+      this.usuarios = usuarios;
+      this.totalSize = usuarios.totalElements;
+      
+      if(this.totalSize == 0)
+        this.usuarioService.showMessage2('Nenhum registro encontrado.')
+
+      if(this.dataSource == undefined) {
+        this.dataSource = new MatTableDataSource(this.usuarios.content);
+        this.dataSource.paginator = this.paginator;
+      }
+    })
   }
 
 }
