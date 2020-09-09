@@ -25,8 +25,9 @@ export class LoginComponent implements OnInit {
 
   efetuarLogin() {
     this.usuarioService.login(this.model).pipe(first()).subscribe(resUsuario => {
-      localStorage.setItem('usuario', JSON.stringify(resUsuario));
+      localStorage.setItem('usuario', JSON.stringify(resUsuario));      
       this.router.navigate(['home']);
+      this.usuarioService.showMessage('Login realizado com sucesso!');
     }, (err) => { console.log(err); });
   }
 }

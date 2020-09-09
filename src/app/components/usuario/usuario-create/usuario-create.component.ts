@@ -43,7 +43,7 @@ export class UsuarioCreateComponent implements OnInit {
         });
 
       } else {
-        this.usuarioService.showMessage2('Senhas não conferem!');
+        this.usuarioService.showMessage2('As senhas informadas são diferentes!');
       }
     }
   }

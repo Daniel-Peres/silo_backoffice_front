@@ -1,14 +1,19 @@
 <div>
   <div class="botoes">
     <div class="botoes1">
-      <button mat-raised-button (click)="navigateToNovoUsuario()">
-        <mat-icon class="color-icon">person_add</mat-icon>
-        Novo Usuário
-      </button>
       <button mat-raised-button (click)="listarTodosUsuarios()">
         <mat-icon class="color-icon">list</mat-icon>
         Listar Usuários
       </button>
+
+
+      <button mat-raised-button (click)="navigateToNovoUsuario()">
+        <mat-icon class="color-icon">person_add</mat-icon>
+        Novo Usuário
+      </button>
+
+
+
     </div>
     <div class="botoes2">
       <button mat-raised-button (click)="listarUsuariosFiltro()">
@@ -17,7 +22,7 @@
       </button>
       <mat-form-field appearance="outline" color="accent">
         <mat-label>Filtrar por usuário</mat-label>
-      <input matInput [(ngModel)]="filter" name="filter">
+        <input matInput [(ngModel)]="filter" name="filter">
       </mat-form-field>
     </div>
   </div>
