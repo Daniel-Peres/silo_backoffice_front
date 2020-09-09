@@ -24,7 +24,7 @@ export class UsuarioService {
     return this.http.post<Usuario>(this.baseLoginUrl, model)
       .pipe(
         map(obj => obj),
-        catchError(e => this.errorHandler(e)));
+        catchError(e => this.errorHandlerLogin(e)));
   }
 
   create(usuario: Usuario): Observable<Usuario> {
@@ -106,6 +106,12 @@ export class UsuarioService {
     } else {
       this.showMessage('Ocorreu um erro!', true);
     }
+    return EMPTY;
+  }
+
+  errorHandlerLogin(e: any): Observable<any> {
+    console.log(e);
+    this.showMessage('Usuário e Senha não cadastrados ou inválidos!', true);
     return EMPTY;
   }
 }
