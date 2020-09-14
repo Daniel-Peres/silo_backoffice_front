@@ -34,6 +34,10 @@ import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usua
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { VeiculoUpdateComponent } from './components/veiculo/veiculo-update/veiculo-update.component';
+import { VeiculoDeleteComponent } from './components/veiculo/veiculo-delete/veiculo-delete.component';
+import { VeiculoCreateComponent } from './components/veiculo/veiculo-create/veiculo-create.component';
+import { VeiculoReadComponent } from './components/veiculo/veiculo-read/veiculo-read.component';
 
 
 @NgModule({
@@ -50,7 +54,11 @@ import { HttpClientModule } from '@angular/common/http';
     UsuarioReadComponent,
     UsuarioDeleteComponent,
     UsuarioCreateComponent,
-    UsuarioUpdateComponent
+    UsuarioUpdateComponent,
+    VeiculoUpdateComponent,
+    VeiculoDeleteComponent,
+    VeiculoCreateComponent,
+    VeiculoReadComponent
   ],
   imports: [
     BrowserModule,
