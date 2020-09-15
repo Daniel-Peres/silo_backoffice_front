@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsuarioService } from './../usuario.service';
-import { Usuario } from './../usuario.model';
+import { UsuarioService } from '../../../services/usuario.service';
+import { Usuario } from '../../../models/usuario.model';
 import { Component, OnInit } from '@angular/core';
 import { isNull } from '@angular/compiler/src/output/output_ast';
 

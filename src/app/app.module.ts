@@ -11,12 +11,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MenuButtonComponent } from './components/template/menu-button/menu-button.component';
-import { HomeComponent } from './components/views/home/home.component';
-import { ManterUsuariosComponent } from './components/views/manter-usuarios/manter-usuarios.component';
-import { ManterVeiculosComponent } from './components/views/manter-veiculos/manter-veiculos.component';
-import { ManterEquipamentosComponent } from './components/views/manter-equipamentos/manter-equipamentos.component';
-import { MostrarNivelLotacaoComponent } from './components/views/mostrar-nivel-lotacao/mostrar-nivel-lotacao.component';
-import { LoginComponent } from './components/views/login/login.component';
+import { HomeComponent } from './views/home/home.component';
+import { ManterUsuariosComponent } from './views/manter-usuarios/manter-usuarios.component';
+import { ManterVeiculosComponent } from './views/manter-veiculos/manter-veiculos.component';
+import { ManterEquipamentosComponent } from './views/manter-equipamentos/manter-equipamentos.component';
+import { MostrarNivelLotacaoComponent } from './views/mostrar-nivel-lotacao/mostrar-nivel-lotacao.component';
+import { LoginComponent } from './views/login/login.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';

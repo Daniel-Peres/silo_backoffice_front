@@ -1,4 +1,4 @@
-import { Usuario } from './usuario.model';
+import { Usuario } from '../models/usuario.model';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpParams } from '@angular/common/http';

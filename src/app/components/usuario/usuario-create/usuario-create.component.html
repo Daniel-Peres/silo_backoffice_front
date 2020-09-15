@@ -25,62 +25,13 @@
         <span class="info">(*) preenchimento obrigatório</span>
     </form>
     <div class="botoes">
-        <button class="botaoSalvar" mat-raised-button (click)="createUsuario()">
+        <button class="botaoSalvar" mat-raised-button (click)="createUsuario()"> 
             <mat-icon>save</mat-icon>
             <span class="textButton">Salvar</span>
         </button>
-        <button class="botaoCancelar" mat-raised-button (click)="cancel()">
+        <button class="botaoCancelar" mat-raised-button (click)="cancel()"> 
             <mat-icon>close</mat-icon>
             <span class="textButton">Cancelar</span>
         </button>
     </div>
 </mat-card>
-
-
-<!-- <mat-card class="container">
-    <mat-card-title>Cadastrar usuário</mat-card-title>
-    <form class="formulario">
-        <main>
-            <mat-form-field class="inputCod" appearance="outline" color="accent">
-                <mat-label>Cód. Usuário</mat-label>
-                <input type="number" matInput [(ngModel)]="usuario.codUsuario" name="codUsuario">
-            </mat-form-field>
-            <mat-form-field class="inputNome" appearance="outline" color="accent">
-                <mat-label>Nome Usuario</mat-label>
-                <input matInput [(ngModel)]="usuario.nomeUsuario" name="nomeUsuario">
-            </mat-form-field>
-            <mat-form-field class="inputCod" appearance="outline" color="accent">
-                <mat-label>Cód. Empresa</mat-label>
-                <input type="number" matInput [(ngModel)]="usuario.codEmpresa" name="codEmpresa">
-            </mat-form-field>
-            <mat-form-field class="inputNome" appearance="outline" color="accent">
-                <mat-label>Empresa</mat-label>
-                <input matInput [(ngModel)]="usuario.empresa" name="empresa">
-            </mat-form-field>
-        </main>
-        <footer>
-            <mat-form-field class="inputEmail" appearance="outline" color="accent">
-                <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="usuario.email" name="email">
-            </mat-form-field>
-            <mat-form-field class="inputLogin" appearance="outline" color="accent">
-                <mat-label>Login</mat-label>
-                <input matInput [(ngModel)]="usuario.login" name="login">
-            </mat-form-field>
-            <mat-form-field class="inputSenha" appearance="outline" color="accent">
-                <mat-label>Senha</mat-label>
-                <input matInput [(ngModel)]="usuario.senha" name="senha" type="password">
-            </mat-form-field>
-        </footer>
-    </form>
-    <div class="botoes">
-        <button class="botaoSalvar" mat-raised-button (click)="createUsuario()" >
-            <mat-icon appearance="outline">save</mat-icon>
-            <span class="textButton">Salvar</span>
-        </button>
-        <button class="botaoCancelar" mat-raised-button (click)="cancel()">
-            <mat-icon>close_outline</mat-icon>
-            <span class="textButton">Cancelar</span>
-        </button>
-    </div>
-</mat-card> -->
