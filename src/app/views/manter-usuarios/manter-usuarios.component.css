@@ -1,3 +1,14 @@
+.container{
+    background-color: #555; 
+}
+.titulo {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    padding: 2px;
+    margin: 0px;
+}
+
 .body {
     margin-left: 10px;
     margin-right: 10px;

@@ -1,8 +1,12 @@
 export interface Veiculo {
     id?: number 
-    modelo: string
-    placa: string
+    modeloVeiculo: string
+    placaVeiculo: string
     empresa: string
     empresaId: number
-    
+    codEquipamento?: number
+    numeroLinha?: number
+    totalLugares?: number
+    lugaresSentado?: number    
+    lugaresEmPe?: number    
 }
