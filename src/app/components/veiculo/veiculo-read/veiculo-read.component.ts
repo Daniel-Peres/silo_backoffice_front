@@ -1,3 +1,4 @@
+import { VeiculoService } from './../../../services/veiculo.service';
 import { Veiculo } from './../../../models/veiculo.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -32,10 +33,15 @@ export class VeiculoReadComponent implements OnInit {
   public totalSize = 0;
   public pageSizeOptions: number[] = [5, 10, 25, 100];
 
-  constructor(private usuarioService: UsuarioService, private router: Router) { }
+  constructor(
+              private veiculoService: VeiculoService,
+              private usuarioService: UsuarioService, 
+              private router: Router
+             ) { }
 
   ngOnInit(): void {
     this.listarTodosUsuarios();
+    this.listarTodosVeiculos();
   }
 
   navigateToNovoVeiculo(): void {
@@ -57,20 +63,20 @@ export class VeiculoReadComponent implements OnInit {
     })
   }
 
-  // listarTodosVeiculos(): void {
-  //   this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculos => {
-  //     this.veiculos = veiculos;
-  //     this.totalSize = veiculos.totalElements;
+  listarTodosVeiculos(): void {
+    this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculos => {
+      this.veiculos = veiculos;
+      this.totalSize = veiculos.totalElements;
 
-  //     if (this.totalSize == 0)
-  //       this.usuarioService.showMessage2('Nenhum registro encontrado.')
+      if (this.totalSize == 0)
+        this.usuarioService.showMessage2('Nenhum registro encontrado.')
 
-  //     if (this.dataSource == undefined) {
-  //       this.dataSource = new MatTableDataSource(this.veiculos.content);
-  //       this.dataSource.paginator = this.paginator;
-  //     }
-  //   })
-  // }
+      if (this.dataSource == undefined) {
+        this.dataSource = new MatTableDataSource(this.veiculos.content);
+        this.dataSource.paginator = this.paginator;
+      }
+    })
+  }
 
   getPaginatorData(event): void {
     this.currentPage = event.pageIndex;
@@ -94,19 +100,18 @@ export class VeiculoReadComponent implements OnInit {
     })
   }
 
-  // listarVeiculosFiltro(): void {
-  //   this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculos => {
-  //     this.veiculos = veiculos;
-  //     this.totalSize = veiculos.totalElements;
+  listarVeiculosFiltro(): void {
+    this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculos => {
+      this.veiculos = veiculos;
+      this.totalSize = veiculos.totalElements;
 
-  //     if (this.totalSize == 0)
-  //       this.veiculoService.showMessage2('Nenhum registro encontrado.')
+      if (this.totalSize == 0)
+        this.veiculoService.showMessage2('Nenhum registro encontrado.')
 
-  //     if (this.dataSource == undefined) {
-  //       this.dataSource = new MatTableDataSource(this.veiculos.content);
-  //       this.dataSource.paginator = this.paginator;
-  //     }
-  //   })
-  // }
-
+      if (this.dataSource == undefined) {
+        this.dataSource = new MatTableDataSource(this.veiculos.content);
+        this.dataSource.paginator = this.paginator;
+      }
+    })
+  }
 }

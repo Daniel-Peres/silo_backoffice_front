@@ -4,7 +4,6 @@ export interface Usuario {
     empresa: string
     empresaId: number
     email?: string
-    // login?: string
     senha: string
     jwttoken?: string
     expireAt?: number

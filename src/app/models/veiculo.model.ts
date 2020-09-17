@@ -7,6 +7,6 @@ export interface Veiculo {
     codEquipamento?: number
     numeroLinha?: number
     totalLugares?: number
-    lugaresSentado?: number    
+    ilugaresSentado?: number    
     lugaresEmPe?: number    
 }
