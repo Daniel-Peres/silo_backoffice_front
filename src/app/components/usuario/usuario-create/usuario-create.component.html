@@ -1,7 +1,8 @@
 <app-header></app-header>
 <mat-card class="container">
-    <mat-card-title>Cadastrar usuário</mat-card-title>
+    <mat-card-title>Cadastrar Usuário</mat-card-title>
     <form class="formulario">
+        <span class="info">(*) preenchimento obrigatório</span>
         <mat-form-field class="inputNome" appearance="outline" color="accent">
             <mat-label>Nome (usuário)</mat-label>
             <input matInput [(ngModel)]="usuario.nome" name="nome" required>
@@ -22,7 +23,7 @@
             <mat-label>Empresa</mat-label>
             <input matInput [(ngModel)]="usuario.empresa" name="empresa" required>
         </mat-form-field>
-        <span class="info">(*) preenchimento obrigatório</span>
+        
     </form>
     <div class="botoes">
         <button class="botaoSalvar" mat-raised-button (click)="createUsuario()"> 

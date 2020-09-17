@@ -3,10 +3,10 @@ export interface Veiculo {
     modeloVeiculo: string
     placaVeiculo: string
     empresa: string
-    empresaId: number
+    empresaID: number
     codEquipamento?: number
-    numeroLinha?: number
-    totalLugares?: number
-    ilugaresSentado?: number    
-    lugaresEmPe?: number    
+    numeroLinha?: string
+    totalLugares: number
+    lugaresSentado: number    
+    lugaresEmPe: number    
 }

@@ -105,10 +105,4 @@ export class VeiculoService {
     }
     return EMPTY;
   }
-
-  errorHandlerLogin(e: any): Observable<any> {
-    console.log(e);
-    this.showMessage('Usuário e Senha não cadastrados ou inválidos!', true);
-    return EMPTY;
-  }
 }
