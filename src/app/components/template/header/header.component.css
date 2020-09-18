@@ -17,6 +17,10 @@
     display: flex;
 }
 
+.usuarioLogado {
+    margin-right: 15px;
+}
+
 .tituloPequeno{
     color: #9FC5F8;
     font-size: 25px;
