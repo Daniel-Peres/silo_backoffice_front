@@ -18,7 +18,6 @@ export class UsuarioUpdateComponent implements OnInit {
     empresaId: null,
     empresa: '',
     email: '',
-    // login: '',
     jwttoken: '',
     expireAt: 0
   }

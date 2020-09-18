@@ -1,2 +1,70 @@
 <app-header></app-header>
-<p>Atualizar Veiculo</p>
+<mat-card class="container">
+    <mat-card-title>Atualizar Veículo</mat-card-title>
+    <form class="formulario">
+        <!-- <span class="info">(*) preenchimento obrigatório</span> -->
+
+        <mat-form-field class="inputId" appearance="outline" color="accent">
+            <mat-label>Id</mat-label>
+            <input type="number" matInput [value]="veiculo.id" name="id" disabled>
+        </mat-form-field>
+        
+        <mat-form-field class="inputPlaca" appearance="outline" color="accent">
+            <mat-label>Placa</mat-label>
+            <input matInput [(ngModel)]="veiculo.placaVeiculo" name="placaVeiculo" >
+        </mat-form-field>
+
+        <mat-form-field class="inputModelo" appearance="outline" color="accent">
+            <mat-label>Modelo</mat-label>
+            <input matInput [(ngModel)]="veiculo.modeloVeiculo" name="modeloVeiculo" >
+        </mat-form-field>
+
+        <mat-form-field class="inputLinha" appearance="outline" color="accent">
+            <mat-label>Nº da Linha</mat-label>
+            <input matInput [(ngModel)]="veiculo.numeroLinha" name="numeroLinha" >
+        </mat-form-field>
+
+        <mat-form-field class="inputEmpresaID" appearance="outline" color="accent">
+            <mat-label>Empresa ID</mat-label>
+            <input type="number" matInput [(ngModel)]="veiculo.empresaID" name="empresaID" >
+        </mat-form-field>
+
+        <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
+            <mat-label>Empresa</mat-label>
+            <input matInput [(ngModel)]="veiculo.empresa" name="empresa" >
+        </mat-form-field>
+
+        <mat-form-field class="inputTotalLugares" appearance="outline" color="accent">
+            <mat-label>Total de Lugares</mat-label>
+            <input type="number" min="0" matInput [(ngModel)]="veiculo.totalLugares" 
+            (change)="calculaLugaresEmPe()" name="totalLugares" >
+        </mat-form-field>
+
+        <mat-form-field class="inputLugaresSentados" appearance="outline" color="accent">
+            <mat-label>Lugares Sentados</mat-label>
+            <input type="number" min="0" matInput [(ngModel)]="veiculo.lugaresSentado" 
+            (change)="calculaLugaresEmPe()" name="lugaresSentado" >
+        </mat-form-field>
+
+        <mat-form-field class="inputLugaresEmPe" appearance="outline" color="accent">
+            <mat-label>Lugares em Pé</mat-label>
+            <input type="number" min="0" matInput [value]="veiculo.lugaresEmPe" name="lugaresEmPe" disabled>
+        </mat-form-field>
+
+        <mat-form-field class="inputCodEquipamento" appearance="outline" color="accent">
+            <mat-label>Cód. Equipamento</mat-label>
+            <input type="number" matInput [(ngModel)]="veiculo.codEquipamento" name="codEquipamento" >
+        </mat-form-field>
+
+    </form>
+    <div class="botoes">
+        <button class="botaoSalvar" mat-raised-button (click)="updateVeiculo()">
+            <mat-icon>sync</mat-icon>
+            <span class="textButton">Atualizar</span>
+        </button>
+        <button class="botaoCancelar" mat-raised-button (click)="cancel()">
+            <mat-icon>close</mat-icon>
+            <span class="textButton">Cancelar</span>
+        </button>
+    </div>
+</mat-card>

@@ -64,6 +64,5 @@ export class VeiculoCreateComponent implements OnInit {
       this.veiculo.lugaresSentado = this.veiculo.totalLugares;
     }
     this.veiculo.lugaresEmPe = this.veiculo.totalLugares - this.veiculo.lugaresSentado;
-
   }
 }
