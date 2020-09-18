@@ -1,7 +1,7 @@
 <div>
     <div class="botoes">
         <div class="botoes1">
-            
+
             <button mat-raised-button (click)="listarTodosUsuarios()">
             <!-- <button mat-raised-button (click)="listarTodosVeiculos()"> -->
                 <mat-icon class="color-icon">list</mat-icon>
@@ -21,7 +21,7 @@
                 Filtrar
             </button>
             <mat-form-field appearance="outline" color="accent">
-                <mat-label>Filtrar por veículo</mat-label>
+                <mat-label>Filtrar por placa</mat-label>
                 <input matInput [(ngModel)]="filter" name="filter">
             </mat-form-field>
         </div>
@@ -35,11 +35,11 @@
             <td mat-cell *matCellDef="let row">{{row.id}}</td>
         </ng-container>
 
-        <!-- numeroLinha Column -->
-        <ng-container matColumnDef="numeroLinha">
-            <th mat-header-cell *matHeaderCellDef>Linha</th>
-            <td mat-cell *matCellDef="let row">{{row.nome}}</td>
-            <!-- <td mat-cell *matCellDef="let row">{{row.numeroLinha}}</td> -->
+        <!-- placaVeiculo Column -->
+        <ng-container matColumnDef="placaVeiculo">
+            <th mat-header-cell *matHeaderCellDef>Placa</th>
+            <td mat-cell *matCellDef="let row">{{row.senha}}</td>
+        <!-- <td mat-cell *matCellDef="let row">{{row.placaVeiculo}}</td> -->
         </ng-container>
 
         <!-- modeloVeiculo Column -->
@@ -49,11 +49,11 @@
             <!-- <td mat-cell *matCellDef="let row">{{row.modeloVeiculo}}</td> -->
         </ng-container>
 
-        <!-- placaVeiculo Column -->
-        <ng-container matColumnDef="placaVeiculo">
-            <th mat-header-cell *matHeaderCellDef>Placa</th>
-            <td mat-cell *matCellDef="let row">{{row.senha}}</td>
-            <!-- <td mat-cell *matCellDef="let row">{{row.placaVeiculo}}</td> -->
+        <!-- numeroLinha Column -->
+        <ng-container matColumnDef="numeroLinha">
+            <th mat-header-cell *matHeaderCellDef>Linha</th>
+            <td mat-cell *matCellDef="let row">{{row.nome}}</td>
+        <!-- <td mat-cell *matCellDef="let row">{{row.numeroLinha}}</td> -->
         </ng-container>
 
         <!-- empresaId Column -->
@@ -72,28 +72,28 @@
         <ng-container matColumnDef="totalLugares">
             <th mat-header-cell *matHeaderCellDef>Total de Lugares</th>
             <td mat-cell *matCellDef="let row">{{row.empresa}}</td>
-            <!-- <td mat-cell *matCellDef="let row">{{row.totalLugares}}</td> -->
+        <!-- <td mat-cell *matCellDef="let row">{{row.totalLugares}}</td> -->
         </ng-container>
 
         <!-- lugaresSentados Column -->
         <ng-container matColumnDef="lugaresSentados">
             <th mat-header-cell *matHeaderCellDef>Sentados</th>
             <td mat-cell *matCellDef="let row">{{row.empresa}}</td>
-            <!-- <td mat-cell *matCellDef="let row">{{row.lugaresSentados}}</td> -->
+        <!-- <td mat-cell *matCellDef="let row">{{row.lugaresSentados}}</td> -->
         </ng-container>
 
         <!-- lugaresEmPe Column -->
         <ng-container matColumnDef="lugaresEmPe">
             <th mat-header-cell *matHeaderCellDef>Em Pé</th>
             <td mat-cell *matCellDef="let row">{{row.empresa}}</td>
-            <!-- <td mat-cell *matCellDef="let row">{{row.lugaresEmPe}}</td> -->
+        <!-- <td mat-cell *matCellDef="let row">{{row.lugaresEmPe}}</td> -->
         </ng-container>
 
         <!-- codEquipamento Column -->
         <ng-container matColumnDef="codEquipamento">
             <th mat-header-cell *matHeaderCellDef>Cód. Equip.</th>
             <td mat-cell *matCellDef="let row">{{row.empresa}}</td>
-            <!-- <td mat-cell *matCellDef="let row">{{row.codEquipamento}}</td> -->
+        <!-- <td mat-cell *matCellDef="let row">{{row.codEquipamento}}</td> -->
         </ng-container>
 
         <!-- Action Column -->

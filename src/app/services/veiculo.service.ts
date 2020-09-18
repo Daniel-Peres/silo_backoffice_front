@@ -13,13 +13,11 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class VeiculoService {
 
-  baseUrl = "http://localhost:3001/usuarios"
-  baseLoginUrl = "http://localhost:8080/login"
-  baseListUrl = "http://localhost:8080/api/user/list"
-  baseReadUrl = "http://localhost:8080/api/user/"
-  baseCreateUrl = "http://localhost:8080/api/user/"
-  baseDeleteUrl = "http://localhost:8080/api/user/"
-  baseUpdateUrl = "http://localhost:8080/api/user/"
+  baseListUrl = "http://localhost:8080/api/veiculo/list"
+  baseReadUrl = "http://localhost:8080/api/veiculo/"
+  baseCreateUrl = "http://localhost:8080/api/veiculo/"
+  baseDeleteUrl = "http://localhost:8080/api/veiculo/"
+  baseUpdateUrl = "http://localhost:8080/api/veiculo/"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 

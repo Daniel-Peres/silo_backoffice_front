@@ -10,7 +10,6 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class UsuarioService {
 
-  baseUrl = "http://localhost:3001/usuarios"
   baseLoginUrl = "http://localhost:8080/login"
   baseListUrl = "http://localhost:8080/api/user/list"
   baseReadUrl = "http://localhost:8080/api/user/"

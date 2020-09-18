@@ -10,7 +10,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioDeleteComponent implements OnInit {
 
-  // usuario: Usuario
   usuario: Usuario = {
     id: null,
     nome: '',
@@ -18,7 +17,6 @@ export class UsuarioDeleteComponent implements OnInit {
     empresaId: null,
     empresa: '',
     email: '',
-    // login: '',
     jwttoken: '',
     expireAt: 0
   }
