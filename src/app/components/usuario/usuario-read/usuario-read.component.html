@@ -3,22 +3,19 @@
     <div class="botoes1">
       <button mat-raised-button (click)="listarTodosUsuarios()">
         <mat-icon class="color-icon">list</mat-icon>
-        Listar Usuários
+        <span class="textButton"> Listar Usuários</span>
       </button>
-
 
       <button mat-raised-button (click)="navigateToNovoUsuario()">
         <mat-icon class="color-icon">person_add</mat-icon>
-        Novo Usuário
+        <span class="textButton"> Novo Usuário</span>
+        
       </button>
-
-
-
     </div>
     <div class="botoes2">
       <button mat-raised-button (click)="listarUsuariosFiltro()">
         <mat-icon class="color-icon">search</mat-icon>
-        Filtrar
+        <span class="textButtonFilter"> Filtrar</span>
       </button>
       <mat-form-field appearance="outline" color="accent">
         <mat-label>Filtrar por usuário</mat-label>

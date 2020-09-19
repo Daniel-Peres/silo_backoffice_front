@@ -55,3 +55,30 @@ input:-webkit-autofill, input:-webkit-autofill:focus{
     -webkit-text-fill-color: white;
     -webkit-box-shadow: 0 0 0px 1000px #666 inset;    
 }
+
+@media only screen and (max-width: 650px) {
+    .botoes {
+        display: flex;
+        width: 100%;
+    }
+    
+    .botoes1 {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+    
+    .botoes2 {
+        display: flex;
+        align-content: space-between;
+        width: 50%;
+    }
+
+    .botoes2 > mat-form-field {
+        align-content: center;
+    }
+
+    .textButtonFilter {
+        display: none;  
+    }
+}

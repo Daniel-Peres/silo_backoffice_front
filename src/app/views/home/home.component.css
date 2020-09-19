@@ -23,7 +23,6 @@ button {
     height: 100%;
     background-color: #555;
     border-radius: 10px;
-    /* margin: 0px 5px 5px 0px; */
 }
 
 .text-menu {
@@ -41,3 +40,20 @@ mat-icon {
     padding: 20px;
 }
 
+@media only screen and (max-width: 500px) {
+    .text-menu {
+        color: #fff;
+        font-size: 15px;
+    }
+    
+    .titulo {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .text-menu {
+        color: #fff;
+        font-size: 12px;
+    }    
+}

@@ -97,4 +97,12 @@ input:-webkit-autofill, input:-webkit-autofill:focus{
         width: 80%;
         margin: 3px;
     }
+
+    .info {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        font-size: 10px;
+        
+    }
 }
