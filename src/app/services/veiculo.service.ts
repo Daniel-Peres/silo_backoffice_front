@@ -31,11 +31,11 @@ export class VeiculoService {
       );
   }
 
-  read(name, pageSize, page): Observable<any> {
+  read(placa, pageSize, page): Observable<any> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
 
     let params = new HttpParams();
-    params = params.append('name', name);
+    params = params.append('placa', placa);
     params = params.append('pageSize', pageSize);
     params = params.append('page', page);
     return this.http.get<Veiculo[]>(this.baseListUrl, { headers: httpOptions, params: params })
