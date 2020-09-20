@@ -26,7 +26,7 @@ export class VeiculoReadComponent implements OnInit {
   // usuarios = { content: [] };
   veiculos = { content: [] };
   filter = '';
-  displayedColumns = ['id', 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', 'empresaId', 'empresa', 'totalLugares', 'lugaresSentados', 'lugaresEmPe', 'codEquipamento', 'action']
+  displayedColumns = ['id', 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', /*'empresaId',*/ 'empresa', 'totalLugares', 'lugaresSentado', 'lugaresEmPe', 'codEquipamento', 'action']
 
   public pageSize = 10;
   public currentPage = 0;
@@ -35,33 +35,16 @@ export class VeiculoReadComponent implements OnInit {
 
   constructor(
     private veiculoService: VeiculoService,
-    // private usuarioService: UsuarioService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    // this.listarTodosUsuarios();
     this.listarTodosVeiculos();
   }
 
   navigateToNovoVeiculo(): void {
     this.router.navigate(['veiculos/create']);
   }
-
-  // listarTodosUsuarios(): void {
-  //   this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
-  //     this.usuarios = usuarios;
-  //     this.totalSize = usuarios.totalElements;
-
-  //     if (this.totalSize == 0)
-  //       this.usuarioService.showMessage2('Nenhum registro encontrado.')
-
-  //     if (this.dataSource == undefined) {
-  //       this.dataSource = new MatTableDataSource(this.usuarios.content);
-  //       this.dataSource.paginator = this.paginator;
-  //     }
-  //   })
-  // }
 
   listarTodosVeiculos(): void {
     this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculos => {
@@ -81,24 +64,8 @@ export class VeiculoReadComponent implements OnInit {
   getPaginatorData(event): void {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
-    // this.listarTodosUsuarios();
     this.listarTodosVeiculos();
   }
-
-  // listarUsuariosFiltro(): void {
-  //   this.usuarioService.read(this.filter, this.pageSize, this.currentPage).subscribe(usuarios => {
-  //     this.usuarios = usuarios;
-  //     this.totalSize = usuarios.totalElements;
-
-  //     if (this.totalSize == 0)
-  //       this.usuarioService.showMessage2('Nenhum registro encontrado.')
-
-  //     if (this.dataSource == undefined) {
-  //       this.dataSource = new MatTableDataSource(this.usuarios.content);
-  //       this.dataSource.paginator = this.paginator;
-  //     }
-  //   })
-  // }
 
   listarVeiculosFiltro(): void {
     this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculos => {

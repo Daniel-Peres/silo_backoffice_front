@@ -15,7 +15,7 @@ export class VeiculoDeleteComponent implements OnInit {
     modeloVeiculo: '',
     placaVeiculo: '',
     empresa: '',
-    empresaID: null,
+    empresaId: null,
     codEquipamento: null,
     numeroLinha: '',
     totalLugares: null,

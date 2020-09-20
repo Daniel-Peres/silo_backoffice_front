@@ -31,11 +31,11 @@ export class VeiculoService {
       );
   }
 
-  read(placa, pageSize, page): Observable<any> {
+  read(placaVeiculo, pageSize, page): Observable<any> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
 
     let params = new HttpParams();
-    params = params.append('placa', placa);
+    params = params.append('placaVeiculo', placaVeiculo);
     params = params.append('pageSize', pageSize);
     params = params.append('page', page);
     return this.http.get<Veiculo[]>(this.baseListUrl, { headers: httpOptions, params: params })
@@ -57,7 +57,6 @@ export class VeiculoService {
 
   update(veiculo: Veiculo): Observable<Veiculo> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
-    //const url = `${this.baseUpdateUrl}${veiculo.id}`;
     return this.http.put<Veiculo>(this.baseUpdateUrl, veiculo, { headers: httpOptions })
       .pipe(
         map((obj) => obj),

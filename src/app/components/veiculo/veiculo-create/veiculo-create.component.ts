@@ -15,7 +15,7 @@ export class VeiculoCreateComponent implements OnInit {
     modeloVeiculo: '',
     placaVeiculo: '',
     empresa: '',
-    empresaID: null,
+    empresaId: null,
     codEquipamento: null,
     numeroLinha: '',
     totalLugares: null,
@@ -50,12 +50,17 @@ export class VeiculoCreateComponent implements OnInit {
   checkCampos(): Boolean {
     if (this.veiculo.placaVeiculo === '' ||
       this.veiculo.modeloVeiculo === '' ||
-      this.veiculo.empresaID === null ||
-      this.veiculo.empresa === null ||
-      this.veiculo.totalLugares === null ||
-      this.veiculo.lugaresSentado === null ||
-      this.veiculo.lugaresEmPe === null
+      this.veiculo.empresaId === null ||
+      this.veiculo.empresa === null
     ) { return true; } else { return false; }
+    // if (this.veiculo.placaVeiculo === '' ||
+    //   this.veiculo.modeloVeiculo === '' ||
+    //   this.veiculo.empresaId === null ||
+    //   this.veiculo.empresa === null ||
+    //   this.veiculo.totalLugares === null ||
+    //   this.veiculo.lugaresSentado === null ||
+    //   this.veiculo.lugaresEmPe === null
+    // ) { return true; } else { return false; }
   }
 
   calculaLugaresEmPe(): void {

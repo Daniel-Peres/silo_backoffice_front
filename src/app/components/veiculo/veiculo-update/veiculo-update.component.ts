@@ -16,7 +16,7 @@ export class VeiculoUpdateComponent implements OnInit {
     modeloVeiculo: '',
     placaVeiculo: '',
     empresa: '',
-    empresaID: null,
+    empresaId: null,
     codEquipamento: null,
     numeroLinha: '',
     totalLugares: null,
@@ -56,7 +56,7 @@ export class VeiculoUpdateComponent implements OnInit {
   checkCampos(): Boolean {
     if (this.veiculo.placaVeiculo === '' ||
       this.veiculo.modeloVeiculo === '' ||
-      this.veiculo.empresaID === null ||
+      this.veiculo.empresaId === null ||
       this.veiculo.empresa === null ||
       this.veiculo.totalLugares === null ||
       this.veiculo.lugaresSentado === null
