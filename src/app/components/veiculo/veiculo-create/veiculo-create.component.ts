@@ -23,9 +23,14 @@ export class VeiculoCreateComponent implements OnInit {
     lugaresEmPe: null,
   }
 
+  
+
+
   constructor(private veiculoService: VeiculoService,
     private router: Router
-  ) { }
+  ) { 
+    this.veiculo.empresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+  }
 
 
   ngOnInit(): void {
@@ -50,8 +55,10 @@ export class VeiculoCreateComponent implements OnInit {
   checkCampos(): Boolean {
     if (this.veiculo.placaVeiculo === '' ||
       this.veiculo.modeloVeiculo === '' ||
-      this.veiculo.empresaId === null ||
-      this.veiculo.empresa === null
+      this.veiculo.totalLugares === null ||
+      this.veiculo.lugaresSentado === null
+      // this.veiculo.empresaId === null ||
+      // this.veiculo.empresa === null
     ) { return true; } else { return false; }
     // if (this.veiculo.placaVeiculo === '' ||
     //   this.veiculo.modeloVeiculo === '' ||

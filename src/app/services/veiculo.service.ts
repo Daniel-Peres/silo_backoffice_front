@@ -88,7 +88,7 @@ export class VeiculoService {
       duration: 2000,
       horizontalPosition: "right",
       verticalPosition: "top",
-      panelClass: ['msg-alert']
+      panelClass: ['msg-error']
     });
   }
 

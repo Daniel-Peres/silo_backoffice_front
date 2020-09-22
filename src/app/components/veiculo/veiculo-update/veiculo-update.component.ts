@@ -56,8 +56,8 @@ export class VeiculoUpdateComponent implements OnInit {
   checkCampos(): Boolean {
     if (this.veiculo.placaVeiculo === '' ||
       this.veiculo.modeloVeiculo === '' ||
-      this.veiculo.empresaId === null ||
-      this.veiculo.empresa === null ||
+      // this.veiculo.empresaId === null ||
+      // this.veiculo.empresa === null ||
       this.veiculo.totalLugares === null ||
       this.veiculo.lugaresSentado === null
     ) { return true; } else { return false; }

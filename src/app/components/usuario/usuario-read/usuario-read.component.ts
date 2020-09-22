@@ -20,7 +20,7 @@ export class UsuarioReadComponent implements OnInit {
   }
   usuarios = { content: [] };
   filter = '';
-  displayedColumns = ['id','nome', 'empresaId', 'empresa', 'action']
+  displayedColumns = [/*'id',*/'nome', /*'empresaId',*/ 'empresa', 'action']
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
