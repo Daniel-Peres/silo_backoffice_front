@@ -48,12 +48,13 @@ select {
 }
 
 select:hover {
-    background-color: #555;
+    background-color: #444;
     color: white;
 }
 
 select option {
-    color: black;
+    color: #B6D7A8;
+    background-color: #333;
 }
 
 /* cor de fundo e texto do autocomplete do input */
