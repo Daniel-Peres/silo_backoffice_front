@@ -43,7 +43,7 @@ export class VeiculoUpdateComponent implements OnInit {
     // } else {
       this.veiculoService.update(this.veiculo).subscribe(() => {
         this.router.navigate(['/manter_veiculos']);
-        this.veiculoService.showMessage('Usuário atualizado com sucesso!');
+        this.veiculoService.showMessage('Veículo atualizado com sucesso!');
       });
     // }
   }

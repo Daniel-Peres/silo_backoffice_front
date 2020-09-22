@@ -20,10 +20,10 @@ export class UsuarioUpdateComponent implements OnInit {
   selectedEmpresa: string;
 
   empresas: Empresa[] = [
-    {value: 'SPTrans', viewValue: 'SPTrans'},
-    {value: 'ViaSul', viewValue: 'ViaSul'},
-    {value: 'MoveBus', viewValue: 'MoveBus'},
-    {value: 'TransUniao', viewValue: 'TransUnião'},
+    { value: 'SPTrans', viewValue: 'SPTrans' },
+    { value: 'ViaSul', viewValue: 'ViaSul' },
+    { value: 'MoveBus', viewValue: 'MoveBus' },
+    { value: 'TransUniao', viewValue: 'TransUnião' },
   ];
 
   usuario: Usuario = {
@@ -51,24 +51,28 @@ export class UsuarioUpdateComponent implements OnInit {
       this.usuario = usuario;
       this.selectedEmpresa = usuario.empresa;
     });
-    
+
   }
 
   updateUsuario(): void {
     this.usuario.empresa = this.selectedEmpresa;
     this.preencheEmpresaId();
-    if (this.checkCampos()) { // checando campos não preenchidos
-      this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');
+    if (this.usuario.nome === JSON.parse(localStorage.getItem('usuario')).nome) {
+      this.usuarioService.showMessage2('Atualização não autorizada:  usuário logado');
     } else {
-      if (this.senhaCheck === this.usuario.senha || this.usuario.senha === null) {
-
-        this.usuarioService.update(this.usuario).subscribe(() => {
-          this.router.navigate(['/manter_usuarios']);
-          this.usuarioService.showMessage('Usuário atualizado com sucesso!');
-        });
-
+      if (this.checkCampos()) { // checando campos não preenchidos
+        this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');
       } else {
-        this.usuarioService.showMessage2('Senhas não conferem!');
+        if (this.senhaCheck === this.usuario.senha || this.usuario.senha === null) {
+
+          this.usuarioService.update(this.usuario).subscribe(() => {
+            this.router.navigate(['/manter_usuarios']);
+            this.usuarioService.showMessage('Usuário atualizado com sucesso!');
+          });
+
+        } else {
+          this.usuarioService.showMessage2('Senhas não conferem!');
+        }
       }
     }
   }
@@ -87,15 +91,15 @@ export class UsuarioUpdateComponent implements OnInit {
     ) { return true } else { return false; }
   }
 
-  preencheEmpresaId(): void { 
-    if(this.usuario.empresa === 'SPTrans'){
+  preencheEmpresaId(): void {
+    if (this.usuario.empresa === 'SPTrans') {
       this.usuario.empresaId = 1;
-    }else if (this.usuario.empresa === 'ViaSul'){
+    } else if (this.usuario.empresa === 'ViaSul') {
       this.usuario.empresaId = 2;
-    }else if (this.usuario.empresa === 'MoveBus'){
+    } else if (this.usuario.empresa === 'MoveBus') {
       this.usuario.empresaId = 3;
-    }else if (this.usuario.empresa === 'MoveBus'){}
-    else{
+    } else if (this.usuario.empresa === 'MoveBus') { }
+    else {
       this.usuario.empresaId = 4;
     }
   }

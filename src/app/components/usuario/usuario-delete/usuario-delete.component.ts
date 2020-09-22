@@ -36,7 +36,7 @@ export class UsuarioDeleteComponent implements OnInit {
 
   deleteUsuario(): void {
     if (this.usuario.nome === JSON.parse(localStorage.getItem('usuario')).nome) {
-      this.usuarioService.showMessage2('Exclusão não autorizada: usuário logado');
+      this.usuarioService.showMessage2('Exclusão não autorizada:  usuário logado');
     } else {
       this.usuarioService.delete(this.usuario.id).subscribe(() => {
         this.router.navigate(['/manter_usuarios']);
