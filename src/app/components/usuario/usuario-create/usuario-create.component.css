@@ -41,6 +41,20 @@
 
 mat-form-field.mat-form-field {
     font-size: 13px;
+    width: 80%;
+}
+
+select {
+    color: white;
+}
+
+select:hover {
+    background-color: #555;
+    color: white;
+}
+
+select option {
+    color: black;
 }
 
 /* cor de fundo e texto do autocomplete do input */
@@ -61,13 +75,13 @@ input:-webkit-autofill, input:-webkit-autofill:focus{
     width: 80%;
 }
 
-.inputEmpresaId {
+/* .inputEmpresaId {
     width: 80%;
 }
 
 .inputEmpresa {
     width: 80%;
-}
+} */
 
 .info {
     width: 80%;

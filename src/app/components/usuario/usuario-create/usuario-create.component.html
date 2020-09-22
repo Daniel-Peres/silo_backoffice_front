@@ -15,22 +15,32 @@
             <mat-label>Confirmação Senha</mat-label>
             <input type="password" matInput [(ngModel)]="senhaCheck" name="senhaCheck" required>
         </mat-form-field>
-        <mat-form-field class="inputEmpresaId" appearance="outline" color="accent">
+        <!-- <mat-form-field class="inputEmpresaId" appearance="outline" color="accent">
             <mat-label>Empresa ID</mat-label>
             <input type="number" matInput [(ngModel)]="usuario.empresaId" name="empresaId" required>
-        </mat-form-field>
-        <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
+        </mat-form-field> -->
+        <!-- <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
             <input matInput [(ngModel)]="usuario.empresa" name="empresa" required>
+        </mat-form-field> -->
+
+        <mat-form-field appearance="outline" color="accent">
+            <mat-label>Empresa</mat-label>
+            <select matNativeControl [(ngModel)]="selectedEmpresa" name="empresa" required>
+                <option value="" selected></option>
+                <option *ngFor="let empresa of empresas" [value]="empresa.value">
+                    {{empresa.viewValue}}
+                </option>
+            </select>
         </mat-form-field>
-        
+
     </form>
     <div class="botoes">
-        <button class="botaoSalvar" mat-raised-button (click)="createUsuario()"> 
+        <button class="botaoSalvar" mat-raised-button (click)="createUsuario()">
             <mat-icon>save</mat-icon>
             <span class="textButton">Salvar</span>
         </button>
-        <button class="botaoCancelar" mat-raised-button (click)="cancel()"> 
+        <button class="botaoCancelar" mat-raised-button (click)="cancel()">
             <mat-icon>close</mat-icon>
             <span class="textButton">Cancelar</span>
         </button>

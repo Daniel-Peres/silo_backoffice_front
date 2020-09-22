@@ -4,12 +4,27 @@ import { Usuario } from '../../../models/usuario.model';
 import { Component, OnInit } from '@angular/core';
 import { isNull } from '@angular/compiler/src/output/output_ast';
 
+interface Empresa {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-usuario-update',
   templateUrl: './usuario-update.component.html',
   styleUrls: ['./usuario-update.component.css']
 })
 export class UsuarioUpdateComponent implements OnInit {
+
+  selectedValue: string;
+  selectedEmpresa: string;
+
+  empresas: Empresa[] = [
+    {value: 'SPTrans', viewValue: 'SPTrans'},
+    {value: 'ViaSul', viewValue: 'ViaSul'},
+    {value: 'MoveBus', viewValue: 'MoveBus'},
+    {value: 'TransUniao', viewValue: 'TransUnião'},
+  ];
 
   usuario: Usuario = {
     id: null,
@@ -34,10 +49,14 @@ export class UsuarioUpdateComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id')
     this.usuarioService.readById(id).subscribe(usuario => {
       this.usuario = usuario;
+      this.selectedEmpresa = usuario.empresa;
     });
+    
   }
 
   updateUsuario(): void {
+    this.usuario.empresa = this.selectedEmpresa;
+    this.preencheEmpresaId();
     if (this.checkCampos()) { // checando campos não preenchidos
       this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');
     } else {
@@ -66,5 +85,18 @@ export class UsuarioUpdateComponent implements OnInit {
       this.usuario.empresaId === null ||
       this.usuario.empresa === ''
     ) { return true } else { return false; }
+  }
+
+  preencheEmpresaId(): void { 
+    if(this.usuario.empresa === 'SPTrans'){
+      this.usuario.empresaId = 1;
+    }else if (this.usuario.empresa === 'ViaSul'){
+      this.usuario.empresaId = 2;
+    }else if (this.usuario.empresa === 'MoveBus'){
+      this.usuario.empresaId = 3;
+    }else if (this.usuario.empresa === 'MoveBus'){}
+    else{
+      this.usuario.empresaId = 4;
+    }
   }
 }

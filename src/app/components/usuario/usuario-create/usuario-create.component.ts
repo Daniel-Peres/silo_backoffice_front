@@ -1,8 +1,14 @@
+import { element } from 'protractor';
 import { empty } from 'rxjs';
 import { Usuario } from '../../../models/usuario.model';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
+
+interface Empresa {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-usuario-create',
@@ -10,6 +16,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usuario-create.component.css']
 })
 export class UsuarioCreateComponent implements OnInit {
+
+  selectedValue: string;
+  selectedEmpresa: string;
+
+  empresas: Empresa[] = [
+    {value: 'SPTrans', viewValue: 'SPTrans'},
+    {value: 'ViaSul', viewValue: 'ViaSul'},
+    {value: 'MoveBus', viewValue: 'MoveBus'},
+    {value: 'TransUniao', viewValue: 'TransUnião'},
+  ];
 
   usuario: Usuario = {
     id: null,
@@ -22,7 +38,7 @@ export class UsuarioCreateComponent implements OnInit {
     expireAt: 0
   }
 
-  senhaCheck: String = '';
+  senhaCheck: String = '';  
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
@@ -31,6 +47,9 @@ export class UsuarioCreateComponent implements OnInit {
   }
 
   createUsuario(): void {
+    this.usuario.empresa = this.selectedEmpresa;
+    this.preencheEmpresaId();
+
     if (this.checkCampos()) {
       this.usuarioService.showMessage2('Campos obrigatórios não preenchidos!');
     } else {
@@ -49,14 +68,28 @@ export class UsuarioCreateComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/manter_usuarios']);
+    this.preencheEmpresaId();
   }
 
   // checar campos obrigatórios vazios
   checkCampos(): Boolean {
     if (this.usuario.nome === '' ||
       this.usuario.senha === '' ||
-      this.usuario.empresaId === null ||
-      this.usuario.empresa === ''
+      this.usuario.empresaId === null 
+      // this.usuario.empresa === ''
     ) { return true; } else { return false; }
   }
-}
+
+  preencheEmpresaId(): void { 
+      if(this.usuario.empresa === 'SPTrans'){
+        this.usuario.empresaId = 1;
+      }else if (this.usuario.empresa === 'ViaSul'){
+        this.usuario.empresaId = 2;
+      }else if (this.usuario.empresa === 'MoveBus'){
+        this.usuario.empresaId = 3;
+      }else if (this.usuario.empresa === 'MoveBus'){}
+      else{
+        this.usuario.empresaId = 4;
+      }
+    }
+  }
