@@ -10,6 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VeiculoCreateComponent implements OnInit {
 
+  selectedVeiculo: string;
+  veiculos = { content: [] };
+  veiculos2 = { content: [] };
+  public pageSize = 10;
+  public currentPage = 0;
+  public totalSize = 0;
+  public pageSizeOptions: number[] = [5, 10, 25, 100];
+
+
   veiculo: Veiculo = {
     id: null,
     modeloVeiculo: '',
@@ -22,18 +31,19 @@ export class VeiculoCreateComponent implements OnInit {
     lugaresSentado: null,
     lugaresEmPe: null,
   }
-  
+
 
 
   constructor(private veiculoService: VeiculoService,
     private router: Router
-  ) { 
+  ) {
     // atribuindo valor retirado do JWT
     this.veiculo.empresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
   }
 
 
   ngOnInit(): void {
+    this.listarTodosVeiculos();
   }
 
   createVeiculo(): void {
@@ -68,5 +78,24 @@ export class VeiculoCreateComponent implements OnInit {
       this.veiculo.lugaresSentado = this.veiculo.totalLugares;
     }
     this.veiculo.lugaresEmPe = this.veiculo.totalLugares - this.veiculo.lugaresSentado;
+  }
+
+  listarTodosVeiculos(): void {
+    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+    this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
+      this.veiculos = veiculo;
+      this.totalSize = veiculo.totalElements;
+
+      // armazenando em veiculos2 apenas veiculos da mesma empresa do usuário
+      this.veiculos2.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
+
+      // if (this.totalSize == 0)
+      //   this.veiculoService.showMessage2('Nenhum registro encontrado.')
+
+      // if (this.dataSource == undefined) {
+      //   this.dataSource = new MatTableDataSource(this.veiculos.content);
+      //   this.dataSource.paginator = this.paginator;
+      // }
+    })
   }
 }

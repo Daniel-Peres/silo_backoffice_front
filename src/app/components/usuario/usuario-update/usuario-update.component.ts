@@ -56,10 +56,10 @@ export class UsuarioUpdateComponent implements OnInit {
 
   updateUsuario(): void {
     this.usuario.empresa = this.selectedEmpresa;
-    this.preencheEmpresaId();
-    if (this.usuario.nome === JSON.parse(localStorage.getItem('usuario')).nome) {
-      this.usuarioService.showMessage2('Atualização não autorizada:  usuário logado');
-    } else {
+    // this.preencheEmpresaId();
+    // if (this.usuario.nome === JSON.parse(localStorage.getItem('usuario')).nome) {
+    //   this.usuarioService.showMessage2('Atualização não autorizada:  usuário logado');
+    // } else {
       if (this.checkCampos()) { // checando campos não preenchidos
         this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');
       } else {
@@ -74,7 +74,7 @@ export class UsuarioUpdateComponent implements OnInit {
           this.usuarioService.showMessage2('Senhas não conferem!');
         }
       }
-    }
+    // }
   }
 
   cancel(): void {

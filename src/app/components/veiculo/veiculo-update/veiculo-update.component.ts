@@ -11,6 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VeiculoUpdateComponent implements OnInit {
 
+  selectedVeiculo: string;
+  veiculos = { content: [] };
+  veiculos2 = { content: [] };
+  public pageSize = 10;
+  public currentPage = 0;
+  public totalSize = 0;
+  public pageSizeOptions: number[] = [5, 10, 25, 100];
+
   veiculo: Veiculo = {
     id: null,
     modeloVeiculo: '',
@@ -35,16 +43,17 @@ export class VeiculoUpdateComponent implements OnInit {
     this.veiculoService.readById(id).subscribe(veiculo => {
       this.veiculo = veiculo;
     });
+    this.listarTodosVeiculos();
   }
 
   updateVeiculo(): void {
     // if (this.checkCampos()) { // checando campos não preenchidos
     //   this.veiculoService.showMessage2('Campos obrigatórios não podem estar vazios!');
     // } else {
-      this.veiculoService.update(this.veiculo).subscribe(() => {
-        this.router.navigate(['/manter_veiculos']);
-        this.veiculoService.showMessage('Veículo atualizado com sucesso!');
-      });
+    this.veiculoService.update(this.veiculo).subscribe(() => {
+      this.router.navigate(['/manter_veiculos']);
+      this.veiculoService.showMessage('Veículo atualizado com sucesso!');
+    });
     // }
   }
 
@@ -69,5 +78,24 @@ export class VeiculoUpdateComponent implements OnInit {
       this.veiculo.lugaresSentado = this.veiculo.totalLugares;
     }
     this.veiculo.lugaresEmPe = this.veiculo.totalLugares - this.veiculo.lugaresSentado;
+  }
+
+  listarTodosVeiculos(): void {
+    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+    this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
+      this.veiculos = veiculo;
+      this.totalSize = veiculo.totalElements;
+
+      // armazenando em veiculos2 apenas veiculos da mesma empresa do usuário
+      this.veiculos2.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
+
+      // if (this.totalSize == 0)
+      //   this.veiculoService.showMessage2('Nenhum registro encontrado.')
+
+      // if (this.dataSource == undefined) {
+      //   this.dataSource = new MatTableDataSource(this.veiculos.content);
+      //   this.dataSource.paginator = this.paginator;
+      // }
+    })
   }
 }
