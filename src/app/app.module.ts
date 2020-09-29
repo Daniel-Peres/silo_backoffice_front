@@ -38,6 +38,10 @@ import { VeiculoUpdateComponent } from './components/veiculo/veiculo-update/veic
 import { VeiculoDeleteComponent } from './components/veiculo/veiculo-delete/veiculo-delete.component';
 import { VeiculoCreateComponent } from './components/veiculo/veiculo-create/veiculo-create.component';
 import { VeiculoReadComponent } from './components/veiculo/veiculo-read/veiculo-read.component';
+import { EquipamentoCreateComponent } from './components/equipamento/equipamento-create/equipamento-create.component';
+import { EquipamentoDeleteComponent } from './components/equipamento/equipamento-delete/equipamento-delete.component';
+import { EquipamentoReadComponent } from './components/equipamento/equipamento-read/equipamento-read.component';
+import { EquipamentoUpdateComponent } from './components/equipamento/equipamento-update/equipamento-update.component';
 
 
 @NgModule({
@@ -58,7 +62,11 @@ import { VeiculoReadComponent } from './components/veiculo/veiculo-read/veiculo-
     VeiculoUpdateComponent,
     VeiculoDeleteComponent,
     VeiculoCreateComponent,
-    VeiculoReadComponent
+    VeiculoReadComponent,
+    EquipamentoCreateComponent,
+    EquipamentoDeleteComponent,
+    EquipamentoReadComponent,
+    EquipamentoUpdateComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { VeiculoService } from './../../../services/veiculo.service';
 import { Veiculo } from './../../../models/veiculo.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -18,6 +19,9 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class VeiculoReadComponent implements OnInit {
 
+  // selectedValue: string;
+  selectedVeiculo: string;
+
   dataSource: MatTableDataSource<any>;
   private paginator: MatPaginator;
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
@@ -25,8 +29,9 @@ export class VeiculoReadComponent implements OnInit {
   }
   // usuarios = { content: [] };
   veiculos = { content: [] };
+  veiculos2 = { content: [] };
   filter = '';
-  displayedColumns = [/*'id',*/ 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', /*'empresaId', 'empresa',*/ 'totalLugares', 'lugaresSentado', 'lugaresEmPe', 'codEquipamento', 'action']
+  displayedColumns = [/*'id',*/ 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', 'empresaId',/* 'empresa',*/ 'totalLugares', 'lugaresSentado', 'lugaresEmPe', 'codEquipamento', 'action']
 
   public pageSize = 10;
   public currentPage = 0;
@@ -47,18 +52,22 @@ export class VeiculoReadComponent implements OnInit {
   }
 
   listarTodosVeiculos(): void {
-    this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculos => {
-      this.veiculos = veiculos;
-      this.totalSize = veiculos.totalElements;
+    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+    this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
+        this.veiculos = veiculo;
+        this.totalSize = veiculo.totalElements;
+        
+        // armazenando em veiculos2 apenas veiculos da mesma empresa do usuário
+        this.veiculos2.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
+        
+        if (this.totalSize == 0)
+          this.veiculoService.showMessage2('Nenhum registro encontrado.')
 
-      if (this.totalSize == 0)
-        this.veiculoService.showMessage2('Nenhum registro encontrado.')
-
-      if (this.dataSource == undefined) {
-        this.dataSource = new MatTableDataSource(this.veiculos.content);
-        this.dataSource.paginator = this.paginator;
-      }
-    })
+        if (this.dataSource == undefined) {
+          this.dataSource = new MatTableDataSource(this.veiculos.content);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
   }
 
   getPaginatorData(event): void {
@@ -68,17 +77,21 @@ export class VeiculoReadComponent implements OnInit {
   }
 
   listarVeiculosFiltro(): void {
-    this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculos => {
-      this.veiculos = veiculos;
-      this.totalSize = veiculos.totalElements;
+    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+    this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculo => {
+        this.veiculos = veiculo;
+        this.totalSize = veiculo.totalElements;
+        
+        // armazenando em veiculos2 apenas veiculos da mesma empresa do usuário
+        this.veiculos2.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
+        
+        if (this.totalSize == 0)
+          this.veiculoService.showMessage2('Nenhum registro encontrado.')
 
-      if (this.totalSize == 0)
-        this.veiculoService.showMessage2('Nenhum registro encontrado.')
-
-      if (this.dataSource == undefined) {
-        this.dataSource = new MatTableDataSource(this.veiculos.content);
-        this.dataSource.paginator = this.paginator;
-      }
-    })
+        if (this.dataSource == undefined) {
+          this.dataSource = new MatTableDataSource(this.veiculos.content);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
   }
 }

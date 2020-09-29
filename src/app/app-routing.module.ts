@@ -1,3 +1,6 @@
+import { EquipamentoDeleteComponent } from './components/equipamento/equipamento-delete/equipamento-delete.component';
+import { EquipamentoUpdateComponent } from './components/equipamento/equipamento-update/equipamento-update.component';
+import { EquipamentoCreateComponent } from './components/equipamento/equipamento-create/equipamento-create.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
@@ -67,6 +70,21 @@ const routes: Routes = [
   {
     path: "manter_equipamentos",
     component: ManterEquipamentosComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "equipamentos/create",
+    component: EquipamentoCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "equipamentos/update/:id",
+    component: EquipamentoUpdateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "equipamentos/delete/:id",
+    component: EquipamentoDeleteComponent,
     canActivate: [AuthGuard]
   },
   {

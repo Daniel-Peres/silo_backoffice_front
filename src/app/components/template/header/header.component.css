@@ -18,7 +18,14 @@
 }
 
 .usuarioLogado {
+    display: flex;
     margin-right: 15px;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 3px;
+    color: #B6D7A8;
 }
 
 .tituloPequeno{
