@@ -10,9 +10,11 @@ import { Veiculo } from 'src/app/models/veiculo.model';
 })
 export class EquipamentoUpdateComponent implements OnInit {
 
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+
   selectedVeiculo: string;
   veiculos = { content: [] };
-  veiculos2 = { content: [] };
+  veiculosEmpresa = { content: [] };
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
@@ -79,22 +81,13 @@ export class EquipamentoUpdateComponent implements OnInit {
     this.veiculo.lugaresEmPe = this.veiculo.totalLugares - this.veiculo.lugaresSentado;
   }
 
-  listarTodosVeiculos(): void {
-    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+  listarTodosVeiculos(): void {    
     this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
       this.veiculos = veiculo;
       this.totalSize = veiculo.totalElements;
 
-      // armazenando em veiculos2 apenas veiculos da mesma empresa do usuário
-      this.veiculos2.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
-
-      // if (this.totalSize == 0)
-      //   this.veiculoService.showMessage2('Nenhum registro encontrado.')
-
-      // if (this.dataSource == undefined) {
-      //   this.dataSource = new MatTableDataSource(this.veiculos.content);
-      //   this.dataSource.paginator = this.paginator;
-      // }
+      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+      this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
     })
   }
 }

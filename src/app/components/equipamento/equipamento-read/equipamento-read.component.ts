@@ -10,6 +10,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./equipamento-read.component.css']
 })
 export class EquipamentoReadComponent implements OnInit {
+  
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
 
   // selectedValue: string;
   selectedVeiculo: string;
@@ -21,7 +23,7 @@ export class EquipamentoReadComponent implements OnInit {
   }
   // usuarios = { content: [] };
   veiculos = { content: [] };
-  veiculos2 = { content: [] };
+  veiculosEmpresa = { content: [] };
   filter = '';
   displayedColumns = [/*'id',*/ 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', 'empresaId',/* 'empresa',*/ 'totalLugares', 'lugaresSentado', 'lugaresEmPe', 'codEquipamento', 'action']
 
@@ -44,13 +46,12 @@ export class EquipamentoReadComponent implements OnInit {
   }
 
   listarTodosEquipamentos(): void {
-    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
     this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
         this.veiculos = veiculo;
         this.totalSize = veiculo.totalElements;
         
-        // armazenando em veiculos2 apenas veiculos da mesma empresa do usuário
-        this.veiculos2.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
         
         if (this.totalSize == 0)
           this.veiculoService.showMessage2('Nenhum registro encontrado.')
@@ -69,13 +70,12 @@ export class EquipamentoReadComponent implements OnInit {
   }
 
   listarVeiculosFiltro(): void {
-    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
     this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculo => {
         this.veiculos = veiculo;
         this.totalSize = veiculo.totalElements;
         
-        // armazenando em veiculos2 apenas veiculos da mesma empresa do usuário
-        this.veiculos2.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
         
         if (this.totalSize == 0)
           this.veiculoService.showMessage2('Nenhum registro encontrado.')

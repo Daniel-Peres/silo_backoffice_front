@@ -56,7 +56,7 @@ export class UsuarioUpdateComponent implements OnInit {
 
   updateUsuario(): void {
     this.usuario.empresa = this.selectedEmpresa;
-    // this.preencheEmpresaId();
+    this.preencheEmpresaId();
     // if (this.usuario.nome === JSON.parse(localStorage.getItem('usuario')).nome) {
     //   this.usuarioService.showMessage2('Atualização não autorizada:  usuário logado');
     // } else {

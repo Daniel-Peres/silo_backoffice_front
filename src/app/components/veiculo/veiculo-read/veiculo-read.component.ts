@@ -29,7 +29,7 @@ export class VeiculoReadComponent implements OnInit {
   }
   // usuarios = { content: [] };
   veiculos = { content: [] };
-  veiculos2 = { content: [] };
+  veiculosEmpresa = { content: [] };
   filter = '';
   displayedColumns = [/*'id',*/ 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', 'empresaId',/* 'empresa',*/ 'totalLugares', 'lugaresSentado', 'lugaresEmPe', 'codEquipamento', 'action']
 
@@ -57,8 +57,8 @@ export class VeiculoReadComponent implements OnInit {
         this.veiculos = veiculo;
         this.totalSize = veiculo.totalElements;
         
-        // armazenando em veiculos2 apenas veiculos da mesma empresa do usuário
-        this.veiculos2.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
         
         if (this.totalSize == 0)
           this.veiculoService.showMessage2('Nenhum registro encontrado.')
@@ -82,8 +82,8 @@ export class VeiculoReadComponent implements OnInit {
         this.veiculos = veiculo;
         this.totalSize = veiculo.totalElements;
         
-        // armazenando em veiculos2 apenas veiculos da mesma empresa do usuário
-        this.veiculos2.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
         
         if (this.totalSize == 0)
           this.veiculoService.showMessage2('Nenhum registro encontrado.')

@@ -21,10 +21,10 @@ export class UsuarioCreateComponent implements OnInit {
   selectedEmpresa: string;
 
   empresas: Empresa[] = [
-    {value: 'SPTrans', viewValue: 'SPTrans'},
-    {value: 'ViaSul', viewValue: 'ViaSul'},
-    {value: 'MoveBus', viewValue: 'MoveBus'},
-    {value: 'TransUniao', viewValue: 'TransUnião'},
+    { value: 'SPTrans', viewValue: 'SPTrans' },
+    { value: 'ViaSul', viewValue: 'ViaSul' },
+    { value: 'MoveBus', viewValue: 'MoveBus' },
+    { value: 'TransUniao', viewValue: 'TransUnião' },
   ];
 
   usuario: Usuario = {
@@ -38,12 +38,13 @@ export class UsuarioCreateComponent implements OnInit {
     expireAt: 0
   }
 
-  senhaCheck: String = '';  
+  senhaCheck: String = '';
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
 
   ngOnInit(): void {
+    this.preencheEmpresa();
   }
 
   createUsuario(): void {
@@ -75,21 +76,32 @@ export class UsuarioCreateComponent implements OnInit {
   checkCampos(): Boolean {
     if (this.usuario.nome === '' ||
       this.usuario.senha === '' ||
-      this.usuario.empresaId === null 
+      this.usuario.empresaId === null
       // this.usuario.empresa === ''
     ) { return true; } else { return false; }
   }
 
-  preencheEmpresaId(): void { 
-      if(this.usuario.empresa === 'SPTrans'){
-        this.usuario.empresaId = 1;
-      }else if (this.usuario.empresa === 'ViaSul'){
-        this.usuario.empresaId = 2;
-      }else if (this.usuario.empresa === 'MoveBus'){
-        this.usuario.empresaId = 3;
-      }else if (this.usuario.empresa === 'MoveBus'){}
-      else{
-        this.usuario.empresaId = 4;
-      }
+  preencheEmpresaId(): void {
+    if (this.usuario.empresa === 'SPTrans') {
+      this.usuario.empresaId = 1;
+    } else if (this.usuario.empresa === 'ViaSul') {
+      this.usuario.empresaId = 2;
+    } else if (this.usuario.empresa === 'MoveBus') {
+      this.usuario.empresaId = 3;
+    } else {
+      this.usuario.empresaId = 4;
+    }
+  
+  }
+  preencheEmpresa(): void {
+    if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {
+      this.selectedEmpresa = 'SPTrans';
+    } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 2) {
+      this.selectedEmpresa = 'ViaSul';
+    } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 3) {
+      this.selectedEmpresa = 'MoveBus';
+    } else {
+      this.selectedEmpresa = 'TransUniao';
     }
   }
+}

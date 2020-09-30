@@ -19,6 +19,7 @@ export class UsuarioReadComponent implements OnInit {
     this.paginator = mp;
   }
   usuarios = { content: [] };
+  usuariosEmpresa = { content: [] };
   filter = '';
   displayedColumns = [/*'id',*/'nome', /*'empresaId',*/ 'empresa', 'action']
   public pageSize = 10;
@@ -37,10 +38,13 @@ export class UsuarioReadComponent implements OnInit {
   }
 
   listarTodosUsuarios(): void {
+    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
     this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
-      // this.usuarioService.showMessage('Listagem de usuários realizada com sucesso!')
+      
+      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+      this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresaId == userEmpresaId);
 
       if(this.totalSize == 0)
         this.usuarioService.showMessage2('Nenhum registro encontrado.')
@@ -59,9 +63,13 @@ export class UsuarioReadComponent implements OnInit {
   }
 
   listarUsuariosFiltro(): void {
+    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
     this.usuarioService.read(this.filter, this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
+
+      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+      this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresaId == userEmpresaId);
       
       if(this.totalSize == 0)
         this.usuarioService.showMessage2('Nenhum registro encontrado.')

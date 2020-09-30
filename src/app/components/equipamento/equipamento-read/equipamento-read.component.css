@@ -50,6 +50,7 @@ mat-form-field.mat-form-field {
     margin-right: 5px;
 }
 
+
 /* cor de fundo e texto do autocomplete do input */
 input:-webkit-autofill, input:-webkit-autofill:focus{
     -webkit-text-fill-color: white;

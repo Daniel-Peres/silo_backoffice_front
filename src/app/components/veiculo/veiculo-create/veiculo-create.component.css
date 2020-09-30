@@ -41,6 +41,21 @@
 
 mat-form-field.mat-form-field {
     font-size: 13px;
+    width: 80%;
+}
+
+select {
+    color: white;
+}
+
+select:hover {
+    background-color: #444;
+    color: white;
+}
+
+select option {
+    color: #B6D7A8;
+    background-color: #333;
 }
 
 /* cor de fundo e texto do autocomplete do input */
