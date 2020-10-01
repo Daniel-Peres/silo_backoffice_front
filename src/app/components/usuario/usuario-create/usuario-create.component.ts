@@ -40,11 +40,18 @@ export class UsuarioCreateComponent implements OnInit {
 
   senhaCheck: String = '';
 
+  inputEmpresa = document.querySelector('#inputEmpresa');
+
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
 
   ngOnInit(): void {
-    this.preencheEmpresa();
+    //se não for o usuário admin, insere a empresa do usuário logado no campo empresa
+    if (JSON.parse(localStorage.getItem('usuario')).nome != 'admin') {
+      this.preencheEmpresa();
+    } else {      
+      // alert(this.inputEmpresa.getAttributeNames);
+    }   
   }
 
   createUsuario(): void {
@@ -57,7 +64,7 @@ export class UsuarioCreateComponent implements OnInit {
       if (this.senhaCheck === this.usuario.senha) {
 
         this.usuarioService.create(this.usuario).subscribe(() => {
-          this.usuarioService.showMessage('Usuário criado com sucesso!');
+          this.usuarioService.showMessage('Usuário cadastrado com sucesso!');
           this.router.navigate(['/manter_usuarios']);
         });
 

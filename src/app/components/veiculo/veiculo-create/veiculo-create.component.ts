@@ -54,7 +54,7 @@ export class VeiculoCreateComponent implements OnInit {
       this.veiculoService.showMessage2('Campos obrigatórios não preenchidos!');
     } else {
       this.veiculoService.create(this.veiculo).subscribe(() => {
-        this.veiculoService.showMessage('Veículo criado com sucesso!');
+        this.veiculoService.showMessage('Veículo cadastrado com sucesso!');
         this.router.navigate(['/manter_veiculos']);
       });
     }

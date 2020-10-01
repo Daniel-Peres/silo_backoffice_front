@@ -40,7 +40,7 @@ export class UsuarioDeleteComponent implements OnInit {
     } else {
       this.usuarioService.delete(this.usuario.id).subscribe(() => {
         this.router.navigate(['/manter_usuarios']);
-        this.usuarioService.showMessage('Usuário apagado com sucesso!');
+        this.usuarioService.showMessage('Usuário excluído com sucesso!');
       })
     }
   }

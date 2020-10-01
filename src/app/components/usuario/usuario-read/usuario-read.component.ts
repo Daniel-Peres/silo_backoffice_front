@@ -18,6 +18,9 @@ export class UsuarioReadComponent implements OnInit {
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
   }
+
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+
   usuarios = { content: [] };
   usuariosEmpresa = { content: [] };
   filter = '';
@@ -34,22 +37,27 @@ export class UsuarioReadComponent implements OnInit {
   }
 
   navigateToNovoUsuario(): void {
-    this.router.navigate(['/usuarios/create']); 
+    this.router.navigate(['/usuarios/create']);
   }
 
   listarTodosUsuarios(): void {
-    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+    
     this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
-      
-      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-      this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresaId == userEmpresaId);
 
-      if(this.totalSize == 0)
+     // se Se o usuario for o adminmostra todos os usuários de todas as empresas
+      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+        this.usuariosEmpresa.content = this.usuarios.content;
+      } else {
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresaId == this.userEmpresaId);
+      }
+
+      if (this.totalSize == 0)
         this.usuarioService.showMessage2('Nenhum registro encontrado.')
 
-      if(this.dataSource == undefined) {
+      if (this.dataSource == undefined) {
         this.dataSource = new MatTableDataSource(this.usuarios.content);
         this.dataSource.paginator = this.paginator;
       }
@@ -63,18 +71,23 @@ export class UsuarioReadComponent implements OnInit {
   }
 
   listarUsuariosFiltro(): void {
-    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+    
     this.usuarioService.read(this.filter, this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
 
-      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-      this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresaId == userEmpresaId);
-      
-      if(this.totalSize == 0)
+      // se Se o usuario for o adminmostra todos os usuários de todas as empresas
+      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+        this.usuariosEmpresa.content = this.usuarios.content;
+      } else {
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresaId == this.userEmpresaId);
+      }
+
+      if (this.totalSize == 0)
         this.usuarioService.showMessage2('Nenhum registro encontrado.')
 
-      if(this.dataSource == undefined) {
+      if (this.dataSource == undefined) {
         this.dataSource = new MatTableDataSource(this.usuarios.content);
         this.dataSource.paginator = this.paginator;
       }

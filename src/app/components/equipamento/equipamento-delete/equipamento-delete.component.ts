@@ -39,7 +39,7 @@ export class EquipamentoDeleteComponent implements OnInit {
   deleteVeiculo(): void {
     this.veiculoService.delete(this.veiculo.id).subscribe(() => {
       this.router.navigate(['/manter_veiculos']);
-      this.veiculoService.showMessage('Veículo apagado com sucesso!');
+      this.veiculoService.showMessage('Veículo excluído com sucesso!');
     })
   }
 
