@@ -39,19 +39,20 @@ export class UsuarioCreateComponent implements OnInit {
   }
 
   senhaCheck: String = '';
-
-  inputEmpresa = document.querySelector('#inputEmpresa');
+  
+  //variavel de controle do campo empresa: true desabilita / false habilita
+  inputEmpresa = true;
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
-
   ngOnInit(): void {
-    //se não for o usuário admin, insere a empresa do usuário logado no campo empresa
-    if (JSON.parse(localStorage.getItem('usuario')).nome != 'admin') {
+    //se for o usuário admin, habilita o campo para a escolha da empresa
+    //se não for o usuário admin, desabilita e insere a empresa do usuário logado no campo empresa
+    if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+      this.inputEmpresa = false;
+    } else {
       this.preencheEmpresa();
-    } else {      
-      // alert(this.inputEmpresa.getAttributeNames);
-    }   
+    }
   }
 
   createUsuario(): void {
@@ -98,7 +99,7 @@ export class UsuarioCreateComponent implements OnInit {
     } else {
       this.usuario.empresaId = 4;
     }
-  
+
   }
   preencheEmpresa(): void {
     if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {

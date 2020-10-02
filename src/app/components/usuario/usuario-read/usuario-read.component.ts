@@ -46,7 +46,7 @@ export class UsuarioReadComponent implements OnInit {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
 
-     // se Se o usuario for o adminmostra todos os usuários de todas as empresas
+     // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
       if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
         this.usuariosEmpresa.content = this.usuarios.content;
       } else {

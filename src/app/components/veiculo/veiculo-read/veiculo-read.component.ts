@@ -19,6 +19,8 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class VeiculoReadComponent implements OnInit {
 
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+
   // selectedValue: string;
   selectedVeiculo: string;
 
@@ -52,22 +54,29 @@ export class VeiculoReadComponent implements OnInit {
   }
 
   listarTodosVeiculos(): void {
-    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
     this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
-        this.veiculos = veiculo;
-        this.totalSize = veiculo.totalElements;
-        
-        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
-        
-        if (this.totalSize == 0)
-          this.veiculoService.showMessage2('Nenhum registro encontrado.')
+      this.veiculos = veiculo;
+      this.totalSize = veiculo.totalElements;
 
-        if (this.dataSource == undefined) {
-          this.dataSource = new MatTableDataSource(this.veiculos.content);
-          this.dataSource.paginator = this.paginator;
-        }
-      })
+      // // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+      // this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
+
+      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
+      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+        this.veiculosEmpresa.content = this.veiculos.content;
+      } else {
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
+      }
+
+      if (this.totalSize == 0)
+        this.veiculoService.showMessage2('Nenhum registro encontrado.')
+
+      if (this.dataSource == undefined) {
+        this.dataSource = new MatTableDataSource(this.veiculos.content);
+        this.dataSource.paginator = this.paginator;
+      }
+    })
   }
 
   getPaginatorData(event): void {
@@ -77,21 +86,25 @@ export class VeiculoReadComponent implements OnInit {
   }
 
   listarVeiculosFiltro(): void {
-    let userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
     this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculo => {
-        this.veiculos = veiculo;
-        this.totalSize = veiculo.totalElements;
-        
-        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
-        
-        if (this.totalSize == 0)
-          this.veiculoService.showMessage2('Nenhum registro encontrado.')
+      this.veiculos = veiculo;
+      this.totalSize = veiculo.totalElements;
 
-        if (this.dataSource == undefined) {
-          this.dataSource = new MatTableDataSource(this.veiculos.content);
-          this.dataSource.paginator = this.paginator;
-        }
-      })
+      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
+      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+        this.veiculosEmpresa.content = this.veiculos.content;
+      } else {
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
+      }
+
+      if (this.totalSize == 0)
+        this.veiculoService.showMessage2('Nenhum registro encontrado.')
+
+      if (this.dataSource == undefined) {
+        this.dataSource = new MatTableDataSource(this.veiculos.content);
+        this.dataSource.paginator = this.paginator;
+      }
+    })
   }
 }

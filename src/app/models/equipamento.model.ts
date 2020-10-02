@@ -1,6 +1,6 @@
 export interface Equipamento {
     id?: number 
-    codEquipamento?: number 
+    codEquipamento?: string 
     descricaoEquipamento: string
     statusEquipamento: string
     empresaId?: number

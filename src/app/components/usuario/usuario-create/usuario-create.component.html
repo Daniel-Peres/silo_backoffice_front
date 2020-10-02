@@ -26,7 +26,7 @@
 
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
-            <select id="inputEmpresa" matNativeControl [(ngModel)]="selectedEmpresa" name="empresa" disabled>
+            <select [disabled]="inputEmpresa" matNativeControl [(ngModel)]="selectedEmpresa" name="empresa" >
                 <option value="" selected></option>
                 <option *ngFor="let empresa of empresas" [value]="empresa.value">
                     {{empresa.viewValue}}

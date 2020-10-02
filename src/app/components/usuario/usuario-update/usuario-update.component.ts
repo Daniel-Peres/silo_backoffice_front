@@ -38,6 +38,8 @@ export class UsuarioUpdateComponent implements OnInit {
   }
 
   senhaCheck: String = '';
+  inputEmpresa = true;
+  inputNome = true;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -52,14 +54,20 @@ export class UsuarioUpdateComponent implements OnInit {
       this.selectedEmpresa = usuario.empresa;
     });
 
+    //se for o usuário admin, habilita os campos nome e empresa
+    if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+      this.inputEmpresa = false;
+      this.inputNome = false;
+    } 
   }
 
   updateUsuario(): void {
     this.usuario.empresa = this.selectedEmpresa;
     this.preencheEmpresaId();
     // if (this.usuario.nome === JSON.parse(localStorage.getItem('usuario')).nome) {
-    //   this.usuarioService.showMessage2('Atualização não autorizada:  usuário logado');
-    // } else {
+    if (this.usuario.nome === 'admin') {
+      this.usuarioService.showMessage2('Atualização não autorizada:  usuário logado');
+    } else {
       if (this.checkCampos()) { // checando campos não preenchidos
         this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');
       } else {
@@ -74,7 +82,7 @@ export class UsuarioUpdateComponent implements OnInit {
           this.usuarioService.showMessage2('Senhas não conferem!');
         }
       }
-    // }
+    }
   }
 
   cancel(): void {

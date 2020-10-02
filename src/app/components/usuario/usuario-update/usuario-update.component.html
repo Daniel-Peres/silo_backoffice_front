@@ -9,7 +9,7 @@
         </mat-form-field> -->
         <mat-form-field class="inputNome" appearance="outline" color="accent">
             <mat-label>Nome (usuário)</mat-label>
-            <input matInput [(ngModel)]="usuario.nome" name="nome" required>
+            <input [disabled]="inputNome" matInput [(ngModel)]="usuario.nome" name="nome" disabled>
         </mat-form-field>
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Senha</mat-label>
@@ -30,7 +30,7 @@
 
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
-            <select matNativeControl [(ngModel)]="selectedEmpresa" name="empresa" disabled>
+            <select [disabled]="inputEmpresa" matNativeControl [(ngModel)]="selectedEmpresa" name="empresa">
                 <option value="" selected></option>
                 <option *ngFor="let empresa of empresas" [value]="empresa.value">
                     {{empresa.viewValue}}
