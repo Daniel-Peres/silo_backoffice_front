@@ -101,6 +101,7 @@ export class UsuarioCreateComponent implements OnInit {
     }
 
   }
+  
   preencheEmpresa(): void {
     if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {
       this.selectedEmpresa = 'SPTrans';

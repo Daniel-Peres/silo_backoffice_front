@@ -1,3 +1,4 @@
+import { EquipamentoService } from './../../../services/equipamento.service';
 import { VeiculoService } from './../../../services/veiculo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from './../../../services/usuario.service';
@@ -14,6 +15,7 @@ export class VeiculoUpdateComponent implements OnInit {
   userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
 
   selectedVeiculo: string;
+
   veiculos = { content: [] };
   veiculosEmpresa = { content: [] };
   public pageSize = 10;
@@ -27,15 +29,20 @@ export class VeiculoUpdateComponent implements OnInit {
     placaVeiculo: '',
     empresa: '',
     empresaId: null,
-    codEquipamento: null,
+    codEquipamento: '',
     numeroLinha: '',
     totalLugares: null,
     lugaresSentado: null,
     lugaresEmPe: null,
   }
 
+  selectedEquipamento: string;
+  equipamentos = { content: [] };
+  equipamentosEmpresa = { content: [] };
+
   constructor(
     private veiculoService: VeiculoService,
+    private equipamentoService: EquipamentoService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -44,14 +51,17 @@ export class VeiculoUpdateComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id')
     this.veiculoService.readById(id).subscribe(veiculo => {
       this.veiculo = veiculo;
+      this.selectedEquipamento = veiculo.codEquipamento;
     });
     this.listarTodosVeiculos();
+    this.listarTodosEquipamentos();
   }
 
   updateVeiculo(): void {
     // if (this.checkCampos()) { // checando campos não preenchidos
     //   this.veiculoService.showMessage2('Campos obrigatórios não podem estar vazios!');
     // } else {
+    this.veiculo.codEquipamento = this.selectedEquipamento;
     this.veiculoService.update(this.veiculo).subscribe(() => {
       this.router.navigate(['/manter_veiculos']);
       this.veiculoService.showMessage('Veículo atualizado com sucesso!');
@@ -94,6 +104,16 @@ export class VeiculoUpdateComponent implements OnInit {
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
         this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
       }
+    })
+  }
+
+  listarTodosEquipamentos(): void {
+    this.equipamentoService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
+      this.equipamentos = equipamento;
+      this.totalSize = equipamento.totalElements;
+
+      // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
+      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresaId == this.userEmpresaId);
     })
   }
 }

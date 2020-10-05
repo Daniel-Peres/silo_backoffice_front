@@ -8,20 +8,20 @@
             <mat-label>Id</mat-label>
             <input type="number" matInput [value]="veiculo.id" name="id" disabled>
         </mat-form-field> -->
-        
+
         <mat-form-field class="inputPlaca" appearance="outline" color="accent">
             <mat-label>Placa</mat-label>
-            <input matInput [(ngModel)]="veiculo.placaVeiculo" name="placaVeiculo" >
+            <input matInput [(ngModel)]="veiculo.placaVeiculo" name="placaVeiculo">
         </mat-form-field>
 
         <mat-form-field class="inputModelo" appearance="outline" color="accent">
             <mat-label>Modelo</mat-label>
-            <input matInput [(ngModel)]="veiculo.modeloVeiculo" name="modeloVeiculo" >
+            <input matInput [(ngModel)]="veiculo.modeloVeiculo" name="modeloVeiculo">
         </mat-form-field>
 
         <mat-form-field class="inputLinha" appearance="outline" color="accent">
             <mat-label>Nº da Linha</mat-label>
-            <input matInput [(ngModel)]="veiculo.numeroLinha" name="numeroLinha" >
+            <input matInput [(ngModel)]="veiculo.numeroLinha" name="numeroLinha">
         </mat-form-field>
 
         <!-- <mat-form-field class="inputEmpresaID" appearance="outline" color="accent">
@@ -36,14 +36,14 @@
 
         <mat-form-field class="inputTotalLugares" appearance="outline" color="accent">
             <mat-label>Total de Lugares</mat-label>
-            <input type="number" min="0" matInput [(ngModel)]="veiculo.totalLugares" 
-            (change)="calculaLugaresEmPe()" name="totalLugares" required>
+            <input type="number" min="0" matInput [(ngModel)]="veiculo.totalLugares" (change)="calculaLugaresEmPe()"
+                name="totalLugares" required>
         </mat-form-field>
 
         <mat-form-field class="inputLugaresSentados" appearance="outline" color="accent">
             <mat-label>Lugares Sentados</mat-label>
-            <input type="number" min="0" matInput [(ngModel)]="veiculo.lugaresSentado" 
-            (change)="calculaLugaresEmPe()" name="lugaresSentado" required >
+            <input type="number" min="0" matInput [(ngModel)]="veiculo.lugaresSentado" (change)="calculaLugaresEmPe()"
+                name="lugaresSentado" required>
         </mat-form-field>
 
         <mat-form-field class="inputLugaresEmPe" appearance="outline" color="accent">
@@ -51,23 +51,15 @@
             <input type="number" min="0" matInput [value]="veiculo.lugaresEmPe" name="lugaresEmPe" disabled>
         </mat-form-field>
 
-        <mat-form-field class="inputCodEquipamento" appearance="outline" color="accent">
-            <mat-label>Cód. Equipamento</mat-label>
-            <input type="number" matInput [(ngModel)]="veiculo.codEquipamento" name="codEquipamento" >
-        </mat-form-field>
-
-        Só adaptar o dropDown para equipamento
-
         <!-- Exemplo de como inserir conteudo do banco na DropDown List -->
         <mat-form-field class="inputCodEquipamento" appearance="outline" color="accent">
-            <mat-label>Veiculos da empresa</mat-label>
-            <select matNativeControl [(ngModel)]="selectedVeiculo" name="veiculo">
+            <mat-label>Equipamento</mat-label>
+            <select matNativeControl [(ngModel)]="selectedEquipamento" name="equipamento">
                 <option value="" selected></option>
-                <option *ngFor="let veiculo of veiculosEmpresa.content" [value]="veiculo.placaVeiculo">
-                    Placa: {{veiculo.placaVeiculo}} -
-                    Modelo: {{veiculo.modeloVeiculo}} -
-                    Linha: {{veiculo.numeroLinha}} -
-                    EmpresaID: {{veiculo.empresaId}}
+                <option *ngFor="let equipamento of equipamentosEmpresa.content" [value]="equipamento.codEquipamento">
+                    {{equipamento.codEquipamento}} -
+                    {{equipamento.descricaoEquipamento}} -
+                    {{equipamento.statusEquipamento}}
                 </option>
             </select>
         </mat-form-field>

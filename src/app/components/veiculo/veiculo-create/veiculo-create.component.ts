@@ -1,3 +1,4 @@
+import { EquipamentoService } from './../../../services/equipamento.service';
 import { Router } from '@angular/router';
 import { VeiculoService } from './../../../services/veiculo.service';
 import { Veiculo } from './../../../models/veiculo.model';
@@ -28,16 +29,19 @@ export class VeiculoCreateComponent implements OnInit {
     placaVeiculo: '',
     empresa: '',
     empresaId: null,
-    codEquipamento: null,
+    codEquipamento: '',
     numeroLinha: '',
     totalLugares: null,
     lugaresSentado: null,
     lugaresEmPe: null,
   }
 
-
+  selectedEquipamento: string;
+  equipamentos = { content: [] };
+  equipamentosEmpresa = { content: [] };
 
   constructor(private veiculoService: VeiculoService,
+    private equipamentoService: EquipamentoService,
     private router: Router
   ) {
     // atribuindo valor retirado do JWT
@@ -47,12 +51,15 @@ export class VeiculoCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarTodosVeiculos();
+    this.preencheEmpresa();
+    this.listarTodosEquipamentos();
   }
 
   createVeiculo(): void {
     if (this.checkCampos()) {
       this.veiculoService.showMessage2('Campos obrigatórios não preenchidos!');
     } else {
+      this.veiculo.codEquipamento = this.selectedEquipamento;
       this.veiculoService.create(this.veiculo).subscribe(() => {
         this.veiculoService.showMessage('Veículo cadastrado com sucesso!');
         this.router.navigate(['/manter_veiculos']);
@@ -95,6 +102,28 @@ export class VeiculoCreateComponent implements OnInit {
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
         this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
       }
+    })
+  }
+
+  preencheEmpresa(): void {
+    if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {
+      this.veiculo.empresa = 'SPTrans';
+    } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 2) {
+      this.veiculo.empresa = 'ViaSul';
+    } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 3) {
+      this.veiculo.empresa = 'MoveBus';
+    } else {
+      this.veiculo.empresa = 'TransUniao';
+    }
+  }
+
+  listarTodosEquipamentos(): void {
+    this.equipamentoService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
+      this.equipamentos = equipamento;
+      this.totalSize = equipamento.totalElements;
+
+      // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
+      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresaId == this.userEmpresaId);
     })
   }
 }

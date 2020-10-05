@@ -1,7 +1,7 @@
+import { EquipamentoService } from './../../../services/equipamento.service';
+import { Equipamento } from './../../../models/equipamento.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { VeiculoService } from './../../../services/veiculo.service';
 import { Component, OnInit } from '@angular/core';
-import { Veiculo } from 'src/app/models/veiculo.model';
 
 @Component({
   selector: 'app-equipamento-delete',
@@ -10,36 +10,32 @@ import { Veiculo } from 'src/app/models/veiculo.model';
 })
 export class EquipamentoDeleteComponent implements OnInit {
 
-  veiculo: Veiculo = {
+  equipamento: Equipamento = {
     id: null,
-    modeloVeiculo: '',
-    placaVeiculo: '',
+    codEquipamento: '',
+    descricaoEquipamento: '',
+    statusEquipamento: '',
     empresa: '',
     empresaId: null,
-    codEquipamento: null,
-    numeroLinha: '',
-    totalLugares: null,
-    lugaresSentado: null,
-    lugaresEmPe: null,
   }
 
   constructor(
-    private veiculoService: VeiculoService,
+    private equipamentoService: EquipamentoService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.veiculoService.readById(id).subscribe(veiculo => {
-      this.veiculo = veiculo;
+    this.equipamentoService.readById(id).subscribe(equipamento => {
+      this.equipamento = equipamento;
     })
   }
 
-  deleteVeiculo(): void {
-    this.veiculoService.delete(this.veiculo.id).subscribe(() => {
-      this.router.navigate(['/manter_veiculos']);
-      this.veiculoService.showMessage('Veículo excluído com sucesso!');
+  deleteEquipamento(): void {
+    this.equipamentoService.delete(this.equipamento.id).subscribe(() => {
+      this.router.navigate(['/manter_equipamentos']);
+      this.equipamentoService.showMessage('Equipamento excluído com sucesso!');
     })
   }
 

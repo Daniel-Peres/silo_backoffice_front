@@ -33,7 +33,7 @@ export class VeiculoReadComponent implements OnInit {
   veiculos = { content: [] };
   veiculosEmpresa = { content: [] };
   filter = '';
-  displayedColumns = [/*'id',*/ 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', 'empresaId',/* 'empresa',*/ 'totalLugares', 'lugaresSentado', 'lugaresEmPe', 'codEquipamento', 'action']
+  displayedColumns = [/*'id',*/ 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', /*'empresaId',*/ 'empresa', 'totalLugares', 'lugaresSentado', 'lugaresEmPe', 'codEquipamento', 'action']
 
   public pageSize = 10;
   public currentPage = 0;

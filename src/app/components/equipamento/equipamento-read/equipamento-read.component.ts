@@ -1,6 +1,6 @@
+import { EquipamentoService } from './../../../services/equipamento.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { VeiculoService } from './../../../services/veiculo.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -10,11 +10,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./equipamento-read.component.css']
 })
 export class EquipamentoReadComponent implements OnInit {
-  
+
   userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
 
   // selectedValue: string;
-  selectedVeiculo: string;
+  selectedEquipamento: string;
 
   dataSource: MatTableDataSource<any>;
   private paginator: MatPaginator;
@@ -22,18 +22,17 @@ export class EquipamentoReadComponent implements OnInit {
     this.paginator = mp;
   }
   // usuarios = { content: [] };
-  veiculos = { content: [] };
-  veiculosEmpresa = { content: [] };
+  equipamentos = { content: [] };
+  equipamentosEmpresa = { content: [] };
   filter = '';
-  displayedColumns = [/*'id',*/ 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', 'empresaId',/* 'empresa',*/ 'totalLugares', 'lugaresSentado', 'lugaresEmPe', 'codEquipamento', 'action']
-
+  displayedColumns = [/*'id',*/ 'codEquipamento', 'descricaoEquipamento', 'statusEquipamento', 'empresaId', 'empresa', 'action']
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
   public pageSizeOptions: number[] = [5, 10, 25, 100];
 
   constructor(
-    private veiculoService: VeiculoService,
+    private equipamentosService: EquipamentoService,
     private router: Router
   ) { }
 
@@ -46,21 +45,26 @@ export class EquipamentoReadComponent implements OnInit {
   }
 
   listarTodosEquipamentos(): void {
-    this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
-        this.veiculos = veiculo;
-        this.totalSize = veiculo.totalElements;
-        
-        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
-        
-        if (this.totalSize == 0)
-          this.veiculoService.showMessage2('Nenhum registro encontrado.')
+    this.equipamentosService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
+      this.equipamentos = equipamento;
+      this.totalSize = equipamento.totalElements;
 
-        if (this.dataSource == undefined) {
-          this.dataSource = new MatTableDataSource(this.veiculos.content);
-          this.dataSource.paginator = this.paginator;
-        }
-      })
+      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
+      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+        this.equipamentosEmpresa.content = this.equipamentos.content;
+      } else {
+        // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
+        this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresaId == this.userEmpresaId);
+      }
+
+      if (this.totalSize == 0)
+        this.equipamentosService.showMessage2('Nenhum registro encontrado.')
+
+      if (this.dataSource == undefined) {
+        this.dataSource = new MatTableDataSource(this.equipamentos.content);
+        this.dataSource.paginator = this.paginator;
+      }
+    })
   }
 
   getPaginatorData(event): void {
@@ -69,21 +73,26 @@ export class EquipamentoReadComponent implements OnInit {
     this.listarTodosEquipamentos();
   }
 
-  listarVeiculosFiltro(): void {
-    this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculo => {
-        this.veiculos = veiculo;
-        this.totalSize = veiculo.totalElements;
-        
-        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
-        
-        if (this.totalSize == 0)
-          this.veiculoService.showMessage2('Nenhum registro encontrado.')
+  listarEquipamentosFiltro(): void {
+    this.equipamentosService.read(this.filter, this.pageSize, this.currentPage).subscribe(equipamento => {
+      this.equipamentos = equipamento;
+      this.totalSize = equipamento.totalElements;
 
-        if (this.dataSource == undefined) {
-          this.dataSource = new MatTableDataSource(this.veiculos.content);
-          this.dataSource.paginator = this.paginator;
-        }
-      })
+      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
+      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+        this.equipamentosEmpresa.content = this.equipamentos.content;
+      } else {
+        // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
+        this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresaId == this.userEmpresaId);
+      }
+
+      if (this.totalSize == 0)
+        this.equipamentosService.showMessage2('Nenhum registro encontrado.')
+
+      if (this.dataSource == undefined) {
+        this.dataSource = new MatTableDataSource(this.equipamentos.content);
+        this.dataSource.paginator = this.paginator;
+      }
+    })
   }
 }

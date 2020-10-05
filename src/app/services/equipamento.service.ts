@@ -1,8 +1,6 @@
 import { Equipamento } from './../models/equipamento.model';
-import { Veiculo } from './../models/veiculo.model';
 import { Injectable } from '@angular/core';
 
-import { Usuario } from '../models/usuario.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
