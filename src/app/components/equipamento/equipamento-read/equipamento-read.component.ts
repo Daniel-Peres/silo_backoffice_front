@@ -25,7 +25,7 @@ export class EquipamentoReadComponent implements OnInit {
   equipamentos = { content: [] };
   equipamentosEmpresa = { content: [] };
   filter = '';
-  displayedColumns = [/*'id',*/ 'codEquipamento', 'descricaoEquipamento', 'statusEquipamento', 'empresaId', 'empresa', 'action']
+  displayedColumns = [/*'id',*/ 'codEquipamento', 'descricaoEquipamento', 'statusEquipamento', /*'empresaId',*/ 'empresa', 'action']
   public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;

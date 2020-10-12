@@ -1,3 +1,4 @@
+import { EmpresaService } from './../../../services/empresa.service';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario.model';
@@ -22,6 +23,7 @@ export class UsuarioReadComponent implements OnInit {
   userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
 
   usuarios = { content: [] };
+  empresas = { content: [] };
   usuariosEmpresa = { content: [] };
   filter = '';
   displayedColumns = [/*'id',*/'nome', /*'empresaId',*/ 'empresa', 'action']
@@ -30,20 +32,40 @@ export class UsuarioReadComponent implements OnInit {
   public totalSize = 0;
   public pageSizeOptions: number[] = [5, 10, 25, 100];
 
-  constructor(private usuarioService: UsuarioService, private router: Router) { }
+  constructor(private usuarioService: UsuarioService, private router: Router, private empresaService: EmpresaService) { }
 
   ngOnInit(): void {
     this.listarTodosUsuarios();
+    this.listarTodasEmpresas();
+    alert(JSON.stringify(this.empresas))
   }
 
   navigateToNovoUsuario(): void {
     this.router.navigate(['/usuarios/create']);
   }
 
+  listarTodasEmpresas(): void {
+    
+    this.empresaService.read('', this.pageSize, this.currentPage).subscribe(empresa => {
+      this.empresas = empresa;
+      this.totalSize = empresa.totalElements;
+      console.log(empresa);
+
+      if (this.totalSize == 0)
+      this.empresaService.showMessage2('Nenhum registro encontrado.')
+
+      if (this.dataSource == undefined) {
+        this.dataSource = new MatTableDataSource(this.empresas.content);
+        this.dataSource.paginator = this.paginator;
+      }
+    })
+  }
+
   listarTodosUsuarios(): void {
     
     this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
+      console.log(usuarios);
       this.totalSize = usuarios.totalElements;
 
      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas

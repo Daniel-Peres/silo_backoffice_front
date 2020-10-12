@@ -6,9 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { ManterUsuariosComponent } from './views/manter-usuarios/manter-usuarios.component';
-import { UsuarioCreateComponent } from './components/usuario/usuario-create/usuario-create.component';
-import { UsuarioDeleteComponent } from './components/usuario/usuario-delete/usuario-delete.component';
-import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usuario-update.component';
+// import { UsuarioCreateComponent } from './components/usuario/usuario-create/usuario-create.component';
+// import { UsuarioDeleteComponent } from './components/usuario/usuario-delete/usuario-delete.component';
+// import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usuario-update.component';
 import { ManterVeiculosComponent } from './views/manter-veiculos/manter-veiculos.component';
 import { VeiculoDeleteComponent } from './components/veiculo/veiculo-delete/veiculo-delete.component';
 import { VeiculoUpdateComponent } from './components/veiculo/veiculo-update/veiculo-update.component';
@@ -32,21 +32,21 @@ const routes: Routes = [
     component: ManterUsuariosComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: "usuarios/create",
-    component: UsuarioCreateComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "usuarios/update/:id",
-    component: UsuarioUpdateComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "usuarios/delete/:id",
-    component: UsuarioDeleteComponent,
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: "usuarios/create",
+  //   component: UsuarioCreateComponent,
+  //   canActivate: [AuthGuard]
+  // },
+  // {
+  //   path: "usuarios/update/:id",
+  //   component: UsuarioUpdateComponent,
+  //   canActivate: [AuthGuard]
+  // },
+  // {
+  //   path: "usuarios/delete/:id",
+  //   component: UsuarioDeleteComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: "manter_veiculos",
     component: ManterVeiculosComponent,

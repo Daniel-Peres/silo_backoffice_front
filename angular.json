@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "siloFrontend"
+  "defaultProject": "siloFrontend",
+  "cli": {
+    "analytics": "a7537235-67d5-4c28-b116-471bad6048cf"
+  }
 }
