@@ -3,7 +3,7 @@ import { Empresa } from './empresa.model';
 export interface Usuario {
     id?: number 
     nome: string
-    empresa: Empresa
+    empresa?: Empresa
     email?: string
     senha: string
     jwttoken?: string

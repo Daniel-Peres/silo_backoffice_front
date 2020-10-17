@@ -20,7 +20,7 @@ export class UsuarioReadComponent implements OnInit {
     this.paginator = mp;
   }
 
-  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
   usuarios = { content: [] };
   empresas = { content: [] };
@@ -37,7 +37,7 @@ export class UsuarioReadComponent implements OnInit {
   ngOnInit(): void {
     this.listarTodosUsuarios();
     this.listarTodasEmpresas();
-    alert(JSON.stringify(this.empresas))
+
   }
 
   navigateToNovoUsuario(): void {
@@ -73,7 +73,7 @@ export class UsuarioReadComponent implements OnInit {
         this.usuariosEmpresa.content = this.usuarios.content;
       } else {
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresaId == this.userEmpresaId);
+        this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresa.id == this.userEmpresaId);
       }
 
       if (this.totalSize == 0)
@@ -103,7 +103,7 @@ export class UsuarioReadComponent implements OnInit {
         this.usuariosEmpresa.content = this.usuarios.content;
       } else {
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresaId == this.userEmpresaId);
+        this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresa.id == this.userEmpresaId);
       }
 
       if (this.totalSize == 0)

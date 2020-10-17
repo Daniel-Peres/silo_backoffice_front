@@ -11,7 +11,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class EquipamentoReadComponent implements OnInit {
 
-  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
   // selectedValue: string;
   selectedEquipamento: string;
@@ -54,7 +54,7 @@ export class EquipamentoReadComponent implements OnInit {
         this.equipamentosEmpresa.content = this.equipamentos.content;
       } else {
         // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-        this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresaId == this.userEmpresaId);
+        this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
       }
 
       if (this.totalSize == 0)

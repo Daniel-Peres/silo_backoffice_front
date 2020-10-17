@@ -15,8 +15,10 @@ export class EquipamentoDeleteComponent implements OnInit {
     codEquipamento: '',
     descricaoEquipamento: '',
     statusEquipamento: '',
-    empresa: '',
-    empresaId: null,
+    empresa: {
+      id: null,
+      empresa_nome: ''
+    }
   }
 
   constructor(

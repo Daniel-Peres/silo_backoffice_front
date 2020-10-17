@@ -1,13 +1,13 @@
-<!-- <app-header></app-header>
+<app-header></app-header>
 <mat-card class="container">
     <mat-card-title>Atualizar usuário</mat-card-title>
     <form class="formulario">
-        <span class="info">(*) preenchimento obrigatório</span> -->
+        <span class="info">(*) preenchimento obrigatório</span>
         <!-- <mat-form-field class="inputId" appearance="outline" color="accent">
             <mat-label>Id</mat-label>
             <input type="number" matInput [(ngModel)]="usuario.id" name="id" disabled>
         </mat-form-field> -->
-        <!-- <mat-form-field class="inputNome" appearance="outline" color="accent">
+        <mat-form-field class="inputNome" appearance="outline" color="accent">
             <mat-label>Nome (usuário)</mat-label>
             <input [disabled]="inputNome" matInput [(ngModel)]="usuario.nome" name="nome" disabled>
         </mat-form-field>
@@ -18,23 +18,22 @@
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Confirmação Senha</mat-label>
             <input type="password" matInput [(ngModel)]="senhaCheck" name="senha" >
-        </mat-form-field> -->
+        </mat-form-field>
         <!-- <mat-form-field class="inputEmpresaId" appearance="outline" color="accent">
             <mat-label>Empresa ID</mat-label>
-            <input type="number" matInput [(ngModel)]="usuario.empresaId" name="empresaId" required>
-        </mat-form-field>
-        <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
+            <input type="number" matInput [(ngModel)]="usuario.empresa.id" name="empresaId" required>
+        </mat-form-field> -->
+        <!-- <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
-            <input matInput [(ngModel)]="usuario.empresa" name="empresa" required>
+            <input matInput [(ngModel)]="usuario.empresa.empresa_nome" name="empresa" required>
         </mat-form-field> -->
 
-        <!-- <mat-form-field appearance="outline" color="accent">
+        <mat-form-field appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
             <select [disabled]="inputEmpresa" matNativeControl [(ngModel)]="selectedEmpresa" name="empresa">
                 <option value="" selected></option>
-                <option *ngFor="let empresa of empresas" [value]="empresa.value">
-                    {{empresa.viewValue}}
-                </option>
+                <option *ngFor="let empresa of empresas.content" [value]="empresa.id">
+                    {{empresa.empresa_nome}}
             </select>
         </mat-form-field>
         
@@ -49,4 +48,4 @@
             <span class="textButton">Cancelar</span>
         </button>
     </div>
-</mat-card> -->
+</mat-card>

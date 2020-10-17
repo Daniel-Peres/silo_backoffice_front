@@ -12,7 +12,7 @@ import { Veiculo } from 'src/app/models/veiculo.model';
 })
 export class EquipamentoUpdateComponent implements OnInit {
 
-  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
   selectedEquipamento: string;
 
@@ -29,8 +29,10 @@ export class EquipamentoUpdateComponent implements OnInit {
     codEquipamento: '',
     descricaoEquipamento: '',
     statusEquipamento: '',
-    empresa: '',
-    empresaId: null,
+    empresa: {
+      id: null,
+      empresa_nome: ''
+    }    
   }
 
   constructor(
@@ -66,7 +68,7 @@ export class EquipamentoUpdateComponent implements OnInit {
   checkCampos(): Boolean {
     if (this.equipamento.codEquipamento === '' ||
       this.equipamento.descricaoEquipamento === '' ||
-      this.equipamento.empresaId === null ||
+      this.equipamento.empresa.id === null ||
       this.equipamento.empresa === '' ||
       this.equipamento.statusEquipamento === ''
       // this.equipamento.empresa === null
@@ -79,7 +81,7 @@ export class EquipamentoUpdateComponent implements OnInit {
       this.totalSize = equipamento.totalElements;
 
       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresaId == this.userEmpresaId);
+      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
     })
   }
 }

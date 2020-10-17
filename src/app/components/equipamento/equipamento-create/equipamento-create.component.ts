@@ -12,7 +12,7 @@ import { Veiculo } from 'src/app/models/veiculo.model';
 })
 export class EquipamentoCreateComponent implements OnInit {
 
-  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
   selectedEquipamento: string;
 
@@ -30,21 +30,24 @@ export class EquipamentoCreateComponent implements OnInit {
     codEquipamento: '',
     descricaoEquipamento: '',
     statusEquipamento: 'INATIVO',
-    empresa: '',
-    empresaId: null,
+    empresa: {
+      id: null,
+      empresa_nome: ''
+    }
   }
 
   constructor(private equipamentoService: EquipamentoService,
     private router: Router
   ) {
     // atribuindo valor retirado do JWT
-    this.equipamento.empresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+    this.equipamento.empresa.id = JSON.parse(localStorage.getItem('usuario')).empresa.id;
+    this.equipamento.empresa.empresa_nome = JSON.parse(localStorage.getItem('usuario')).empresa.empresa_nome;
   }
 
 
   ngOnInit(): void {
     // this.listarTodosEquipamentos();
-    this.preencheEmpresa()
+    // this.preencheEmpresa()
   }
 
   createEquipamento(): void {
@@ -66,24 +69,24 @@ export class EquipamentoCreateComponent implements OnInit {
   checkCampos(): Boolean {
     if (this.equipamento.codEquipamento === '' ||
       this.equipamento.descricaoEquipamento === '' ||
-      this.equipamento.empresaId === null ||
-      this.equipamento.empresa === '' ||
+      this.equipamento.empresa.id === null ||
+      this.equipamento.empresa.empresa_nome === '' ||
       this.equipamento.statusEquipamento === ''
       // this.equipamento.empresa === null
     ) { return true; } else { return false; }
   }
 
-  preencheEmpresa(): void {
-    if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {
-      this.equipamento.empresa = 'SPTrans';
-    } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 2) {
-      this.equipamento.empresa = 'ViaSul';
-    } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 3) {
-      this.equipamento.empresa = 'MoveBus';
-    } else {
-      this.equipamento.empresa = 'TransUniao';
-    }
-  }
+  // preencheEmpresa(): void {
+  //   if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {
+  //     this.equipamento.empresa = 'SPTrans';
+  //   } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 2) {
+  //     this.equipamento.empresa = 'ViaSul';
+  //   } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 3) {
+  //     this.equipamento.empresa = 'MoveBus';
+  //   } else {
+  //     this.equipamento.empresa = 'TransUniao';
+  //   }
+  // }
 
   // listarTodosEquipamentos(): void {
   //   this.equipamentoService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {

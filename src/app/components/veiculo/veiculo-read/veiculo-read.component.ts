@@ -19,7 +19,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class VeiculoReadComponent implements OnInit {
 
-  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
   // selectedValue: string;
   selectedVeiculo: string;
@@ -66,7 +66,7 @@ export class VeiculoReadComponent implements OnInit {
         this.veiculosEmpresa.content = this.veiculos.content;
       } else {
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
       }
 
       if (this.totalSize == 0)
@@ -95,7 +95,7 @@ export class VeiculoReadComponent implements OnInit {
         this.veiculosEmpresa.content = this.veiculos.content;
       } else {
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
       }
 
       if (this.totalSize == 0)

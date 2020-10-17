@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VeiculoUpdateComponent implements OnInit {
 
-  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
   selectedVeiculo: string;
 
@@ -27,8 +27,10 @@ export class VeiculoUpdateComponent implements OnInit {
     id: null,
     modeloVeiculo: '',
     placaVeiculo: '',
-    empresa: '',
-    empresaId: null,
+    empresa: {
+      id: null,
+      empresa_nome: ''
+    },
     codEquipamento: '',
     numeroLinha: '',
     totalLugares: null,
@@ -102,7 +104,7 @@ export class VeiculoUpdateComponent implements OnInit {
         this.veiculosEmpresa.content = this.veiculos.content;
       } else {
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
       }
     })
   }
@@ -113,7 +115,7 @@ export class VeiculoUpdateComponent implements OnInit {
       this.totalSize = equipamento.totalElements;
 
       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresaId == this.userEmpresaId);
+      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
     })
   }
 }

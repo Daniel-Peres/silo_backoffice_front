@@ -1,9 +1,10 @@
+import { Empresa } from './empresa.model';
+
 export interface Veiculo {
     id?: number 
     modeloVeiculo: string
     placaVeiculo: string
-    empresa: string
-    empresaId: number
+    empresa: Empresa
     codEquipamento?: string
     numeroLinha?: string
     totalLugares: number

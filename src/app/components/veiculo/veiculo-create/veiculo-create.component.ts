@@ -11,8 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VeiculoCreateComponent implements OnInit {
 
-  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
-
+  userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
   selectedVeiculo: string;
   veiculos = { content: [] };
@@ -27,8 +26,10 @@ export class VeiculoCreateComponent implements OnInit {
     id: null,
     modeloVeiculo: '',
     placaVeiculo: '',
-    empresa: '',
-    empresaId: null,
+    empresa: {
+      id: null,
+      empresa_nome: ''
+    },
     codEquipamento: '',
     numeroLinha: '',
     totalLugares: null,
@@ -45,13 +46,14 @@ export class VeiculoCreateComponent implements OnInit {
     private router: Router
   ) {
     // atribuindo valor retirado do JWT
-    this.veiculo.empresaId = JSON.parse(localStorage.getItem('usuario')).empresaId;
+    this.veiculo.empresa.id = JSON.parse(localStorage.getItem('usuario')).empresa.id;
+    // this.veiculo.empresa.id = JSON.parse(localStorage.getItem('usuario')).empresa.empresa_nome;
   }
 
 
   ngOnInit(): void {
     this.listarTodosVeiculos();
-    this.preencheEmpresa();
+    // this.preencheEmpresa();
     this.listarTodosEquipamentos();
   }
 
@@ -100,22 +102,22 @@ export class VeiculoCreateComponent implements OnInit {
         this.veiculosEmpresa.content = this.veiculos.content;
       } else {
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == this.userEmpresaId);
+        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
       }
     })
   }
 
-  preencheEmpresa(): void {
-    if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {
-      this.veiculo.empresa = 'SPTrans';
-    } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 2) {
-      this.veiculo.empresa = 'ViaSul';
-    } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 3) {
-      this.veiculo.empresa = 'MoveBus';
-    } else {
-      this.veiculo.empresa = 'TransUniao';
-    }
-  }
+  // preencheEmpresa(): void {
+  //   if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {
+  //     this.veiculo.empresa = 'SPTrans';
+  //   } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 2) {
+  //     this.veiculo.empresa = 'ViaSul';
+  //   } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 3) {
+  //     this.veiculo.empresa = 'MoveBus';
+  //   } else {
+  //     this.veiculo.empresa = 'TransUniao';
+  //   }
+  // }
 
   listarTodosEquipamentos(): void {
     this.equipamentoService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
@@ -123,7 +125,7 @@ export class VeiculoCreateComponent implements OnInit {
       this.totalSize = equipamento.totalElements;
 
       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresaId == this.userEmpresaId);
+      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
     })
   }
 }

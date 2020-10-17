@@ -28,9 +28,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { UsuarioReadComponent } from './components/usuario/usuario-read/usuario-read.component';
-// import { UsuarioDeleteComponent } from './components/usuario/usuario-delete/usuario-delete.component';
-// import { UsuarioCreateComponent } from './components/usuario/usuario-create/usuario-create.component';
-// import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usuario-update.component';
+import { UsuarioDeleteComponent } from './components/usuario/usuario-delete/usuario-delete.component';
+import { UsuarioCreateComponent } from './components/usuario/usuario-create/usuario-create.component';
+import { UsuarioUpdateComponent } from './components/usuario/usuario-update/usuario-update.component';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
@@ -56,9 +56,9 @@ import { EquipamentoUpdateComponent } from './components/equipamento/equipamento
     MostrarNivelLotacaoComponent,
     LoginComponent,
     UsuarioReadComponent,
-    // UsuarioDeleteComponent,
-    // UsuarioCreateComponent,
-    // UsuarioUpdateComponent,
+    UsuarioDeleteComponent,
+    UsuarioCreateComponent,
+    UsuarioUpdateComponent,
     VeiculoUpdateComponent,
     VeiculoDeleteComponent,
     VeiculoCreateComponent,
