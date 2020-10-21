@@ -51,7 +51,7 @@
             <mat-label>Equipamento</mat-label>
             <select matNativeControl [(ngModel)]="selectedEquipamento" name="equipamento">
                 <option value="" selected></option>
-                <option *ngFor="let equipamento of equipamentosEmpresa.content" [value]="equipamento.codEquipamento">
+                <option *ngFor="let equipamento of equipamentosEmpresa.content" [value]="equipamento.id">
                     {{equipamento.codEquipamento}}   -
                     {{equipamento.descricaoEquipamento}}
                     <!-- {{equipamento.statusEquipamento}} -->

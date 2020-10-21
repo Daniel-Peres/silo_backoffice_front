@@ -1,3 +1,4 @@
+import { Equipamento } from './equipamento.model';
 import { Empresa } from './empresa.model';
 
 export interface Veiculo {
@@ -5,7 +6,7 @@ export interface Veiculo {
     modeloVeiculo: string
     placaVeiculo: string
     empresa: Empresa
-    codEquipamento?: string
+    equipamento?: Equipamento
     numeroLinha?: string
     totalLugares: number
     lugaresSentado: number    

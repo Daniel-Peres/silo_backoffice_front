@@ -31,14 +31,16 @@ export class VeiculoUpdateComponent implements OnInit {
       id: null,
       empresa_nome: ''
     },
-    codEquipamento: '',
+    equipamento: {
+      id: null
+    },
     numeroLinha: '',
     totalLugares: null,
     lugaresSentado: null,
     lugaresEmPe: null,
   }
 
-  selectedEquipamento: string;
+  selectedEquipamento: number;
   equipamentos = { content: [] };
   equipamentosEmpresa = { content: [] };
 
@@ -53,7 +55,7 @@ export class VeiculoUpdateComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id')
     this.veiculoService.readById(id).subscribe(veiculo => {
       this.veiculo = veiculo;
-      this.selectedEquipamento = veiculo.codEquipamento;
+      this.selectedEquipamento = veiculo.equipamento.id;
     });
     this.listarTodosVeiculos();
     this.listarTodosEquipamentos();
@@ -63,7 +65,7 @@ export class VeiculoUpdateComponent implements OnInit {
     // if (this.checkCampos()) { // checando campos não preenchidos
     //   this.veiculoService.showMessage2('Campos obrigatórios não podem estar vazios!');
     // } else {
-    this.veiculo.codEquipamento = this.selectedEquipamento;
+    this.veiculo.equipamento.id = this.selectedEquipamento;
     this.veiculoService.update(this.veiculo).subscribe(() => {
       this.router.navigate(['/manter_veiculos']);
       this.veiculoService.showMessage('Veículo atualizado com sucesso!');

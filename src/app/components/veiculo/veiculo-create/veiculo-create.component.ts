@@ -30,14 +30,16 @@ export class VeiculoCreateComponent implements OnInit {
       id: null,
       empresa_nome: ''
     },
-    codEquipamento: '',
+    equipamento: {
+      id: null
+    },
     numeroLinha: '',
     totalLugares: null,
     lugaresSentado: null,
     lugaresEmPe: null,
   }
 
-  selectedEquipamento: string;
+  selectedEquipamento: number;
   equipamentos = { content: [] };
   equipamentosEmpresa = { content: [] };
 
@@ -61,7 +63,7 @@ export class VeiculoCreateComponent implements OnInit {
     if (this.checkCampos()) {
       this.veiculoService.showMessage2('Campos obrigatórios não preenchidos!');
     } else {
-      this.veiculo.codEquipamento = this.selectedEquipamento;
+      this.veiculo.equipamento.id = this.selectedEquipamento;
       this.veiculoService.create(this.veiculo).subscribe(() => {
         this.veiculoService.showMessage('Veículo cadastrado com sucesso!');
         this.router.navigate(['/manter_veiculos']);
@@ -106,18 +108,6 @@ export class VeiculoCreateComponent implements OnInit {
       }
     })
   }
-
-  // preencheEmpresa(): void {
-  //   if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {
-  //     this.veiculo.empresa = 'SPTrans';
-  //   } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 2) {
-  //     this.veiculo.empresa = 'ViaSul';
-  //   } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 3) {
-  //     this.veiculo.empresa = 'MoveBus';
-  //   } else {
-  //     this.veiculo.empresa = 'TransUniao';
-  //   }
-  // }
 
   listarTodosEquipamentos(): void {
     this.equipamentoService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
