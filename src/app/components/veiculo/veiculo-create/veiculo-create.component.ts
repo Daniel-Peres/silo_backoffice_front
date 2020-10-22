@@ -78,7 +78,8 @@ export class VeiculoCreateComponent implements OnInit {
     // console.log(this.equipamentosEmpresa.content.filter(x => x.id == this.selectedEquipamento));
     // this.equipamento.content = this.equipamentosEmpresa.content.filter(x => x.id == this.selectedEquipamento)
     // console.log(this.equipamento.content);
-    this.preencheEquipamentoStatusAtivo();
+
+    // this.preencheEquipamentoStatusAtivo();
 
 
     if (this.checkCampos()) {
@@ -148,16 +149,16 @@ export class VeiculoCreateComponent implements OnInit {
     });
   }
 
-  preencheEquipamentoStatusAtivo(): void {
-    this.equipamentosEmpresa.content.forEach(equipamento => {
-      if(equipamento.id == this.selectedEquipamento){
-        this.equipamento = equipamento;
-      }
-    });
+  // preencheEquipamentoStatusAtivo(): void {
+  //   this.equipamentosEmpresa.content.forEach(equipamento => {
+  //     if(equipamento.id == this.selectedEquipamento){
+  //       this.equipamento = equipamento;
+  //     }
+  //   });
 
-    this.equipamento.statusEquipamento = 'ATIVO'
-    console.log(this.equipamento)
-    this.updateEquipamento();
+  //   this.equipamento.statusEquipamento = 'ATIVO'
+  //   console.log(this.equipamento)
+  //   this.updateEquipamento();
     
-  }
+  // }
 }
