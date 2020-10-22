@@ -1,3 +1,4 @@
+import { Equipamento } from './../../../models/equipamento.model';
 import { EquipamentoService } from './../../../services/equipamento.service';
 import { Router } from '@angular/router';
 import { VeiculoService } from './../../../services/veiculo.service';
@@ -43,6 +44,20 @@ export class VeiculoCreateComponent implements OnInit {
   equipamentos = { content: [] };
   equipamentosEmpresa = { content: [] };
 
+  // equipamento: Equipamento = {
+  //   id: null,
+  //   codEquipamento: '',
+  //   descricaoEquipamento: '',
+  //   statusEquipamento: '',
+  //   empresa: {
+  //     id: null,
+  //     empresa_nome: ''
+  //   }    
+  // }
+
+  equipamento: Equipamento;
+
+  
   constructor(private veiculoService: VeiculoService,
     private equipamentoService: EquipamentoService,
     private router: Router
@@ -52,7 +67,6 @@ export class VeiculoCreateComponent implements OnInit {
     // this.veiculo.empresa.id = JSON.parse(localStorage.getItem('usuario')).empresa.empresa_nome;
   }
 
-
   ngOnInit(): void {
     this.listarTodosVeiculos();
     // this.preencheEmpresa();
@@ -60,6 +74,13 @@ export class VeiculoCreateComponent implements OnInit {
   }
 
   createVeiculo(): void {
+    // alert(JSON.stringify(this.equipamentosEmpresa.content.filter(x => x.id == this.selectedEquipamento)));
+    // console.log(this.equipamentosEmpresa.content.filter(x => x.id == this.selectedEquipamento));
+    // this.equipamento.content = this.equipamentosEmpresa.content.filter(x => x.id == this.selectedEquipamento)
+    // console.log(this.equipamento.content);
+    this.preencheEquipamentoStatusAtivo();
+
+
     if (this.checkCampos()) {
       this.veiculoService.showMessage2('Campos obrigatórios não preenchidos!');
     } else {
@@ -69,10 +90,11 @@ export class VeiculoCreateComponent implements OnInit {
         this.router.navigate(['/manter_veiculos']);
       });
     }
+
   }
 
   cancel(): void {
-    this.router.navigate(['/manter_veiculos']);
+    this.router.navigate(['/manter_veiculos']);    
   }
 
   // checar campos obrigatórios vazios
@@ -115,7 +137,27 @@ export class VeiculoCreateComponent implements OnInit {
       this.totalSize = equipamento.totalElements;
 
       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
+      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId && x.statusEquipamento == 'INATIVO');
     })
+  }
+
+  updateEquipamento(): void {
+    this.equipamentoService.update(this.equipamento).subscribe(() => {
+      // this.router.navigate(['/manter_equipamentos']);
+      this.equipamentoService.showMessage('Equipamento atualizado com sucesso!');
+    });
+  }
+
+  preencheEquipamentoStatusAtivo(): void {
+    this.equipamentosEmpresa.content.forEach(equipamento => {
+      if(equipamento.id == this.selectedEquipamento){
+        this.equipamento = equipamento;
+      }
+    });
+
+    this.equipamento.statusEquipamento = 'ATIVO'
+    console.log(this.equipamento)
+    this.updateEquipamento();
+    
   }
 }
