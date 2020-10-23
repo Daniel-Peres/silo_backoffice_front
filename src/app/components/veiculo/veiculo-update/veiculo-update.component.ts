@@ -1,3 +1,4 @@
+import { Equipamento } from './../../../models/equipamento.model';
 import { EquipamentoService } from './../../../services/equipamento.service';
 import { VeiculoService } from './../../../services/veiculo.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -44,6 +45,10 @@ export class VeiculoUpdateComponent implements OnInit {
   equipamentos = { content: [] };
   equipamentosEmpresa = { content: [] };
 
+  //equipamentos utilizado para realizar o update no status do equipamento
+  oldEquipamento: Equipamento; // equipamento atual que vai ficar INATIVO
+  newEquipamento: Equipamento; // novo equipamento que vai ficar ATIVO
+
   constructor(
     private veiculoService: VeiculoService,
     private equipamentoService: EquipamentoService,
@@ -56,12 +61,20 @@ export class VeiculoUpdateComponent implements OnInit {
     this.veiculoService.readById(id).subscribe(veiculo => {
       this.veiculo = veiculo;
       this.selectedEquipamento = veiculo.equipamento.id;
+
+      // atribuindo equipamento atual do veiculo ao equip antigo
+      this.oldEquipamento = veiculo.equipamento;
     });
+
     this.listarTodosVeiculos();
     this.listarTodosEquipamentos();
+
   }
 
   updateVeiculo(): void {
+
+    // this.alteraEquipamentoStatus();
+
     // if (this.checkCampos()) { // checando campos não preenchidos
     //   this.veiculoService.showMessage2('Campos obrigatórios não podem estar vazios!');
     // } else {
@@ -71,6 +84,7 @@ export class VeiculoUpdateComponent implements OnInit {
       this.veiculoService.showMessage('Veículo atualizado com sucesso!');
     });
     // }
+
   }
 
   cancel(): void {
@@ -106,7 +120,9 @@ export class VeiculoUpdateComponent implements OnInit {
         this.veiculosEmpresa.content = this.veiculos.content;
       } else {
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
+        this.veiculosEmpresa.content = this.veiculos.content.filter(
+          x => x.empresa.id == this.userEmpresaId
+        );
       }
     })
   }
@@ -116,8 +132,47 @@ export class VeiculoUpdateComponent implements OnInit {
       this.equipamentos = equipamento;
       this.totalSize = equipamento.totalElements;
 
-      // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
+      // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário e inativos
+      this.equipamentosEmpresa.content = this.equipamentos.content.filter(
+        x => x.empresa.id == this.userEmpresaId && (x.statusEquipamento == 'INATIVO' || this.veiculo.equipamento.id == x.id)
+      );
     })
+  }
+
+  //update no novo equipamento ativo
+  updateNewEquipamento(): void {
+    this.equipamentoService.update(this.newEquipamento).subscribe(() => {
+      console.log('Equipamento atualizado com sucesso!');
+    });
+  }
+
+  // update no equipamento para Inativo
+  updateOldEquipamento(): void {
+    this.equipamentoService.update(this.oldEquipamento).subscribe(() => {
+      console.log('Equipamento atualizado com sucesso!');
+    });
+  }
+
+  alteraEquipamentoStatus(): void {
+    this.equipamentosEmpresa.content.forEach(equipamento => {
+      if (equipamento.id == this.selectedEquipamento) {
+        this.newEquipamento = equipamento;
+        // console.log('Old Atual: ' + JSON.stringify(this.oldEquipamento));
+        // console.log('New Atual' + JSON.stringify(this.newEquipamento));
+      }
+    });
+
+    // Se o ID do equipamento instalado no veiculo for diferente do ID que foi selecionado,
+    // atualiza os dois equipamentos
+    if (this.veiculo.equipamento.id != this.newEquipamento.id) {
+      this.newEquipamento.statusEquipamento = 'ATIVO'
+      this.oldEquipamento.statusEquipamento = 'INATIVO'
+
+      // console.log('Old Alterado' + JSON.stringify(this.oldEquipamento));
+      // console.log('New Alterado' + JSON.stringify(this.newEquipamento));
+
+      this.updateNewEquipamento();
+      this.updateOldEquipamento();
+    }
   }
 }

@@ -44,17 +44,7 @@ export class VeiculoCreateComponent implements OnInit {
   equipamentos = { content: [] };
   equipamentosEmpresa = { content: [] };
 
-  // equipamento: Equipamento = {
-  //   id: null,
-  //   codEquipamento: '',
-  //   descricaoEquipamento: '',
-  //   statusEquipamento: '',
-  //   empresa: {
-  //     id: null,
-  //     empresa_nome: ''
-  //   }    
-  // }
-
+  //equipamento utilizado para realizar o update no status do equipamento
   equipamento: Equipamento;
 
   
@@ -69,18 +59,12 @@ export class VeiculoCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarTodosVeiculos();
-    // this.preencheEmpresa();
     this.listarTodosEquipamentos();
   }
 
   createVeiculo(): void {
-    // alert(JSON.stringify(this.equipamentosEmpresa.content.filter(x => x.id == this.selectedEquipamento)));
-    // console.log(this.equipamentosEmpresa.content.filter(x => x.id == this.selectedEquipamento));
-    // this.equipamento.content = this.equipamentosEmpresa.content.filter(x => x.id == this.selectedEquipamento)
-    // console.log(this.equipamento.content);
 
-    // this.preencheEquipamentoStatusAtivo();
-
+    // this.alteraEquipamentoStatusAtivo();
 
     if (this.checkCampos()) {
       this.veiculoService.showMessage2('Campos obrigatórios não preenchidos!');
@@ -149,16 +133,15 @@ export class VeiculoCreateComponent implements OnInit {
     });
   }
 
-  // preencheEquipamentoStatusAtivo(): void {
-  //   this.equipamentosEmpresa.content.forEach(equipamento => {
-  //     if(equipamento.id == this.selectedEquipamento){
-  //       this.equipamento = equipamento;
-  //     }
-  //   });
+  alteraEquipamentoStatusAtivo(): void {
+    this.equipamentosEmpresa.content.forEach(equipamento => {
+      if(equipamento.id == this.selectedEquipamento){
+        this.equipamento = equipamento;
+      }
+    });
 
-  //   this.equipamento.statusEquipamento = 'ATIVO'
-  //   console.log(this.equipamento)
-  //   this.updateEquipamento();
-    
-  // }
+    this.equipamento.statusEquipamento = 'ATIVO'
+    // console.log(this.equipamento)
+    this.updateEquipamento();    
+  }
 }
