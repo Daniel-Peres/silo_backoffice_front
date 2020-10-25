@@ -58,9 +58,6 @@ export class VeiculoReadComponent implements OnInit {
       this.veiculos = veiculo;
       this.totalSize = veiculo.totalElements;
 
-      // // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-      // this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresaId == userEmpresaId);
-
       // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
       if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
         this.veiculosEmpresa.content = this.veiculos.content;

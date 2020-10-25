@@ -42,6 +42,7 @@ import { EquipamentoCreateComponent } from './components/equipamento/equipamento
 import { EquipamentoDeleteComponent } from './components/equipamento/equipamento-delete/equipamento-delete.component';
 import { EquipamentoReadComponent } from './components/equipamento/equipamento-read/equipamento-read.component';
 import { EquipamentoUpdateComponent } from './components/equipamento/equipamento-update/equipamento-update.component';
+import { HistoricoReadComponent } from './components/historico/historico-read/historico-read.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { EquipamentoUpdateComponent } from './components/equipamento/equipamento
     EquipamentoDeleteComponent,
     EquipamentoReadComponent,
     EquipamentoUpdateComponent,
+    HistoricoReadComponent,
   ],
   imports: [
     BrowserModule,
