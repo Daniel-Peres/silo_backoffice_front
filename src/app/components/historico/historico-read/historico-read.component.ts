@@ -4,6 +4,7 @@ import { VeiculoService } from './../../../services/veiculo.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-historico-read',
@@ -15,7 +16,12 @@ export class HistoricoReadComponent implements OnInit {
   userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
   // selectedValue: string;
-  selectedVeiculo: string;
+  selectedVeiculo: string = "";
+  selectedData: Date = null;
+  data: string;
+  dia: string;
+  mes: string;
+  ano: string;
   veiculos = { content: [] };
   veiculosEmpresa = { content: [] };
 
@@ -75,18 +81,32 @@ export class HistoricoReadComponent implements OnInit {
     })
   }
 
-  listarTodosHistoricosPorVeiculo(): void {
+  
+  listarTodosHistoricosComFiltros(): void {
+    if (this.selectedData != undefined) {
+      this.dia = this.selectedData.getUTCDate().toString();
+      this.mes = (this.selectedData.getUTCMonth() + 1).toString();
+      this.ano = this.selectedData.getUTCFullYear().toString();
+      this.data = this.dia + "/" + this.mes + "/" + this.ano;
+    }
+
     this.historicoService.read('', this.pageSize, this.currentPage).subscribe(historico => {
       this.historicos = historico;
       this.totalSize = historico.totalElements;
 
-      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.historicosEmpresa.content = this.historicos.content;
-      } else {
+      if ((this.selectedVeiculo != '') && (this.selectedData != null)) {
         // armazenando em historicosEmpresa apenas historicos da mesma empresa do usuário
         this.historicosEmpresa.content = this.historicos.content.filter(
+          x => x.veiculo.empresa.id == this.userEmpresaId && x.datahora.match(this.data) && x.veiculo.placaVeiculo == this.selectedVeiculo);
+      } else if ((this.selectedVeiculo == '') && (this.selectedData != null)) {
+        this.historicosEmpresa.content = this.historicos.content.filter(
+          x => x.veiculo.empresa.id == this.userEmpresaId && x.datahora.match(this.data));
+      } else if ((this.selectedVeiculo != '') && (this.selectedData == null)){
+        this.historicosEmpresa.content = this.historicos.content.filter(
           x => x.veiculo.empresa.id == this.userEmpresaId && x.veiculo.placaVeiculo == this.selectedVeiculo);
+      } else {
+        this.historicosEmpresa.content = this.historicos.content.filter(
+          x => x.veiculo.empresa.id == this.userEmpresaId);
       }
 
       if (this.totalSize == 0)
@@ -100,13 +120,14 @@ export class HistoricoReadComponent implements OnInit {
   }
 
 
+
   getPaginatorData(event): void {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.listarTodosHistoricos();
   }
 
-  
+
 
   listarHistoricosFiltro(): void {
     this.historicoService.read(this.filter, this.pageSize, this.currentPage).subscribe(historico => {
@@ -135,7 +156,7 @@ export class HistoricoReadComponent implements OnInit {
     this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
       this.veiculos = veiculo;
       this.totalSize = veiculo.totalElements;
-      
+
       // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
       if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
         this.veiculosEmpresa.content = this.veiculos.content;

@@ -43,6 +43,8 @@ import { EquipamentoDeleteComponent } from './components/equipamento/equipamento
 import { EquipamentoReadComponent } from './components/equipamento/equipamento-read/equipamento-read.component';
 import { EquipamentoUpdateComponent } from './components/equipamento/equipamento-update/equipamento-update.component';
 import { HistoricoReadComponent } from './components/historico/historico-read/historico-read.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -87,7 +89,10 @@ import { HistoricoReadComponent } from './components/historico/historico-read/hi
     MatSnackBarModule,
     HttpClientModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],
