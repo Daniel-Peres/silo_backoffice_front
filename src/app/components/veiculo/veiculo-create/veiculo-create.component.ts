@@ -126,22 +126,22 @@ export class VeiculoCreateComponent implements OnInit {
     })
   }
 
-  updateEquipamento(): void {
-    this.equipamentoService.update(this.equipamento).subscribe(() => {
-      // this.router.navigate(['/manter_equipamentos']);
-      this.equipamentoService.showMessage('Equipamento atualizado com sucesso!');
-    });
-  }
+  // updateEquipamento(): void {
+  //   this.equipamentoService.update(this.equipamento).subscribe(() => {
+  //     // this.router.navigate(['/manter_equipamentos']);
+  //     this.equipamentoService.showMessage('Equipamento atualizado com sucesso!');
+  //   });
+  // }
 
-  alteraEquipamentoStatusAtivo(): void {
-    this.equipamentosEmpresa.content.forEach(equipamento => {
-      if(equipamento.id == this.selectedEquipamento){
-        this.equipamento = equipamento;
-      }
-    });
+  // alteraEquipamentoStatusAtivo(): void {
+  //   this.equipamentosEmpresa.content.forEach(equipamento => {
+  //     if(equipamento.id == this.selectedEquipamento){
+  //       this.equipamento = equipamento;
+  //     }
+  //   });
 
-    this.equipamento.statusEquipamento = 'ATIVO'
-    // console.log(this.equipamento)
-    this.updateEquipamento();    
-  }
+  //   this.equipamento.statusEquipamento = 'ATIVO'
+  //   // console.log(this.equipamento)
+  //   this.updateEquipamento();    
+  // }
 }

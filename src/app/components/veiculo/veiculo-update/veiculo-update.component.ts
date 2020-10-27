@@ -137,6 +137,8 @@ export class VeiculoUpdateComponent implements OnInit {
         x => x.empresa.id == this.userEmpresaId && (x.statusEquipamento == 'INATIVO' || this.veiculo.equipamento.id == x.id)
       );
     })
+    console.log(this.equipamentos.content)
+    console.log(this.equipamentosEmpresa.content)
   }
 
   //update no novo equipamento ativo

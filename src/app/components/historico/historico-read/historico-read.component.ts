@@ -85,7 +85,13 @@ export class HistoricoReadComponent implements OnInit {
   listarTodosHistoricosComFiltros(): void {
     if (this.selectedData != undefined) {
       this.dia = this.selectedData.getUTCDate().toString();
+      // alert('dia antes: ' + this.dia);
+      this.dia = + this.dia < 10 ? '0' + this.dia : this.dia; // adicionando 0 em dias menores do que 10
+      // alert('dia depois: ' + this.dia);
       this.mes = (this.selectedData.getUTCMonth() + 1).toString();
+      // alert('mes antes: ' + this.mes);
+      this.mes = + this.mes < 10 ? '0' + this.mes : this.mes; // adicionando 0 em dias menores do que 10
+      // alert('mes depois: ' + this.mes);
       this.ano = this.selectedData.getUTCFullYear().toString();
       this.data = this.dia + "/" + this.mes + "/" + this.ano;
     }
