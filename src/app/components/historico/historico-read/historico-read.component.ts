@@ -81,17 +81,13 @@ export class HistoricoReadComponent implements OnInit {
     })
   }
 
-  
+
   listarTodosHistoricosComFiltros(): void {
     if (this.selectedData != undefined) {
       this.dia = this.selectedData.getUTCDate().toString();
-      // alert('dia antes: ' + this.dia);
       this.dia = + this.dia < 10 ? '0' + this.dia : this.dia; // adicionando 0 em dias menores do que 10
-      // alert('dia depois: ' + this.dia);
       this.mes = (this.selectedData.getUTCMonth() + 1).toString();
-      // alert('mes antes: ' + this.mes);
       this.mes = + this.mes < 10 ? '0' + this.mes : this.mes; // adicionando 0 em dias menores do que 10
-      // alert('mes depois: ' + this.mes);
       this.ano = this.selectedData.getUTCFullYear().toString();
       this.data = this.dia + "/" + this.mes + "/" + this.ano;
     }
@@ -107,7 +103,7 @@ export class HistoricoReadComponent implements OnInit {
       } else if ((this.selectedVeiculo == '') && (this.selectedData != null)) {
         this.historicosEmpresa.content = this.historicos.content.filter(
           x => x.veiculo.empresa.id == this.userEmpresaId && x.datahora.match(this.data));
-      } else if ((this.selectedVeiculo != '') && (this.selectedData == null)){
+      } else if ((this.selectedVeiculo != '') && (this.selectedData == null)) {
         this.historicosEmpresa.content = this.historicos.content.filter(
           x => x.veiculo.empresa.id == this.userEmpresaId && x.veiculo.placaVeiculo == this.selectedVeiculo);
       } else {
@@ -179,5 +175,25 @@ export class HistoricoReadComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       }
     })
+  }
+
+  CriaPDF() {
+    var minhaTabela = document.getElementById('tabela').innerHTML;
+    var style = "<style>";
+    style = style + "table {width: 100%;font: 20px Calibri;}";
+    style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+    style = style + "padding: 2px 3px;text-align: center;}";
+    style = style + "</style>";
+    // CRIA UM OBJETO WINDOW
+    var win = window.open('', '', 'height=700,width=700');
+    win.document.write('<html><head>');
+    win.document.write('<title>Histórico</title>');   // <title> CABEÇALHO DO PDF.
+    win.document.write(style);                                     // INCLUI UM ESTILO NA TAB HEAD
+    win.document.write('</head>');
+    win.document.write('<body>');
+    win.document.write(minhaTabela);                          // O CONTEUDO DA TABELA DENTRO DA TAG BODY
+    win.document.write('</body></html>');
+    win.document.close(); 	                                         // FECHA A JANELA
+    win.print();                                                            // IMPRIME O CONTEUDO
   }
 }
