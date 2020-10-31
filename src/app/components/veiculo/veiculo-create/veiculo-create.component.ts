@@ -117,12 +117,14 @@ export class VeiculoCreateComponent implements OnInit {
   }
 
   listarTodosEquipamentos(): void {
-    this.equipamentoService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
-      this.equipamentos = equipamento;
-      this.totalSize = equipamento.totalElements;
+    this.equipamentoService.readDisabled(this.userEmpresaId).subscribe(equipamento => {
+      this.equipamentos.content = equipamento;
+      //this.totalSize = equipamento.totalElements;
+
+      console.log(equipamento);
 
       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-      this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId && x.statusEquipamento == 'INATIVO');
+      this.equipamentosEmpresa.content = this.equipamentos.content;
     })
   }
 

@@ -85,7 +85,7 @@
         <!-- codEquipamento Column -->
         <ng-container matColumnDef="codEquipamento">
             <th mat-header-cell *matHeaderCellDef>Cód. Equip.</th>
-        <td mat-cell *matCellDef="let row">{{row.equipamento.codEquipamento}}</td>
+        <td mat-cell *matCellDef="let row"><span *ngIf="row.equipamento">{{row.equipamento.codEquipamento}}</span></td>
         </ng-container>
         
         <!-- Action Column -->

@@ -17,6 +17,7 @@ export class EquipamentoService {
   baseCreateUrl = "http://localhost:8080/api/equipamento/"
   baseDeleteUrl = "http://localhost:8080/api/equipamento/"
   baseUpdateUrl = "http://localhost:8080/api/equipamento/"
+  baseReadDisabledUrl = "http://localhost:8080/api/equipamento/disabled"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -24,6 +25,17 @@ export class EquipamentoService {
   create(equipamento: Equipamento): Observable<Equipamento> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
     return this.http.post<Equipamento>(this.baseCreateUrl, equipamento, { headers: httpOptions })
+      .pipe(
+        map((obj) => obj),
+        catchError(e => this.errorHandler(e))
+      );
+  }
+
+  readDisabled(empresaId): Observable<any> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+    let params = new HttpParams();
+    params = params.append('empresaId', empresaId);
+    return this.http.get<Equipamento[]>(this.baseReadDisabledUrl, { headers: httpOptions, params: params })
       .pipe(
         map((obj) => obj),
         catchError(e => this.errorHandler(e))

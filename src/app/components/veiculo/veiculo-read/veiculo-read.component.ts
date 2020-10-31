@@ -58,6 +58,8 @@ export class VeiculoReadComponent implements OnInit {
       this.veiculos = veiculo;
       this.totalSize = veiculo.totalElements;
 
+      console.log(veiculo);
+
       // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
       if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
         this.veiculosEmpresa.content = this.veiculos.content;

@@ -128,15 +128,14 @@ export class VeiculoUpdateComponent implements OnInit {
   }
 
   listarTodosEquipamentos(): void {
-    this.equipamentoService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
-      this.equipamentos = equipamento;
-      this.totalSize = equipamento.totalElements;
+    this.equipamentoService.readDisabled(this.userEmpresaId).subscribe(equipamento => {
+      this.equipamentos.content = equipamento;
+      this.equipamentos.content.push(this.veiculo.equipamento);
+      //this.totalSize = equipamento.totalElements;
 
       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário e inativos
-      this.equipamentosEmpresa.content = this.equipamentos.content.filter(
-        x => x.empresa.id == this.userEmpresaId && (x.statusEquipamento == 'INATIVO' || this.veiculo.equipamento.id == x.id)
-      );
-    })
+      this.equipamentosEmpresa.content = this.equipamentos.content;
+    });
     console.log(this.equipamentos.content)
     console.log(this.equipamentosEmpresa.content)
   }
