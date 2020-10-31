@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from './../../../services/usuario.service';
 import { Veiculo } from './../../../models/veiculo.model';
 import { Component, OnInit } from '@angular/core';
+import { ignoreElements } from 'rxjs/operators';
 
 @Component({
   selector: 'app-veiculo-update',
@@ -60,7 +61,8 @@ export class VeiculoUpdateComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id')
     this.veiculoService.readById(id).subscribe(veiculo => {
       this.veiculo = veiculo;
-      this.selectedEquipamento = veiculo.equipamento.id;
+      if(veiculo.equipamento)
+        this.selectedEquipamento = veiculo.equipamento.id;
 
       // atribuindo equipamento atual do veiculo ao equip antigo
       this.oldEquipamento = veiculo.equipamento;
@@ -78,6 +80,9 @@ export class VeiculoUpdateComponent implements OnInit {
     // if (this.checkCampos()) { // checando campos não preenchidos
     //   this.veiculoService.showMessage2('Campos obrigatórios não podem estar vazios!');
     // } else {
+    if(!this.veiculo.equipamento)
+    this.veiculo.equipamento = {};
+
     this.veiculo.equipamento.id = this.selectedEquipamento;
     this.veiculoService.update(this.veiculo).subscribe(() => {
       this.router.navigate(['/manter_veiculos']);
@@ -130,7 +135,8 @@ export class VeiculoUpdateComponent implements OnInit {
   listarTodosEquipamentos(): void {
     this.equipamentoService.readDisabled(this.userEmpresaId).subscribe(equipamento => {
       this.equipamentos.content = equipamento;
-      this.equipamentos.content.push(this.veiculo.equipamento);
+      if(this.veiculo.equipamento)
+        this.equipamentos.content.push(this.veiculo.equipamento);
       //this.totalSize = equipamento.totalElements;
 
       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário e inativos
