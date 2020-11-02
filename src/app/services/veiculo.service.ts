@@ -14,6 +14,7 @@ import { catchError, map } from 'rxjs/operators';
 export class VeiculoService {
 
   baseListUrl = "http://localhost:8080/api/veiculo/list"
+  baseReadGeralUrl = "http://localhost:8080/api/veiculo/geral"
   baseReadUrl = "http://localhost:8080/api/veiculo/"
   baseCreateUrl = "http://localhost:8080/api/veiculo/"
   baseDeleteUrl = "http://localhost:8080/api/veiculo/"
@@ -39,6 +40,17 @@ export class VeiculoService {
     params = params.append('pageSize', pageSize);
     params = params.append('page', page);
     return this.http.get<Veiculo[]>(this.baseListUrl, { headers: httpOptions, params: params })
+      .pipe(
+        map((obj) => obj),
+        catchError(e => this.errorHandler(e))
+      );
+  }
+
+  readGeral(empresaId): Observable<any> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+    let params = new HttpParams();
+    params = params.append('empresaId', empresaId);
+    return this.http.get<Veiculo[]>(this.baseReadGeralUrl, { headers: httpOptions, params: params })
       .pipe(
         map((obj) => obj),
         catchError(e => this.errorHandler(e))

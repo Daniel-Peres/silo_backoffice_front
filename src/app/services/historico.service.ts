@@ -11,6 +11,8 @@ import { Injectable } from '@angular/core';
 export class HistoricoService {
   baseListUrl = "http://localhost:8080/api/historico/list"
   baseReadUrl = "http://localhost:8080/api/historico/"
+  baseReadGeralUrl = "http://localhost:8080/api/historico/geral"
+  baseReadStatusUrl = "http://localhost:8080/api/historico/status"
   baseCreateUrl = "http://localhost:8080/api/historico/"
   baseDeleteUrl = "http://localhost:8080/api/historico/"
   baseUpdateUrl = "http://localhost:8080/api/historico/"
@@ -35,6 +37,29 @@ export class HistoricoService {
     params = params.append('pageSize', pageSize);
     params = params.append('page', page);
     return this.http.get<Historico[]>(this.baseListUrl, { headers: httpOptions, params: params })
+      .pipe(
+        map((obj) => obj),
+        catchError(e => this.errorHandler(e))
+      );
+  }
+
+  readGeral(empresaId): Observable<any> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+    let params = new HttpParams();
+    params = params.append('empresaId', empresaId);
+    return this.http.get<Historico[]>(this.baseReadGeralUrl, { headers: httpOptions, params: params })
+      .pipe(
+        map((obj) => obj),
+        catchError(e => this.errorHandler(e))
+      );
+  }
+
+  readStatus(empresaId, veiculoId): Observable<any> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+    let params = new HttpParams();
+    params = params.append('empresaId', empresaId);
+    params = params.append('veiculoId', veiculoId);
+    return this.http.get<Historico>(this.baseReadStatusUrl, { headers: httpOptions, params: params })
       .pipe(
         map((obj) => obj),
         catchError(e => this.errorHandler(e))

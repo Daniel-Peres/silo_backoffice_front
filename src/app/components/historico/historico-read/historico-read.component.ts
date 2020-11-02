@@ -15,15 +15,15 @@ export class HistoricoReadComponent implements OnInit {
 
   userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
-  // selectedValue: string;
-  selectedVeiculo: string = "";
+  // selectedValue: string;  
   selectedData: Date = null;
   data: string;
   dia: string;
   mes: string;
   ano: string;
   veiculos = { content: [] };
-  veiculosEmpresa = { content: [] };
+  selectedVeiculo: string = "";
+  // veiculosEmpresa = { content: [] };
 
   dataSource: MatTableDataSource<any>;
   private paginator: MatPaginator;
@@ -52,10 +52,6 @@ export class HistoricoReadComponent implements OnInit {
   ngOnInit(): void {
     this.listarTodosHistoricos();
     this.listarTodosVeiculos();
-  }
-
-  navigateToNovoVeiculo(): void {
-    // this.router.navigate(['veiculos/create']);
   }
 
   listarTodosHistoricos(): void {
@@ -155,25 +151,8 @@ export class HistoricoReadComponent implements OnInit {
   }
 
   listarTodosVeiculos(): void {
-    this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
-      this.veiculos = veiculo;
-      this.totalSize = veiculo.totalElements;
-
-      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.veiculosEmpresa.content = this.veiculos.content;
-      } else {
-        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
-      }
-
-      if (this.totalSize == 0)
-        this.veiculoService.showMessage2('Nenhum registro encontrado.')
-
-      if (this.dataSource == undefined) {
-        this.dataSource = new MatTableDataSource(this.veiculos.content);
-        this.dataSource.paginator = this.paginator;
-      }
+    this.veiculoService.readGeral(this.userEmpresaId).subscribe(veiculo => {
+      this.veiculos.content = veiculo;
     })
   }
 
@@ -195,5 +174,9 @@ export class HistoricoReadComponent implements OnInit {
     win.document.write('</body></html>');
     win.document.close(); 	                                         // FECHA A JANELA
     win.print();                                                            // IMPRIME O CONTEUDO
+  }
+
+  nivelDeLotacao(): void {
+    this.router.navigate(['/status_lotacao']);    
   }
 }

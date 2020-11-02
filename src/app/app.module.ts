@@ -45,6 +45,7 @@ import { EquipamentoUpdateComponent } from './components/equipamento/equipamento
 import { HistoricoReadComponent } from './components/historico/historico-read/historico-read.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { StatusLotacaoComponent } from './components/status-lotacao/status-lotacao.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     EquipamentoReadComponent,
     EquipamentoUpdateComponent,
     HistoricoReadComponent,
+    StatusLotacaoComponent,
   ],
   imports: [
     BrowserModule,
