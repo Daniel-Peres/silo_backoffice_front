@@ -4,24 +4,39 @@ import { VeiculoService } from './../../services/veiculo.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-status-lotacao',
-  templateUrl: './status-lotacao.component.html',
-  styleUrls: ['./status-lotacao.component.css']
+  selector: 'app-nivel-lotacao',
+  templateUrl: './nivel-lotacao.component.html',
+  styleUrls: ['./nivel-lotacao.component.css']
 })
-export class StatusLotacaoComponent implements OnInit {
+export class NivelLotacaoComponent implements OnInit {
 
   userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
+
+  lugaresDisponiveis = 0;
+  lugaresSentado = 0;
+  lugaresEmPé = 0;
 
   veiculos = { content: [] };
   selectedVeiculo: string = "";
 
-  // historico: Historico;
-  historico = { content: [] };
+  historico: Historico = {
+    id: null,
+    datahora: '',
+    equipamento: {
+      codEquipamento: ''
+    },
+    veiculo: {
+      placaVeiculo:'',
+      modeloVeiculo:''
+    },
+    qtdPassageiros: null,
+    status: ''    
+  };
 
-  constructor( 
-              private veiculoService: VeiculoService,
-              private historicoService: HistoricoService
-              ) { }
+  constructor(
+    private veiculoService: VeiculoService,
+    private historicoService: HistoricoService
+  ) { }
 
   ngOnInit(): void {
     this.listarTodosVeiculos();
@@ -36,10 +51,8 @@ export class StatusLotacaoComponent implements OnInit {
   listarHistorico(): void {
     console.log(this.userEmpresaId + '---' + this.selectedVeiculo)
     this.historicoService.readStatus(this.userEmpresaId, this.selectedVeiculo).subscribe(historico => {
-      this.historico.content = historico;
+      this.historico = historico;
     })
-
-    alert(JSON.stringify(this.historico.content));
   }
 
 }

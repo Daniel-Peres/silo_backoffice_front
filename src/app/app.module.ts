@@ -1,3 +1,4 @@
+import { StatusLotacaoComponent } from './views/status-lotacao/status-lotacao.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -45,7 +46,7 @@ import { EquipamentoUpdateComponent } from './components/equipamento/equipamento
 import { HistoricoReadComponent } from './components/historico/historico-read/historico-read.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { StatusLotacaoComponent } from './components/status-lotacao/status-lotacao.component';
+import { NivelLotacaoComponent } from './components/nivel-lotacao/nivel-lotacao.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { StatusLotacaoComponent } from './components/status-lotacao/status-lotac
     ManterVeiculosComponent,
     ManterEquipamentosComponent,
     MostrarNivelLotacaoComponent,
+    StatusLotacaoComponent,
     LoginComponent,
     UsuarioReadComponent,
     UsuarioDeleteComponent,
@@ -72,7 +74,7 @@ import { StatusLotacaoComponent } from './components/status-lotacao/status-lotac
     EquipamentoReadComponent,
     EquipamentoUpdateComponent,
     HistoricoReadComponent,
-    StatusLotacaoComponent,
+    NivelLotacaoComponent,
   ],
   imports: [
     BrowserModule,

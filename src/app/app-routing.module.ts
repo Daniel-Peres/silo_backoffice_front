@@ -1,4 +1,5 @@
-import { StatusLotacaoComponent } from './components/status-lotacao/status-lotacao.component';
+import { StatusLotacaoComponent } from './views/status-lotacao/status-lotacao.component';
+import { NivelLotacaoComponent } from './components/nivel-lotacao/nivel-lotacao.component';
 import { EquipamentoDeleteComponent } from './components/equipamento/equipamento-delete/equipamento-delete.component';
 import { EquipamentoUpdateComponent } from './components/equipamento/equipamento-update/equipamento-update.component';
 import { EquipamentoCreateComponent } from './components/equipamento/equipamento-create/equipamento-create.component';
@@ -94,7 +95,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: "status_lotacao",
+    path: "nivel_lotacao",
     component: StatusLotacaoComponent,
     canActivate: [AuthGuard]
   },

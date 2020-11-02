@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StatusLotacaoComponent } from './status-lotacao.component';
+import { NivelLotacaoComponent } from './nivel-lotacao.component';
 
-describe('StatusLotacaoComponent', () => {
-  let component: StatusLotacaoComponent;
-  let fixture: ComponentFixture<StatusLotacaoComponent>;
+describe('NivelLotacaoComponent', () => {
+  let component: NivelLotacaoComponent;
+  let fixture: ComponentFixture<NivelLotacaoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StatusLotacaoComponent ]
+      declarations: [ NivelLotacaoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StatusLotacaoComponent);
+    fixture = TestBed.createComponent(NivelLotacaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

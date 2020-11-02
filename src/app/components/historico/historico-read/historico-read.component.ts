@@ -177,6 +177,6 @@ export class HistoricoReadComponent implements OnInit {
   }
 
   nivelDeLotacao(): void {
-    this.router.navigate(['/status_lotacao']);    
+    this.router.navigate(['/nivel_lotacao']);    
   }
 }

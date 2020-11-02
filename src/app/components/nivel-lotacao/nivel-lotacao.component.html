@@ -1,0 +1,28 @@
+<div>
+    <mat-form-field class="inputCodEquipamento" appearance="outline" color="accent">
+        <mat-label>Veiculo</mat-label>
+        <select matNativeControl [(ngModel)]="selectedVeiculo" name="veiculo">
+            <option value="" selected></option>
+            <option *ngFor="let veiculo of veiculos.content" [value]="veiculo.id">
+                {{veiculo.placaVeiculo}} - {{veiculo.modeloVeiculo}}
+            </option>
+        </select>
+    </mat-form-field>
+
+    <button mat-raised-button (click)="listarHistorico()">
+        <mat-icon class="color-icon">visibility</mat-icon>
+        <span class="textButton"> Mostrar Nivel</span>
+    </button>
+
+    <div style="margin-left: 10px; color: aliceblue;">
+        <p style="color: #e9d207;">Último registro do histórico do veículo</p>
+        <p> ID: <span style="color: #B6D7A8;">{{historico.id}}</span></p>
+        <p> Data/Hora: <span style="color: #B6D7A8;">{{historico.datahora}}</span></p>
+        <p> Veículo: <span style="color: #B6D7A8;">{{historico.veiculo.placaVeiculo}} -
+                {{historico.veiculo.modeloVeiculo}}</span></p>
+        <p> Equipamento: <span style="color: #B6D7A8;">{{historico.equipamento.codEquipamento}}</span></p>
+        <p> QTD Passageiros: <span style="color: #B6D7A8;">{{historico.qtdPassageiros}}</span></p>
+        <p> Status: <span style="color: #B6D7A8;">{{historico.status}}</span></p>
+        <p> Lugares Disponiveis: <span style="color: #B6D7A8;">{{historico.status}}</span></p>
+    </div>
+</div>

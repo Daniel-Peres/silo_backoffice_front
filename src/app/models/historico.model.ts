@@ -4,8 +4,8 @@ import { Veiculo } from './veiculo.model';
 export interface Historico {
     id?: number 
     veiculo?: Veiculo
-    datahora?: string
     equipamento?: Equipamento
-    qtdPasageiros?: number
+    datahora?: string
+    qtdPassageiros?: number
     status?: string
 }
