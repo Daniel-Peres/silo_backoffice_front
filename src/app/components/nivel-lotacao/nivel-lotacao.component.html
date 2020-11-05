@@ -1,28 +1,54 @@
-<div>
-    <mat-form-field class="inputCodEquipamento" appearance="outline" color="accent">
-        <mat-label>Veiculo</mat-label>
-        <select matNativeControl [(ngModel)]="selectedVeiculo" name="veiculo">
-            <option value="" selected></option>
-            <option *ngFor="let veiculo of veiculos.content" [value]="veiculo.id">
-                {{veiculo.placaVeiculo}} - {{veiculo.modeloVeiculo}}
-            </option>
-        </select>
-    </mat-form-field>
+<div class="container">
 
-    <button mat-raised-button (click)="listarHistorico()">
-        <mat-icon class="color-icon">visibility</mat-icon>
-        <span class="textButton"> Mostrar Nivel</span>
-    </button>
+    <div class="superior">
+        <div class="filtro">
+            <mat-form-field class="inputCodEquipamento" appearance="outline" color="accent">
+                <mat-label>Veiculo</mat-label>
+                <select matNativeControl [(ngModel)]="selectedVeiculo" name="veiculo">
+                    <option value="" selected></option>
+                    <option *ngFor="let veiculo of veiculos.content" [value]="veiculo.id">
+                        {{veiculo.placaVeiculo}} - {{veiculo.modeloVeiculo}}
+                    </option>
+                </select>
+            </mat-form-field>
 
-    <div style="margin-left: 10px; color: aliceblue;">
-        <p style="color: #e9d207;">Último registro do histórico do veículo</p>
-        <p> ID: <span style="color: #B6D7A8;">{{historico.id}}</span></p>
-        <p> Data/Hora: <span style="color: #B6D7A8;">{{historico.datahora}}</span></p>
-        <p> Veículo: <span style="color: #B6D7A8;">{{historico.veiculo.placaVeiculo}} -
-                {{historico.veiculo.modeloVeiculo}}</span></p>
-        <p> Equipamento: <span style="color: #B6D7A8;">{{historico.equipamento.codEquipamento}}</span></p>
-        <p> QTD Passageiros: <span style="color: #B6D7A8;">{{historico.qtdPassageiros}}</span></p>
-        <p> Status: <span style="color: #B6D7A8;">{{historico.status}}</span></p>
-        <p> Lugares Disponiveis: <span style="color: #B6D7A8;">{{historico.status}}</span></p>
+            <button mat-raised-button (click)="listarHistorico()">
+                <mat-icon class="color-icon">visibility</mat-icon>
+                <span class="textButton"> Mostrar Nivel</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="inferior">
+
+        <div class="busao">
+            <div class="imagemOnibus">
+                <img src="..\assets\{{onibusColor}}">
+
+                <div class="textoLinha">
+                    <h2>{{historico.veiculo.numeroLinha}}</h2>
+                </div>
+                <div class="textoPlaca">
+                    <h2>{{historico.veiculo.placaVeiculo}}</h2>
+                </div>
+                <div class="textoModelo">
+                    <h2>{{historico.veiculo.modeloVeiculo}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="informacaoBusao">
+            <p style="color: #e9d207;">Último registro do histórico do veículo</p>
+            <p> ID: <span style="color: #B6D7A8;">{{historico.id}}</span></p>
+            <p> Data/Hora: <span style="color: #B6D7A8;">{{historico.datahora}}</span></p>
+            <p> Veículo: <span style="color: #B6D7A8;">{{historico.veiculo.placaVeiculo}} -
+                    {{historico.veiculo.modeloVeiculo}}</span></p>
+            <p> Equipamento: <span style="color: #B6D7A8;">{{historico.equipamento.codEquipamento}}</span></p>
+            <p> QTD Passageiros: <span style="color: #B6D7A8;">{{historico.qtdPassageiros}}</span></p>
+            <p> Status: <span style="color: #B6D7A8;">{{historico.status}}</span></p>
+            <p> Placa do Veiculo: <span style="color: #B6D7A8;">{{historico.veiculo.placaVeiculo}}</span></p>
+            <p> Linha: <span style="color: #B6D7A8;">{{historico.veiculo.numeroLinha}}</span></p>
+        </div>
+
     </div>
 </div>

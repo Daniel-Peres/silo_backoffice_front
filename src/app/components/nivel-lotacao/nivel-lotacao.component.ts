@@ -16,6 +16,8 @@ export class NivelLotacaoComponent implements OnInit {
   lugaresSentado = 0;
   lugaresEmPé = 0;
 
+  onibusColor = "onibus.png"
+
   veiculos = { content: [] };
   selectedVeiculo: string = "";
 
@@ -26,11 +28,11 @@ export class NivelLotacaoComponent implements OnInit {
       codEquipamento: ''
     },
     veiculo: {
-      placaVeiculo:'',
-      modeloVeiculo:''
+      placaVeiculo: '',
+      modeloVeiculo: ''
     },
     qtdPassageiros: null,
-    status: ''    
+    status: ''
   };
 
   constructor(
@@ -49,10 +51,22 @@ export class NivelLotacaoComponent implements OnInit {
   }
 
   listarHistorico(): void {
-    console.log(this.userEmpresaId + '---' + this.selectedVeiculo)
-    this.historicoService.readStatus(this.userEmpresaId, this.selectedVeiculo).subscribe(historico => {
-      this.historico = historico;
-    })
-  }
+    if (this.selectedVeiculo == "") { 
+      this.historicoService.showMessage2("Selecione um veiculo!!!")
+    } else {
+      // setInterval(() => {
+        this.historicoService.readStatus(this.userEmpresaId, this.selectedVeiculo).subscribe(historico => {
+          this.historico = historico;
 
+          if (this.historico.status == "Lotação Baixa") {
+            this.onibusColor = "onibus_verde.png"
+          } else if (this.historico.status == "Lotação Alta") {
+            this.onibusColor = "onibus_vermelho.png"
+          } else {
+            this.onibusColor = "onibus_amarelo"
+          }
+        })
+      // }, 10000)
+    }
+  }
 }
