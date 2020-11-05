@@ -63,7 +63,7 @@ export class NivelLotacaoComponent implements OnInit {
           } else if (this.historico.status == "Lotação Alta") {
             this.onibusColor = "onibus_vermelho.png"
           } else {
-            this.onibusColor = "onibus_amarelo"
+            this.onibusColor = "onibus_amarelo.png"
           }
         })
       // }, 10000)
