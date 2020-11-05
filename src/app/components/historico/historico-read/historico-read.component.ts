@@ -54,18 +54,31 @@ export class HistoricoReadComponent implements OnInit {
     this.listarTodosVeiculos();
   }
 
+  // listarTodosHistoricos(): void {
+  //   this.historicoService.read('', this.pageSize, this.currentPage).subscribe(historico => {
+  //     this.historicos = historico;
+  //     this.totalSize = historico.totalElements;
+
+  //     // armazenando em historicosEmpresa apenas historicos da mesma empresa do usuário
+  //     this.historicosEmpresa.content = this.historicos.content.filter(x => x.veiculo.empresa.id == this.userEmpresaId);
+  //     // }
+
+  //     if (this.totalSize == 0)
+  //       this.historicoService.showMessage2('Nenhum registro encontrado.')
+
+  //     if (this.dataSource == undefined) {
+  //       this.dataSource = new MatTableDataSource(this.historicos.content);
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   })
+  // }
+
   listarTodosHistoricos(): void {
-    this.historicoService.read('', this.pageSize, this.currentPage).subscribe(historico => {
+    this.historicoService.read2('', this.userEmpresaId, this.pageSize, this.currentPage).subscribe(historico => {
       this.historicos = historico;
       this.totalSize = historico.totalElements;
 
-      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.historicosEmpresa.content = this.historicos.content;
-      } else {
-        // armazenando em historicosEmpresa apenas historicos da mesma empresa do usuário
-        this.historicosEmpresa.content = this.historicos.content.filter(x => x.veiculo.empresa.id == this.userEmpresaId);
-      }
+      this.historicosEmpresa.content = this.historicos.content;
 
       if (this.totalSize == 0)
         this.historicoService.showMessage2('Nenhum registro encontrado.')
@@ -177,6 +190,6 @@ export class HistoricoReadComponent implements OnInit {
   }
 
   nivelDeLotacao(): void {
-    this.router.navigate(['/nivel_lotacao']);    
+    this.router.navigate(['/nivel_lotacao']);
   }
 }

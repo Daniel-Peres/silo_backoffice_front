@@ -43,6 +43,21 @@ export class HistoricoService {
       );
   }
 
+  read2(datahora, empresaId, pageSize, page): Observable<any> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+
+    let params = new HttpParams();
+    params = params.append('datahora', datahora);
+    params = params.append('empresaId', empresaId);
+    params = params.append('pageSize', pageSize);
+    params = params.append('page', page);
+    return this.http.get<Historico[]>(this.baseListUrl, { headers: httpOptions, params: params })
+      .pipe(
+        map((obj) => obj),
+        catchError(e => this.errorHandler(e))
+      );
+  }
+
   readGeral(empresaId): Observable<any> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
     let params = new HttpParams();
