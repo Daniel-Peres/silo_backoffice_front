@@ -91,6 +91,45 @@ export class HistoricoReadComponent implements OnInit {
   }
 
 
+  // listarTodosHistoricosComFiltros(): void {
+  //   if (this.selectedData != undefined) {
+  //     this.dia = this.selectedData.getUTCDate().toString();
+  //     this.dia = + this.dia < 10 ? '0' + this.dia : this.dia; // adicionando 0 em dias menores do que 10
+  //     this.mes = (this.selectedData.getUTCMonth() + 1).toString();
+  //     this.mes = + this.mes < 10 ? '0' + this.mes : this.mes; // adicionando 0 em dias menores do que 10
+  //     this.ano = this.selectedData.getUTCFullYear().toString();
+  //     this.data = this.dia + "/" + this.mes + "/" + this.ano;
+  //   }
+
+  //   this.historicoService.read('', this.pageSize, this.currentPage).subscribe(historico => {
+  //     this.historicos = historico;
+  //     this.totalSize = historico.totalElements;
+
+  //     if ((this.selectedVeiculo != '') && (this.selectedData != null)) {
+  //       // armazenando em historicosEmpresa apenas historicos da mesma empresa do usuário
+  //       this.historicosEmpresa.content = this.historicos.content.filter(
+  //         x => x.veiculo.empresa.id == this.userEmpresaId && x.datahora.match(this.data) && x.veiculo.placaVeiculo == this.selectedVeiculo);
+  //     } else if ((this.selectedVeiculo == '') && (this.selectedData != null)) {
+  //       this.historicosEmpresa.content = this.historicos.content.filter(
+  //         x => x.veiculo.empresa.id == this.userEmpresaId && x.datahora.match(this.data));
+  //     } else if ((this.selectedVeiculo != '') && (this.selectedData == null)) {
+  //       this.historicosEmpresa.content = this.historicos.content.filter(
+  //         x => x.veiculo.empresa.id == this.userEmpresaId && x.veiculo.placaVeiculo == this.selectedVeiculo);
+  //     } else {
+  //       this.historicosEmpresa.content = this.historicos.content.filter(
+  //         x => x.veiculo.empresa.id == this.userEmpresaId);
+  //     }
+
+  //     if (this.totalSize == 0)
+  //       this.historicoService.showMessage2('Nenhum registro encontrado.')
+
+  //     if (this.dataSource == undefined) {
+  //       this.dataSource = new MatTableDataSource(this.historicos.content);
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   })
+  // }
+
   listarTodosHistoricosComFiltros(): void {
     if (this.selectedData != undefined) {
       this.dia = this.selectedData.getUTCDate().toString();
@@ -101,23 +140,22 @@ export class HistoricoReadComponent implements OnInit {
       this.data = this.dia + "/" + this.mes + "/" + this.ano;
     }
 
-    this.historicoService.read('', this.pageSize, this.currentPage).subscribe(historico => {
+    this.historicoService.read2('', this.userEmpresaId, this.pageSize, this.currentPage).subscribe(historico => {
       this.historicos = historico;
       this.totalSize = historico.totalElements;
 
       if ((this.selectedVeiculo != '') && (this.selectedData != null)) {
         // armazenando em historicosEmpresa apenas historicos da mesma empresa do usuário
         this.historicosEmpresa.content = this.historicos.content.filter(
-          x => x.veiculo.empresa.id == this.userEmpresaId && x.datahora.match(this.data) && x.veiculo.placaVeiculo == this.selectedVeiculo);
+          x => x.datahora.match(this.data) && x.veiculo.placaVeiculo == this.selectedVeiculo);
       } else if ((this.selectedVeiculo == '') && (this.selectedData != null)) {
         this.historicosEmpresa.content = this.historicos.content.filter(
-          x => x.veiculo.empresa.id == this.userEmpresaId && x.datahora.match(this.data));
+          x => x.datahora.match(this.data));
       } else if ((this.selectedVeiculo != '') && (this.selectedData == null)) {
         this.historicosEmpresa.content = this.historicos.content.filter(
-          x => x.veiculo.empresa.id == this.userEmpresaId && x.veiculo.placaVeiculo == this.selectedVeiculo);
+          x => x.veiculo.placaVeiculo == this.selectedVeiculo);
       } else {
-        this.historicosEmpresa.content = this.historicos.content.filter(
-          x => x.veiculo.empresa.id == this.userEmpresaId);
+        this.historicosEmpresa.content = this.historicos.content;
       }
 
       if (this.totalSize == 0)
@@ -129,38 +167,11 @@ export class HistoricoReadComponent implements OnInit {
       }
     })
   }
-
-
 
   getPaginatorData(event): void {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.listarTodosHistoricos();
-  }
-
-
-
-  listarHistoricosFiltro(): void {
-    this.historicoService.read(this.filter, this.pageSize, this.currentPage).subscribe(historico => {
-      this.historicos = historico;
-      this.totalSize = historico.totalElements;
-
-      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.historicosEmpresa.content = this.historicos.content;
-      } else {
-        // armazenando em historicosEmpresa apenas historicos da mesma empresa do usuário
-        this.historicosEmpresa.content = this.historicos.content.filter(x => x.empresa.id == this.userEmpresaId);
-      }
-
-      if (this.totalSize == 0)
-        this.historicoService.showMessage2('Nenhum registro encontrado.')
-
-      if (this.dataSource == undefined) {
-        this.dataSource = new MatTableDataSource(this.historicos.content);
-        this.dataSource.paginator = this.paginator;
-      }
-    })
   }
 
   listarTodosVeiculos(): void {

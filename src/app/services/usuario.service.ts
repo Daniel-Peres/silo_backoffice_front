@@ -49,6 +49,21 @@ export class UsuarioService {
       );
   }
 
+  read2(name, empresaId, pageSize, page): Observable<any> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+
+    let params = new HttpParams();
+    params = params.append('name', name);
+    params = params.append('empresaId', empresaId);
+    params = params.append('pageSize', pageSize);
+    params = params.append('page', page);
+    return this.http.get<Usuario[]>(this.baseListUrl, { headers: httpOptions, params: params })
+      .pipe(
+        map((obj) => obj),
+        catchError(e => this.errorHandler(e))
+      );
+  }
+
   readById(id: number): Observable<Usuario> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
     const url = `${this.baseReadUrl}${id}`;

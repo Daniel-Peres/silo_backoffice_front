@@ -56,6 +56,21 @@ export class EquipamentoService {
       );
   }
 
+  read2(codEquipamento, empresaId, pageSize, page): Observable<any> {
+    let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
+
+    let params = new HttpParams();
+    params = params.append('codEquipamento', codEquipamento);
+    params = params.append('empresaId', empresaId);
+    params = params.append('pageSize', pageSize);
+    params = params.append('page', page);
+    return this.http.get<Equipamento[]>(this.baseListUrl, { headers: httpOptions, params: params })
+      .pipe(
+        map((obj) => obj),
+        catchError(e => this.errorHandler(e))
+      );
+  }
+
   readById(id: number): Observable<Equipamento> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
     const url = `${this.baseReadUrl}${id}`;

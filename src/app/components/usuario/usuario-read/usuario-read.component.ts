@@ -61,20 +61,41 @@ export class UsuarioReadComponent implements OnInit {
     })
   }
 
+  // listarTodosUsuarios(): void {
+    
+  //   this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
+  //     this.usuarios = usuarios;
+  //     console.log(usuarios);
+  //     this.totalSize = usuarios.totalElements;
+
+  //    // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
+  //     if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+  //       this.usuariosEmpresa.content = this.usuarios.content;
+  //     } else {
+  //       // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+  //       this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresa.id == this.userEmpresaId);
+  //     }
+
+  //     if (this.totalSize == 0)
+  //       this.usuarioService.showMessage2('Nenhum registro encontrado.')
+
+  //     if (this.dataSource == undefined) {
+  //       this.dataSource = new MatTableDataSource(this.usuarios.content);
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   })
+  // }
+
   listarTodosUsuarios(): void {
     
-    this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
+    this.usuarioService.read2('', this.userEmpresaId, this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
-      console.log(usuarios);
       this.totalSize = usuarios.totalElements;
 
-     // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.usuariosEmpresa.content = this.usuarios.content;
-      } else {
+     
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresa.id == this.userEmpresaId);
-      }
+        this.usuariosEmpresa.content = this.usuarios.content;
+      
 
       if (this.totalSize == 0)
         this.usuarioService.showMessage2('Nenhum registro encontrado.')
@@ -92,19 +113,40 @@ export class UsuarioReadComponent implements OnInit {
     this.listarTodosUsuarios();
   }
 
+  // listarUsuariosFiltro(): void {
+    
+  //   this.usuarioService.read(this.filter, this.pageSize, this.currentPage).subscribe(usuarios => {
+  //     this.usuarios = usuarios;
+  //     this.totalSize = usuarios.totalElements;
+
+  //     // se Se o usuario for o adminmostra todos os usuários de todas as empresas
+  //     if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+  //       this.usuariosEmpresa.content = this.usuarios.content;
+  //     } else {
+  //       // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+  //       this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresa.id == this.userEmpresaId);
+  //     }
+
+  //     if (this.totalSize == 0)
+  //       this.usuarioService.showMessage2('Nenhum registro encontrado.')
+
+  //     if (this.dataSource == undefined) {
+  //       this.dataSource = new MatTableDataSource(this.usuarios.content);
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   })
+  // }
+
   listarUsuariosFiltro(): void {
     
-    this.usuarioService.read(this.filter, this.pageSize, this.currentPage).subscribe(usuarios => {
+    this.usuarioService.read2(this.filter, this.userEmpresaId, this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
 
-      // se Se o usuario for o adminmostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.usuariosEmpresa.content = this.usuarios.content;
-      } else {
+     
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.usuariosEmpresa.content = this.usuarios.content.filter(x => x.empresa.id == this.userEmpresaId);
-      }
+        this.usuariosEmpresa.content = this.usuarios.content;
+      
 
       if (this.totalSize == 0)
         this.usuarioService.showMessage2('Nenhum registro encontrado.')

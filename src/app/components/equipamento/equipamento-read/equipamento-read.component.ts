@@ -44,18 +44,38 @@ export class EquipamentoReadComponent implements OnInit {
     this.router.navigate(['equipamentos/create']);
   }
 
+  // listarTodosEquipamentos(): void {
+  //   this.equipamentosService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
+  //     this.equipamentos = equipamento;
+  //     this.totalSize = equipamento.totalElements;
+
+  //     // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
+  //     if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+  //       this.equipamentosEmpresa.content = this.equipamentos.content;
+  //     } else {
+  //       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
+  //       this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
+  //     }
+
+  //     if (this.totalSize == 0)
+  //       this.equipamentosService.showMessage2('Nenhum registro encontrado.')
+
+  //     if (this.dataSource == undefined) {
+  //       this.dataSource = new MatTableDataSource(this.equipamentos.content);
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   })
+  // }
+
   listarTodosEquipamentos(): void {
-    this.equipamentosService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
+    this.equipamentosService.read2('', this.userEmpresaId,this.pageSize, this.currentPage).subscribe(equipamento => {
       this.equipamentos = equipamento;
       this.totalSize = equipamento.totalElements;
 
-      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.equipamentosEmpresa.content = this.equipamentos.content;
-      } else {
+     
         // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-        this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
-      }
+        this.equipamentosEmpresa.content = this.equipamentos.content;
+      
 
       if (this.totalSize == 0)
         this.equipamentosService.showMessage2('Nenhum registro encontrado.')
@@ -73,18 +93,37 @@ export class EquipamentoReadComponent implements OnInit {
     this.listarTodosEquipamentos();
   }
 
+  // listarEquipamentosFiltro(): void {
+  //   this.equipamentosService.read(this.filter, this.pageSize, this.currentPage).subscribe(equipamento => {
+  //     this.equipamentos = equipamento;
+  //     this.totalSize = equipamento.totalElements;
+
+  //     // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
+  //     if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+  //       this.equipamentosEmpresa.content = this.equipamentos.content;
+  //     } else {
+  //       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
+  //       this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
+  //     }
+
+  //     if (this.totalSize == 0)
+  //       this.equipamentosService.showMessage2('Nenhum registro encontrado.')
+
+  //     if (this.dataSource == undefined) {
+  //       this.dataSource = new MatTableDataSource(this.equipamentos.content);
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   })
+  // }
+
   listarEquipamentosFiltro(): void {
-    this.equipamentosService.read(this.filter, this.pageSize, this.currentPage).subscribe(equipamento => {
+    this.equipamentosService.read2(this.filter, this.userEmpresaId, this.pageSize, this.currentPage).subscribe(equipamento => {
       this.equipamentos = equipamento;
       this.totalSize = equipamento.totalElements;
 
-      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.equipamentosEmpresa.content = this.equipamentos.content;
-      } else {
         // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-        this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresa.id == this.userEmpresaId);
-      }
+        this.equipamentosEmpresa.content = this.equipamentos.content;
+      
 
       if (this.totalSize == 0)
         this.equipamentosService.showMessage2('Nenhum registro encontrado.')
@@ -95,4 +134,5 @@ export class EquipamentoReadComponent implements OnInit {
       }
     })
   }
+
 }

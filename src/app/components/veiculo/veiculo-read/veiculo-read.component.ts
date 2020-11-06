@@ -53,20 +53,40 @@ export class VeiculoReadComponent implements OnInit {
     this.router.navigate(['veiculos/create']);
   }
 
+  // listarTodosVeiculos(): void {
+  //   this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
+  //     this.veiculos = veiculo;
+  //     this.totalSize = veiculo.totalElements;
+
+  //     console.log(veiculo);
+
+  //     // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
+  //     if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+  //       this.veiculosEmpresa.content = this.veiculos.content;
+  //     } else {
+  //       // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+  //       this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
+  //     }
+
+  //     if (this.totalSize == 0)
+  //       this.veiculoService.showMessage2('Nenhum registro encontrado.')
+
+  //     if (this.dataSource == undefined) {
+  //       this.dataSource = new MatTableDataSource(this.veiculos.content);
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   })
+  // }
+
   listarTodosVeiculos(): void {
-    this.veiculoService.read('', this.pageSize, this.currentPage).subscribe(veiculo => {
+    this.veiculoService.read2('', this.userEmpresaId, this.pageSize, this.currentPage).subscribe(veiculo => {
       this.veiculos = veiculo;
       this.totalSize = veiculo.totalElements;
 
-      console.log(veiculo);
 
-      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.veiculosEmpresa.content = this.veiculos.content;
-      } else {
-        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
-      }
+      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+      this.veiculosEmpresa.content = this.veiculos.content;
+
 
       if (this.totalSize == 0)
         this.veiculoService.showMessage2('Nenhum registro encontrado.')
@@ -84,18 +104,38 @@ export class VeiculoReadComponent implements OnInit {
     this.listarTodosVeiculos();
   }
 
+  // listarVeiculosFiltro(): void {
+  //   this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculo => {
+  //     this.veiculos = veiculo;
+  //     this.totalSize = veiculo.totalElements;
+
+  //     // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
+  //     if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+  //       this.veiculosEmpresa.content = this.veiculos.content;
+  //     } else {
+  //       // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+  //       this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
+  //     }
+
+  //     if (this.totalSize == 0)
+  //       this.veiculoService.showMessage2('Nenhum registro encontrado.')
+
+  //     if (this.dataSource == undefined) {
+  //       this.dataSource = new MatTableDataSource(this.veiculos.content);
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   })
+  // }
+
   listarVeiculosFiltro(): void {
-    this.veiculoService.read(this.filter, this.pageSize, this.currentPage).subscribe(veiculo => {
+    this.veiculoService.read2(this.filter, this.userEmpresaId, this.pageSize, this.currentPage).subscribe(veiculo => {
       this.veiculos = veiculo;
       this.totalSize = veiculo.totalElements;
 
-      // se Se o usuario for o admin, mostra todos os usuários de todas as empresas
-      if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-        this.veiculosEmpresa.content = this.veiculos.content;
-      } else {
+      
         // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content.filter(x => x.empresa.id == this.userEmpresaId);
-      }
+        this.veiculosEmpresa.content = this.veiculos.content;
+      
 
       if (this.totalSize == 0)
         this.veiculoService.showMessage2('Nenhum registro encontrado.')
@@ -106,4 +146,5 @@ export class VeiculoReadComponent implements OnInit {
       }
     })
   }
+
 }
