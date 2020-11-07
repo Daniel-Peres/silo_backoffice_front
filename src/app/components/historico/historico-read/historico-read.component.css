@@ -1,7 +1,6 @@
 table {
     width: 100%;
-    padding: 5px;
-    
+    padding: 5px;    
 }
 
 .update {
@@ -14,6 +13,10 @@ table {
 
 .delete > i {
     color: #e35e6b;
+}
+
+.botaoNivelLotacao{
+    background-color: #B6D7A8;
 }
 
 button {
