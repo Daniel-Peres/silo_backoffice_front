@@ -52,7 +52,7 @@ export class VeiculoDeleteComponent implements OnInit {
       this.veiculo = veiculo;
     })
 
-    this.listarTodosEquipamentos();
+    // this.listarTodosEquipamentos();
     // console.log(this.equipamentosEmpresa);
   }
 

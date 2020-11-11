@@ -27,14 +27,14 @@
                 <mat-label class="texto">Equipamento instalado</mat-label>
                 <input class="texto" matInput [(ngModel)]="equipamentoInstalado" readonly>
             </mat-form-field>
-            <mat-form-field appearance="outline" color="accent">
+            <!-- <mat-form-field appearance="outline" color="accent">
                 <mat-label class="texto">Nº de Passageiros</mat-label>
                 <input class="texto" matInput [(ngModel)]="historico.qtdPassageiros" readonly>
-            </mat-form-field>
-            <mat-form-field appearance="outline" color="accent">
+            </mat-form-field> -->
+            <!-- <mat-form-field appearance="outline" color="accent">
                 <mat-label class="texto">Status</mat-label>
                 <input class="texto" matInput [(ngModel)]="historico.status" readonly>
-            </mat-form-field>
+            </mat-form-field> -->
         </div>
     </div>
 
@@ -52,19 +52,39 @@
                 <div class="textoModelo">
                     <h2>{{historico.veiculo.modeloVeiculo}}</h2>
                 </div>
-                <!-- <div class="textoQtdPassageiros">
-                    <mat-form-field style="width: 50%; font-weight: 500;" appearance="outline">
-                        <mat-label class="texto2">Nº de Passageiros</mat-label>
-                        <input class="texto2" matInput [(ngModel)]="historico.qtdPassageiros" readonly>
+                <div class="textoQtdPassageiros">
+                    <mat-form-field style="width: 50%; font-weight: 500; text-align: center;" appearance="outline">
+                        <mat-label class="texto2">Passageiros</mat-label>
+                        <input class="texto3" matInput [(ngModel)]="historico.qtdPassageiros" readonly>
                     </mat-form-field>
                 </div>
-                <div class="textoStatus">
+                <!-- <div class="textoStatus">
                     <mat-form-field style="width: 50%; font-weight: 500;" appearance="outline">
-                        <mat-label class="texto2">Status</mat-label>
-                        <input class="texto2" matInput [(ngModel)]="historico.status" readonly>
+                        <mat-label class="texto2">Assentos Livres</mat-label>
+                        <input class="texto2" matInput [(ngModel)]="lugaresDiponiveisSentado" readonly>
                     </mat-form-field>
                 </div> -->
             </div>
+        </div>        
+    </div>
+    <div>
+        <div class="informacaoBusao">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label class="texto">Total de Lugares</mat-label>
+                <input class="texto" matInput [(ngModel)]="historico.veiculo.totalLugares" readonly>
+            </mat-form-field>
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label class="texto">Lugares Disponíveis</mat-label>
+                <input class="texto" matInput [(ngModel)]="lugaresDiponiveis" readonly>
+            </mat-form-field>
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label class="texto">Assentos Livres</mat-label>
+                <input class="texto" matInput [(ngModel)]="lugaresDiponiveisSentado" readonly>
+            </mat-form-field>
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label class="texto">Status</mat-label>
+                <input class="texto" matInput [(ngModel)]="historico.status" readonly>
+            </mat-form-field>
         </div>
     </div>
 </div>

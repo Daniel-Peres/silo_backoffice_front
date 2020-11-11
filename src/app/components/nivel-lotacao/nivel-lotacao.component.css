@@ -3,6 +3,10 @@
    flex-direction: column;
 }
 
+.superior{
+    margin-top: 10px;
+}
+
 .filtro{
     display: flex;
     justify-content: center;
@@ -10,11 +14,17 @@
 
 .texto{
     text-align: center;
-    font-size:  14px;
+    font-size:  18px;
 }
 .texto2{
     text-align: center;
-    font-size:  16px;
+    font-size:  20px;
+    color: black;
+}
+
+.texto3{
+    text-align: center;
+    font-size:  60px;
     color: black;
 }
 
@@ -56,7 +66,7 @@
     width: 100%;
     justify-content: center;
     position: absolute;
-    margin-top: 70px;
+    margin-top: 90px;
     top: 0;
     left: 0;
     color: black;
@@ -91,6 +101,7 @@
     justify-content: center;
     color: aliceblue;
     width: 100%;
+    margin-top: 10px;
 }
 
 button {

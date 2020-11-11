@@ -43,10 +43,6 @@ export class VeiculoCreateComponent implements OnInit {
   selectedEquipamento: number;
   equipamentos = { content: [] };
   equipamentosEmpresa = { content: [] };
-
-  //equipamento utilizado para realizar o update no status do equipamento
-  equipamento: Equipamento;
-
   
   constructor(private veiculoService: VeiculoService,
     private equipamentoService: EquipamentoService,
@@ -58,13 +54,11 @@ export class VeiculoCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listarTodosVeiculos();
+    // this.listarTodosVeiculos();
     this.listarTodosEquipamentos();
   }
 
   createVeiculo(): void {
-
-    // this.alteraEquipamentoStatusAtivo();
 
     if (this.checkCampos()) {
       this.veiculoService.showMessage2('Campos obrigatórios não preenchidos!');
@@ -88,8 +82,6 @@ export class VeiculoCreateComponent implements OnInit {
       this.veiculo.modeloVeiculo === '' ||
       this.veiculo.totalLugares === null ||
       this.veiculo.lugaresSentado === null
-      // this.veiculo.empresaId === null ||
-      // this.veiculo.empresa === null
     ) { return true; } else { return false; }
   }
 
@@ -121,29 +113,10 @@ export class VeiculoCreateComponent implements OnInit {
       this.equipamentos.content = equipamento;
       //this.totalSize = equipamento.totalElements;
 
-      console.log(equipamento);
+      // console.log(equipamento);
 
       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
       this.equipamentosEmpresa.content = this.equipamentos.content;
     })
   }
-
-  // updateEquipamento(): void {
-  //   this.equipamentoService.update(this.equipamento).subscribe(() => {
-  //     // this.router.navigate(['/manter_equipamentos']);
-  //     this.equipamentoService.showMessage('Equipamento atualizado com sucesso!');
-  //   });
-  // }
-
-  // alteraEquipamentoStatusAtivo(): void {
-  //   this.equipamentosEmpresa.content.forEach(equipamento => {
-  //     if(equipamento.id == this.selectedEquipamento){
-  //       this.equipamento = equipamento;
-  //     }
-  //   });
-
-  //   this.equipamento.statusEquipamento = 'ATIVO'
-  //   // console.log(this.equipamento)
-  //   this.updateEquipamento();    
-  // }
 }

@@ -46,7 +46,7 @@ export class EquipamentoUpdateComponent implements OnInit {
     this.equipamentoService.readById(id).subscribe(equipamento => {
       this.equipamento = equipamento;
     });
-    this.listarTodosEquipamentos();
+    // this.listarTodosEquipamentos();
   }
 
   updateEquipamento(): void {

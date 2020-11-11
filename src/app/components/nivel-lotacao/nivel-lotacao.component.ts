@@ -39,6 +39,9 @@ export class NivelLotacaoComponent implements OnInit {
   equipamentoInstalado = '';
   numeroDePassageiros = '';
   statusLotacao = '';
+  lugaresDiponiveis = null;
+  lugaresDiponiveisSentado = null;
+  lugaresDiponiveisEmPe = null;
 
   constructor(
     private veiculoService: VeiculoService,
@@ -80,6 +83,7 @@ export class NivelLotacaoComponent implements OnInit {
           } else {
             this.onibusColor = "onibus_amarelo.png"
           }
+          this.calculoLugaresDisponiveis();
         }
       })
       // }, 10000)
@@ -101,4 +105,8 @@ export class NivelLotacaoComponent implements OnInit {
     this.statusLotacao = '';
   }
 
+  calculoLugaresDisponiveis(): void{
+    this.lugaresDiponiveis = this.historico.veiculo.totalLugares - this.historico.qtdPassageiros;
+    this.lugaresDiponiveisSentado = this.historico.veiculo.lugaresSentado < this.historico.qtdPassageiros ? 0 : this.historico.veiculo.lugaresSentado - this.historico.qtdPassageiros;
+  }
 }
