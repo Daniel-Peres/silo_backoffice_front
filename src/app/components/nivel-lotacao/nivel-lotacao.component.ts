@@ -61,6 +61,7 @@ export class NivelLotacaoComponent implements OnInit {
   listarHistorico(): void {
     if (this.selectedVeiculo == "") {
       this.historicoService.showMessage2("Selecione um veiculo!!!")
+      this.zerarHistorico();
     } else {
       // setInterval(() => {
       this.historicoService.readStatus(this.userEmpresaId, this.selectedVeiculo).subscribe(historico => {
@@ -75,14 +76,20 @@ export class NivelLotacaoComponent implements OnInit {
           this.equipamentoInstalado = this.historico.equipamento.codEquipamento + ' - ' + this.historico.equipamento.descricaoEquipamento;
           this.numeroDePassageiros = this.historico.qtdPassageiros + ' passageiros';
           this.statusLotacao = '( ' + this.historico.status + ' )';
-          //mudar a cor do veículo
-          if (this.historico.status == "Lotação Baixa") {
+
+          //mudar a cor do veículo          
+          if (this.historico.status == "Lotação - Vazio") {
+            this.onibusColor = "onibus.png"
+          } else if (this.historico.status == "Lotação - Baixa") {
             this.onibusColor = "onibus_verde.png"
-          } else if (this.historico.status == "Lotação Alta") {
+          } else if (this.historico.status == "Lotação - Média") {
+            this.onibusColor = "onibus_amarelo.png"
+          } else if (this.historico.status == "Lotação - Alta") {
             this.onibusColor = "onibus_vermelho.png"
           } else {
-            this.onibusColor = "onibus_amarelo.png"
+            this.onibusColor = "onibus_vermelho.png"
           }
+
           this.calculoLugaresDisponiveis();
         }
       })
@@ -100,12 +107,14 @@ export class NivelLotacaoComponent implements OnInit {
     this.historico.veiculo.placaVeiculo = '';
     this.historico.veiculo.modeloVeiculo = '';
     this.historico.veiculo.numeroLinha = '';
+    this.historico.veiculo.totalLugares = null;
     this.equipamentoInstalado = '';
     this.numeroDePassageiros = '';
     this.statusLotacao = '';
+    this.lugaresDiponiveis = null;
   }
 
-  calculoLugaresDisponiveis(): void{
+  calculoLugaresDisponiveis(): void {
     this.lugaresDiponiveis = this.historico.veiculo.totalLugares - this.historico.qtdPassageiros;
     this.lugaresDiponiveisSentado = this.historico.veiculo.lugaresSentado < this.historico.qtdPassageiros ? 0 : this.historico.veiculo.lugaresSentado - this.historico.qtdPassageiros;
   }
