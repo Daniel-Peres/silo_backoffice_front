@@ -7,7 +7,7 @@
       </button>
 
       <button mat-raised-button (click)="navigateToNovoUsuario()">
-        <mat-icon class="color-icon">person_add</mat-icon>
+        <mat-icon fontSet="material-icons-outlined">person_add</mat-icon>
         <span class="textButton"> Novo Usuário</span>
         
       </button>
@@ -79,3 +79,5 @@
     [length]="totalSize" [showFirstLastButtons]="true" (page)="getPaginatorData($event)"></mat-paginator>
 
 </div>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
