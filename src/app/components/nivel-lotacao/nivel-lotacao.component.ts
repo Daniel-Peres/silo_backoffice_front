@@ -43,6 +43,9 @@ export class NivelLotacaoComponent implements OnInit {
   lugaresDiponiveisSentado = null;
   lugaresDiponiveisEmPe = null;
 
+  // variável de controle do START e STOP do timer
+  stop: Boolean = false;
+
   constructor(
     private veiculoService: VeiculoService,
     private historicoService: HistoricoService
@@ -58,43 +61,53 @@ export class NivelLotacaoComponent implements OnInit {
     })
   }
 
-  listarHistorico(): void {
+  mostrarNivel(): void {
+    this.stop = false;
     if (this.selectedVeiculo == "") {
       this.historicoService.showMessage2("Selecione um veiculo!!!")
       this.zerarHistorico();
     } else {
-      // setInterval(() => {
-      this.historicoService.readStatus(this.userEmpresaId, this.selectedVeiculo).subscribe(historico => {
-        // Se não existir histórico para o veículo selecionado
-        if (historico == null) {
-          this.historicoService.showMessage2("Não existe histórico para esse veículo!!!");
-          this.onibusColor = "onibus.png"
-          //zerando informações do histórico que aparece na tela
-          this.zerarHistorico();
-        } else {
-          this.historico = historico;
-          this.equipamentoInstalado = this.historico.equipamento.codEquipamento + ' - ' + this.historico.equipamento.descricaoEquipamento;
-          this.numeroDePassageiros = this.historico.qtdPassageiros + ' passageiros';
-          this.statusLotacao = '( ' + this.historico.status + ' )';
-
-          //mudar a cor do veículo          
-          if (this.historico.status == "Lotação - Vazio") {
+      var timer = setInterval(() => {
+        this.historicoService.readStatus(this.userEmpresaId, this.selectedVeiculo).subscribe(historico => {
+          // Se não existir histórico para o veículo selecionado
+          if (historico == null) {
+            this.historicoService.showMessage2("Não existe histórico para esse veículo!!!");
             this.onibusColor = "onibus.png"
-          } else if (this.historico.status == "Lotação - Baixa") {
-            this.onibusColor = "onibus_verde.png"
-          } else if (this.historico.status == "Lotação - Média") {
-            this.onibusColor = "onibus_amarelo.png"
-          } else if (this.historico.status == "Lotação - Alta") {
-            this.onibusColor = "onibus_vermelho.png"
+            //zerando informações do histórico que aparece na tela
+            this.zerarHistorico();
           } else {
-            this.onibusColor = "onibus_vermelho.png"
-          }
+            this.historico = historico;
+            this.equipamentoInstalado = this.historico.equipamento.codEquipamento + ' - ' + this.historico.equipamento.descricaoEquipamento;
+            this.numeroDePassageiros = this.historico.qtdPassageiros + ' passageiros';
+            this.statusLotacao = '( ' + this.historico.status + ' )';
 
-          this.calculoLugaresDisponiveis();
-        }
-      })
-      // }, 10000)
+            //mudar a cor do veículo          
+            if (this.historico.status == "Lotação - Vazio") {
+              this.onibusColor = "onibus.png"
+            } else if (this.historico.status == "Lotação - Baixa") {
+              this.onibusColor = "onibus_verde.png"
+            } else if (this.historico.status == "Lotação - Média") {
+              this.onibusColor = "onibus_amarelo.png"
+            } else if (this.historico.status == "Lotação - Alta") {
+              this.onibusColor = "onibus_vermelho.png"
+            } else {
+              this.onibusColor = "onibus_vermelho.png"
+            }
+
+            this.calculoLugaresDisponiveis();
+
+            if (this.stop == true) {
+              clearInterval(timer);
+            }
+
+          }
+        })
+      }, 3000)
     }
+  }
+
+  stopMostrarNivel(): void {
+    this.stop = true;
   }
 
   zerarHistorico(): void {

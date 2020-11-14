@@ -11,9 +11,17 @@
                 </select>
             </mat-form-field>
             
-            <button mat-raised-button (click)="listarHistorico()">
+            <!-- <button mat-raised-button (click)="mostrarNivel()">
                 <mat-icon fontSet="material-icons-outlined">analytics</mat-icon>
                 <span class="textButton"> Mostrar Nivel de Lotação</span>
+            </button> -->
+            <button style="background-color: #B6D7A8;" mat-raised-button (click)="mostrarNivel()">
+                <mat-icon fontSet="material-icons-outlined">play_circle_outlined</mat-icon>
+                <span class="textButton"> Start</span>
+            </button>
+            <button style="background-color: #f86a6a;" mat-raised-button (click)="stopMostrarNivel()">
+                <mat-icon fontSet="material-icons-outlined">stop_circle</mat-icon>
+                <span class="textButton"> Stop</span>
             </button>
         </div>
     </div>
