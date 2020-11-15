@@ -38,10 +38,10 @@ export class HistoricoReadComponent implements OnInit {
 
   displayedColumns = [/*'id',*/ 'datahora', 'veiculo', 'equipamento', 'qtdPassageiros', 'status' /*, 'action'*/]
 
-  public pageSize = 10;
+  public pageSize = 50;
   public currentPage = 0;
   public totalSize = 0;
-  public pageSizeOptions: number[] = [5, 10, 25, 100];
+  public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 
   constructor(
     private historicoService: HistoricoService,

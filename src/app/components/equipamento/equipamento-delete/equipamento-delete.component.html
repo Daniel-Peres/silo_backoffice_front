@@ -18,32 +18,15 @@
             <input matInput [(ngModel)]="equipamento.statusEquipamento" name="statusEquipamento" disabled> 
         </mat-form-field>
 
-        <mat-form-field class="inputEmpresaID" appearance="outline" color="accent">
+        <!-- <mat-form-field class="inputEmpresaID" appearance="outline" color="accent">
             <mat-label>Empresa ID</mat-label>
             <input type="number" matInput [(ngModel)]="equipamento.empresa.id" name="empresaId" disabled>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
             <input matInput [(ngModel)]="equipamento.empresa.empresa_nome" name="empresa" disabled>
         </mat-form-field>
-
-
-        <!-- Só adaptar o dropDown para equipamento -->
-
-        <!-- Exemplo de como inserir conteudo do banco na DropDown List -->
-        <!-- <mat-form-field class="inputCodEquipamento" appearance="outline" color="accent">
-            <mat-label>Veiculos da empresa</mat-label>
-            <select matNativeControl [(ngModel)]="selectedVeiculo" name="veiculo">
-                <option value="" selected></option>
-                <option *ngFor="let veiculo of veiculosEmpresa.content" [value]="veiculo.placaVeiculo">
-                    Placa: {{veiculo.placaVeiculo}} -
-                    Modelo: {{veiculo.modeloVeiculo}} -
-                    Linha: {{veiculo.numeroLinha}} -
-                    EmpresaID: {{veiculo.empresaId}}
-                </option>
-            </select>
-        </mat-form-field> -->
 
     </form>
     <div class="botoes">

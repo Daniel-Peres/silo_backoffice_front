@@ -26,10 +26,10 @@ export class EquipamentoReadComponent implements OnInit {
   equipamentosEmpresa = { content: [] };
   filter = '';
   displayedColumns = [/*'id',*/ 'codEquipamento', 'descricaoEquipamento', 'statusEquipamento', /*'empresaId',*/ 'empresa', 'action']
-  public pageSize = 10;
+  public pageSize = 50;
   public currentPage = 0;
   public totalSize = 0;
-  public pageSizeOptions: number[] = [5, 10, 25, 100];
+  public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 
   constructor(
     private equipamentosService: EquipamentoService,
@@ -68,14 +68,14 @@ export class EquipamentoReadComponent implements OnInit {
   // }
 
   listarTodosEquipamentos(): void {
-    this.equipamentosService.read2('', this.userEmpresaId,this.pageSize, this.currentPage).subscribe(equipamento => {
+    this.equipamentosService.read2('', this.userEmpresaId, this.pageSize, this.currentPage).subscribe(equipamento => {
       this.equipamentos = equipamento;
       this.totalSize = equipamento.totalElements;
 
-     
-        // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-        this.equipamentosEmpresa.content = this.equipamentos.content;
-      
+
+      // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
+      this.equipamentosEmpresa.content = this.equipamentos.content;
+
 
       if (this.totalSize == 0)
         this.equipamentosService.showMessage2('Nenhum registro encontrado.')
@@ -121,9 +121,9 @@ export class EquipamentoReadComponent implements OnInit {
       this.equipamentos = equipamento;
       this.totalSize = equipamento.totalElements;
 
-        // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-        this.equipamentosEmpresa.content = this.equipamentos.content;
-      
+      // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
+      this.equipamentosEmpresa.content = this.equipamentos.content;
+
 
       if (this.totalSize == 0)
         this.equipamentosService.showMessage2('Nenhum registro encontrado.')

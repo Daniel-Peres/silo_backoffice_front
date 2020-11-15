@@ -27,10 +27,10 @@ export class UsuarioReadComponent implements OnInit {
   usuariosEmpresa = { content: [] };
   filter = '';
   displayedColumns = [/*'id',*/'nome', /*'empresaId',*/ 'empresa', 'action']
-  public pageSize = 10;
+  public pageSize = 50;
   public currentPage = 0;
   public totalSize = 0;
-  public pageSizeOptions: number[] = [5, 10, 25, 100];
+  public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 
   constructor(private usuarioService: UsuarioService, private router: Router, private empresaService: EmpresaService) { }
 
@@ -45,14 +45,14 @@ export class UsuarioReadComponent implements OnInit {
   }
 
   listarTodasEmpresas(): void {
-    
+
     this.empresaService.read('', this.pageSize, this.currentPage).subscribe(empresa => {
       this.empresas = empresa;
       this.totalSize = empresa.totalElements;
       console.log(empresa);
 
       if (this.totalSize == 0)
-      this.empresaService.showMessage2('Nenhum registro encontrado.')
+        this.empresaService.showMessage2('Nenhum registro encontrado.')
 
       if (this.dataSource == undefined) {
         this.dataSource = new MatTableDataSource(this.empresas.content);
@@ -62,7 +62,7 @@ export class UsuarioReadComponent implements OnInit {
   }
 
   // listarTodosUsuarios(): void {
-    
+
   //   this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
   //     this.usuarios = usuarios;
   //     console.log(usuarios);
@@ -87,15 +87,15 @@ export class UsuarioReadComponent implements OnInit {
   // }
 
   listarTodosUsuarios(): void {
-    
+
     this.usuarioService.read2('', this.userEmpresaId, this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
 
-     
-        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.usuariosEmpresa.content = this.usuarios.content;
-      
+
+      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+      this.usuariosEmpresa.content = this.usuarios.content;
+
 
       if (this.totalSize == 0)
         this.usuarioService.showMessage2('Nenhum registro encontrado.')
@@ -114,7 +114,7 @@ export class UsuarioReadComponent implements OnInit {
   }
 
   // listarUsuariosFiltro(): void {
-    
+
   //   this.usuarioService.read(this.filter, this.pageSize, this.currentPage).subscribe(usuarios => {
   //     this.usuarios = usuarios;
   //     this.totalSize = usuarios.totalElements;
@@ -138,15 +138,15 @@ export class UsuarioReadComponent implements OnInit {
   // }
 
   listarUsuariosFiltro(): void {
-    
+
     this.usuarioService.read2(this.filter, this.userEmpresaId, this.pageSize, this.currentPage).subscribe(usuarios => {
       this.usuarios = usuarios;
       this.totalSize = usuarios.totalElements;
 
-     
-        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.usuariosEmpresa.content = this.usuarios.content;
-      
+
+      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+      this.usuariosEmpresa.content = this.usuarios.content;
+
 
       if (this.totalSize == 0)
         this.usuarioService.showMessage2('Nenhum registro encontrado.')

@@ -35,10 +35,10 @@ export class VeiculoReadComponent implements OnInit {
   filter = '';
   displayedColumns = [/*'id',*/ 'placaVeiculo', 'modeloVeiculo', 'numeroLinha', /*'empresaId',*/ 'empresa', 'totalLugares', 'lugaresSentado', 'lugaresEmPe', 'codEquipamento', 'action']
 
-  public pageSize = 10;
+  public pageSize = 50;
   public currentPage = 0;
   public totalSize = 0;
-  public pageSizeOptions: number[] = [5, 10, 25, 100];
+  public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 
   constructor(
     private veiculoService: VeiculoService,
@@ -132,10 +132,10 @@ export class VeiculoReadComponent implements OnInit {
       this.veiculos = veiculo;
       this.totalSize = veiculo.totalElements;
 
-      
-        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-        this.veiculosEmpresa.content = this.veiculos.content;
-      
+
+      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+      this.veiculosEmpresa.content = this.veiculos.content;
+
 
       if (this.totalSize == 0)
         this.veiculoService.showMessage2('Nenhum registro encontrado.')
