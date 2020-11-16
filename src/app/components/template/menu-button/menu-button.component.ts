@@ -27,29 +27,16 @@ export class MenuButtonComponent implements OnInit {
     this.router.navigate(['home']);
   }
   navigateToManterVeiculos(): void {
-    // if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-    //   this.usuarioService.showMessage2('Um administrador só pode gerenciar usuários');
-    // } else {
-      this.router.navigate(['manter_veiculos']);
-    // }
+    this.router.navigate(['manter_veiculos']);
   }
   navigateToManterEquipamentos(): void {
-    // if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-    //   this.usuarioService.showMessage2('Um administrador só pode gerenciar usuários');
-    // } else {
-      this.router.navigate(['manter_equipamentos']);
-    // }
+    this.router.navigate(['manter_equipamentos']);
   }
   navigateToManterUsuarios(): void {
     this.router.navigate(['manter_usuarios']);
   }
   navigateToMostrarNivelLotacao(): void {
-    // if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-    //   this.usuarioService.showMessage2('Um administrador só pode gerenciar usuários');
-    // } else {
-      this.router.navigate(['mostrar_nivel_lotacao']);
-    // }
-
+    this.router.navigate(['mostrar_nivel_lotacao']);
   }
   navigateToLogin(): void {
     this.router.navigate(['login']);

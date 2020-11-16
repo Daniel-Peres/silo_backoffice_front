@@ -5,11 +5,6 @@ import { Usuario } from '../../../models/usuario.model';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { isNull } from '@angular/compiler/src/output/output_ast';
 
-// interface Empresa {
-//   value: string;
-//   viewValue: string;
-// }
-
 @Component({
     selector: 'app-usuario-update',
     templateUrl: './usuario-update.component.html',
@@ -17,6 +12,7 @@ import { isNull } from '@angular/compiler/src/output/output_ast';
 })
 export class UsuarioUpdateComponent implements OnInit {
 
+    nome: {};
     selectedEmpresa: number;
     empresas = { content: [] };
     public pageSize = 10;
@@ -40,6 +36,9 @@ export class UsuarioUpdateComponent implements OnInit {
     senhaCheck: String = '';
     inputEmpresa = true;
     inputNome = true;
+    inputSenha = true;
+    inputConfirmacaoSenha = true;
+    adminButtons = false
 
     constructor(
         private usuarioService: UsuarioService,
@@ -54,36 +53,51 @@ export class UsuarioUpdateComponent implements OnInit {
         this.usuarioService.readById(id).subscribe(usuario => {
             this.usuario = usuario;
             this.selectedEmpresa = usuario.empresa.id;
-        });
 
-        //se for o usuário admin, habilita os campos nome e empresa
-        if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
-            this.inputEmpresa = false;
-            this.inputNome = false;
-        }
+            //se for o usuário logado e selecionado for admin, desabilita todos os campos e o botão atualizar 
+            if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin' && usuario.nome === 'admin') {
+                this.inputEmpresa = true;
+                this.inputNome = true;
+                this.inputSenha = true;
+                this.inputConfirmacaoSenha = true;
+                this.usuarioService.showMessage2("O usuário 'admin' não pode ser atualizado !!!");
+                this.adminButtons = true;
+            } 
+            //se for o usuário logado for admin e selecionado não, habilita todos os campos 
+            else if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin' && usuario.nome != 'admin') {
+                this.inputEmpresa = false;
+                this.inputNome = false;
+                this.inputSenha = false;
+                this.inputConfirmacaoSenha = false;
+            }
+            //se for o usuário logado não for admin, habilita campos senha 
+            else {
+                this.inputSenha = false;
+                this.inputConfirmacaoSenha = false;
+            }
+            
+        });        
     }
 
     updateUsuario(): void {
         this.usuario.empresa.id = this.selectedEmpresa;
-        if (this.usuario.nome === 'admin') {
-            this.usuarioService.showMessage2('Atualização não autorizada:  usuário logado');
+
+        if (this.checkCampos()) { // checando campos não preenchidos
+            this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');
         } else {
-            if (this.checkCampos()) { // checando campos não preenchidos
-                this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');
+            if (this.senhaCheck === this.usuario.senha || this.usuario.senha === null) {
+
+                this.usuarioService.update(this.usuario).subscribe(() => {
+                    this.router.navigate(['/manter_usuarios']);
+                    this.usuarioService.showMessage('Usuário atualizado com sucesso!');
+                });
+
             } else {
-                if (this.senhaCheck === this.usuario.senha || this.usuario.senha === null) {
-
-                    this.usuarioService.update(this.usuario).subscribe(() => {
-                        this.router.navigate(['/manter_usuarios']);
-                        this.usuarioService.showMessage('Usuário atualizado com sucesso!');
-                    });
-
-                } else {
-                    this.usuarioService.showMessage2('Senhas não conferem!');
-                }
+                this.usuarioService.showMessage2('Senhas não conferem!');
             }
         }
     }
+
 
     cancel(): void {
         this.router.navigate(['/manter_usuarios']);

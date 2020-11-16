@@ -13,21 +13,12 @@
         </mat-form-field>
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Senha</mat-label>
-            <input type="password" matInput [(ngModel)]="usuario.senha" name="senha" >
+            <input [disabled]="inputSenha" type="password" matInput [(ngModel)]="usuario.senha" name="senha" >
         </mat-form-field>
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Confirmação Senha</mat-label>
-            <input type="password" matInput [(ngModel)]="senhaCheck" name="senha" >
+            <input [disabled]="inputConfirmacaoSenha" type="password" matInput [(ngModel)]="senhaCheck" name="senha" >
         </mat-form-field>
-        <!-- <mat-form-field class="inputEmpresaId" appearance="outline" color="accent">
-            <mat-label>Empresa ID</mat-label>
-            <input type="number" matInput [(ngModel)]="usuario.empresa.id" name="empresaId" required>
-        </mat-form-field> -->
-        <!-- <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
-            <mat-label>Empresa</mat-label>
-            <input matInput [(ngModel)]="usuario.empresa.empresa_nome" name="empresa" required>
-        </mat-form-field> -->
-
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
             <select [disabled]="inputEmpresa" matNativeControl [(ngModel)]="selectedEmpresa" name="empresa">
@@ -39,7 +30,7 @@
         
     </form>
     <div class="botoes">
-        <button class="botaoSalvar" mat-raised-button (click)="updateUsuario()">
+        <button [disabled]="adminButtons" class="botaoSalvar" mat-raised-button (click)="updateUsuario()">
             <mat-icon>sync</mat-icon>
             <span class="textButton">Atualizar</span>
         </button>

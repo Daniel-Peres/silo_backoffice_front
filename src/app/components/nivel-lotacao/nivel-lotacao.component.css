@@ -12,6 +12,14 @@
     justify-content: center;
 }
 
+.botaoStart {
+    background-color: #B6D7A8
+}
+
+.botaoStop {
+    background-color: #e35e6b;
+}
+
 .texto{
     text-align: center;
     font-size:  15px;

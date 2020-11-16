@@ -12,6 +12,7 @@ export class UsuarioService {
 
   baseLoginUrl = "http://localhost:8080/login"
   baseListUrl = "http://localhost:8080/api/user/list"
+  baseListEmpresaUrl = "http://localhost:8080/api/user/listEmpresa"
   baseReadUrl = "http://localhost:8080/api/user/"
   baseCreateUrl = "http://localhost:8080/api/user/"
   baseDeleteUrl = "http://localhost:8080/api/user/"
@@ -49,7 +50,7 @@ export class UsuarioService {
       );
   }
 
-  read2(name, empresaId, pageSize, page): Observable<any> {
+  readEmpresa(name, empresaId, pageSize, page): Observable<any> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
 
     let params = new HttpParams();
@@ -57,7 +58,7 @@ export class UsuarioService {
     params = params.append('empresaId', empresaId);
     params = params.append('pageSize', pageSize);
     params = params.append('page', page);
-    return this.http.get<Usuario[]>(this.baseListUrl, { headers: httpOptions, params: params })
+    return this.http.get<Usuario[]>(this.baseListEmpresaUrl, { headers: httpOptions, params: params })
       .pipe(
         map((obj) => obj),
         catchError(e => this.errorHandler(e))

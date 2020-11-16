@@ -5,12 +5,8 @@
 <mat-grid-list cols="2" rowHeight="33vh">
     <mat-grid-tile>
         <button mat-menu-item (click)="navigateToManterUsuarios()">
-            <div class="icone">
-                <mat-icon class="color-icon">account_circle</mat-icon>
-            </div>
-            <div class="texto">
-                <span class="text-menu">Manter Usuários</span>
-            </div>
+            <mat-icon class="color-icon">account_circle</mat-icon>
+            <span class="text-menu">Manter Usuários</span>
         </button>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -26,7 +22,7 @@
         </button>
     </mat-grid-tile>
     <mat-grid-tile>
-        <button [disabled]="adminButtons" mat-menu-item (click)="navigateToMostrarNivelLotacao()" >
+        <button [disabled]="adminButtons" mat-menu-item (click)="navigateToMostrarNivelLotacao()">
             <mat-icon class="color-icon">visibility</mat-icon>
             <span class="text-menu">Históricos de Lotação</span>
         </button>

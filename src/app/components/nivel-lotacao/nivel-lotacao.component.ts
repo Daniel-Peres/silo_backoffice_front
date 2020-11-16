@@ -40,11 +40,11 @@ export class NivelLotacaoComponent implements OnInit {
   numeroDePassageiros = '';
   statusLotacao = '';
   lugaresDiponiveis = null;
-  lugaresDiponiveisSentado = null;
-  lugaresDiponiveisEmPe = null;
 
   // variável de controle do START e STOP do timer
-  stop: Boolean = false;
+  stop = false;
+  botaoStart = false;
+  botaoStop = true;
 
   constructor(
     private veiculoService: VeiculoService,
@@ -53,6 +53,7 @@ export class NivelLotacaoComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarTodosVeiculos();
+
   }
 
   listarTodosVeiculos(): void {
@@ -67,6 +68,8 @@ export class NivelLotacaoComponent implements OnInit {
       this.historicoService.showMessage2("Selecione um veiculo!!!")
       this.zerarHistorico();
     } else {
+      this.botaoStart = true;
+      this.botaoStop = false;
       var timer = setInterval(() => {
         this.historicoService.readStatus(this.userEmpresaId, this.selectedVeiculo).subscribe(historico => {
           // Se não existir histórico para o veículo selecionado
@@ -108,6 +111,8 @@ export class NivelLotacaoComponent implements OnInit {
 
   stopMostrarNivel(): void {
     this.stop = true;
+    this.botaoStart = false;
+    this.botaoStop = true;
   }
 
   zerarHistorico(): void {
@@ -125,10 +130,11 @@ export class NivelLotacaoComponent implements OnInit {
     this.numeroDePassageiros = '';
     this.statusLotacao = '';
     this.lugaresDiponiveis = null;
+    this.onibusColor = "onibus.png"
   }
 
   calculoLugaresDisponiveis(): void {
     this.lugaresDiponiveis = this.historico.veiculo.totalLugares - this.historico.qtdPassageiros;
-    this.lugaresDiponiveisSentado = this.historico.veiculo.lugaresSentado < this.historico.qtdPassageiros ? 0 : this.historico.veiculo.lugaresSentado - this.historico.qtdPassageiros;
+    // this.lugaresDiponiveisSentado = this.historico.veiculo.lugaresSentado < this.historico.qtdPassageiros ? 0 : this.historico.veiculo.lugaresSentado - this.historico.qtdPassageiros;
   }
 }

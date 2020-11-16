@@ -88,23 +88,83 @@ export class UsuarioReadComponent implements OnInit {
 
   listarTodosUsuarios(): void {
 
-    this.usuarioService.read2('', this.userEmpresaId, this.pageSize, this.currentPage).subscribe(usuarios => {
-      this.usuarios = usuarios;
-      this.totalSize = usuarios.totalElements;
+    if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+
+      this.usuarioService.read('', this.pageSize, this.currentPage).subscribe(usuarios => {
+        this.usuarios = usuarios;
+        this.totalSize = usuarios.totalElements;
+
+        this.usuariosEmpresa.content = this.usuarios.content;
+
+        if (this.totalSize == 0)
+          this.usuarioService.showMessage2('Nenhum registro encontrado.')
+
+        if (this.dataSource == undefined) {
+          this.dataSource = new MatTableDataSource(this.usuarios.content);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
+    } else {
+      this.usuarioService.readEmpresa('', this.userEmpresaId, this.pageSize, this.currentPage).subscribe(usuarios => {
+        this.usuarios = usuarios;
+        this.totalSize = usuarios.totalElements;
 
 
-      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-      this.usuariosEmpresa.content = this.usuarios.content;
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.usuariosEmpresa.content = this.usuarios.content;
 
 
-      if (this.totalSize == 0)
-        this.usuarioService.showMessage2('Nenhum registro encontrado.')
+        if (this.totalSize == 0)
+          this.usuarioService.showMessage2('Nenhum registro encontrado.')
 
-      if (this.dataSource == undefined) {
-        this.dataSource = new MatTableDataSource(this.usuarios.content);
-        this.dataSource.paginator = this.paginator;
-      }
-    })
+        if (this.dataSource == undefined) {
+          this.dataSource = new MatTableDataSource(this.usuarios.content);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
+    }
+  }
+
+  listarUsuariosFiltro(): void {
+
+    if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
+
+      this.usuarioService.read(this.filter, this.pageSize, this.currentPage).subscribe(usuarios => {
+        this.usuarios = usuarios;
+        this.totalSize = usuarios.totalElements;
+
+        this.usuariosEmpresa.content = this.usuarios.content;
+
+        if (this.totalSize == 0)
+          this.usuarioService.showMessage2('Nenhum registro encontrado.')
+
+        if (this.dataSource == undefined) {
+          this.dataSource = new MatTableDataSource(this.usuarios.content);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
+
+    } else {
+
+      this.usuarioService.readEmpresa(this.filter, this.userEmpresaId, this.pageSize, this.currentPage).subscribe(usuarios => {
+        this.usuarios = usuarios;
+        this.totalSize = usuarios.totalElements;
+
+
+        // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+        this.usuariosEmpresa.content = this.usuarios.content;
+
+
+        if (this.totalSize == 0)
+          this.usuarioService.showMessage2('Nenhum registro encontrado.')
+
+        if (this.dataSource == undefined) {
+          this.dataSource = new MatTableDataSource(this.usuarios.content);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
+
+    }
   }
 
   getPaginatorData(event): void {
@@ -137,25 +197,25 @@ export class UsuarioReadComponent implements OnInit {
   //   })
   // }
 
-  listarUsuariosFiltro(): void {
+  // listarUsuariosFiltro(): void {
 
-    this.usuarioService.read2(this.filter, this.userEmpresaId, this.pageSize, this.currentPage).subscribe(usuarios => {
-      this.usuarios = usuarios;
-      this.totalSize = usuarios.totalElements;
-
-
-      // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
-      this.usuariosEmpresa.content = this.usuarios.content;
+  //   this.usuarioService.read('this.filter', this.pageSize, this.currentPage).subscribe(usuarios => {
+  //     this.usuarios = usuarios;
+  //     this.totalSize = usuarios.totalElements;
 
 
-      if (this.totalSize == 0)
-        this.usuarioService.showMessage2('Nenhum registro encontrado.')
+  //     // armazenando em veiculosEmpresa apenas veiculos da mesma empresa do usuário
+  //     this.usuariosEmpresa.content = this.usuarios.content;
 
-      if (this.dataSource == undefined) {
-        this.dataSource = new MatTableDataSource(this.usuarios.content);
-        this.dataSource.paginator = this.paginator;
-      }
-    })
-  }
+
+  //     if (this.totalSize == 0)
+  //       this.usuarioService.showMessage2('Nenhum registro encontrado.')
+
+  //     if (this.dataSource == undefined) {
+  //       this.dataSource = new MatTableDataSource(this.usuarios.content);
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   })
+  // }
 
 }
