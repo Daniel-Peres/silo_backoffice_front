@@ -22,6 +22,8 @@ export class UsuarioReadComponent implements OnInit {
 
   userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
+  buttonDisabled = false;
+
   usuarios = { content: [] };
   empresas = { content: [] };
   usuariosEmpresa = { content: [] };
@@ -37,6 +39,11 @@ export class UsuarioReadComponent implements OnInit {
   ngOnInit(): void {
     this.listarTodosUsuarios();
     this.listarTodasEmpresas();
+    
+    if(JSON.parse(localStorage.getItem('usuario')).nivelAcesso === 'usuario'){
+      this.buttonDisabled = true;
+    }
+    
 
   }
 

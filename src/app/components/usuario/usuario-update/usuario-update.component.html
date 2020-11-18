@@ -41,7 +41,7 @@
 
     </form>
     <div class="botoes">
-        <button [disabled]="adminButtons" class="botaoSalvar" mat-raised-button (click)="updateUsuario()">
+        <button [disabled]="updateButtonDisabled" class="botaoSalvar" mat-raised-button (click)="updateUsuario()">
             <mat-icon>sync</mat-icon>
             <span class="textButton">Atualizar</span>
         </button>

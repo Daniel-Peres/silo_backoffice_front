@@ -70,6 +70,7 @@ export class UsuarioCreateComponent implements OnInit {
             this.inputNivelAcesso = false;
         } else {
             this.selectedEmpresa = JSON.parse(localStorage.getItem('usuario')).empresa.id;
+            this.inputNivelAcesso = false;
         }
         this.listarTodasEmpresas();
     }
@@ -107,7 +108,6 @@ export class UsuarioCreateComponent implements OnInit {
 
     // checar campos obrigatórios vazios
     checkCampos(): Boolean {
-        alert(this.usuario.nivelAcesso);
         if (this.usuario.nome === '' ||
             this.usuario.senha === '' ||
             this.usuario.nivelAcesso === undefined

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   userName = JSON.parse(localStorage.getItem('usuario')).nome;
+  nivelAcesso = JSON.parse(localStorage.getItem('usuario')).nivelAcesso;
 
   constructor() { }
 

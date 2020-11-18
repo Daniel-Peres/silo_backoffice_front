@@ -6,7 +6,7 @@
         <span class="textButton"> Listar Usuários</span>
       </button>
 
-      <button mat-raised-button (click)="navigateToNovoUsuario()">
+      <button [disabled]="buttonDisabled" mat-raised-button (click)="navigateToNovoUsuario()">
         <mat-icon fontSet="material-icons-outlined">person_add</mat-icon>
         <span class="textButton"> Novo Usuário</span>
         
@@ -70,7 +70,7 @@
             edit
           </i>
         </a>
-        <a routerLink="/usuarios/delete/{{ row.id }}" class="delete">
+        <a [disabled]="buttonDisabled" routerLink="/usuarios/delete/{{ row.id }}" class="delete">
           <i class="material-icons">
             delete
           </i>

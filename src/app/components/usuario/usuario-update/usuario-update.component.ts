@@ -51,7 +51,7 @@ export class UsuarioUpdateComponent implements OnInit {
     inputNome = true;
     inputSenha = true;
     inputConfirmacaoSenha = true;
-    adminButtons = false
+    updateButtonDisabled = false;
 
     constructor(
         private usuarioService: UsuarioService,
@@ -83,19 +83,21 @@ export class UsuarioUpdateComponent implements OnInit {
                 this.inputNivelAcesso = false;
             }
             //se o usuário logado não for admin , for diferente do selecionado e tiver nivel de admistrador, habilita todos os campos 
-            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome && usuario.nivelAcesso === 'administrador') {
-                this.inputEmpresa = false;
+            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome && JSON.parse(localStorage.getItem('usuario')).nivelAcesso === 'administrador') {
+                // this.inputEmpresa = false;
                 this.inputNome = false;
                 this.inputSenha = false;
                 this.inputConfirmacaoSenha = false;
                 this.inputNivelAcesso = false;
             }
             //se o usuário logado não for admin , for diferente do selecionado e  não tiver nivel de admistrador, desabilita todos os campos 
-            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome && usuario.nivelAcesso != 'administrador') {
+            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome && JSON.parse(localStorage.getItem('usuario')).nivelAcesso != 'administrador') {
                 this.inputEmpresa = true;
                 this.inputNome = true;
                 this.inputSenha = true;
                 this.inputConfirmacaoSenha = true;
+                this.updateButtonDisabled = true;
+                this.usuarioService.showMessage2("Voce não possui permissão para atualizar outro usuário!!!");
             }
             //se o usuário logado não for admin, habilita campos senha 
             else {
