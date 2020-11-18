@@ -25,6 +25,16 @@
         </mat-form-field> -->
 
         <mat-form-field appearance="outline" color="accent">
+            <mat-label>Nivel de Acesso</mat-label>
+            <select [disabled]="inputNivelAcesso" matNativeControl [(ngModel)]="selectedNivelAcesso" name="nivelAcesso" required>
+              <!-- <option value="usuario" selected></option> -->
+              <option *ngFor="let nivel of niveis" [value]="nivel.value">
+                {{nivel.viewValue}}
+              </option>
+            </select>
+          </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
             <select [disabled]="inputEmpresa" matNativeControl [(ngModel)]="selectedEmpresa" name="empresa" >
                 <option value="" selected></option>

@@ -8,4 +8,5 @@ export interface Usuario {
     senha: string
     jwttoken?: string
     expireAt?: number
+    nivelAcesso?: string
 }

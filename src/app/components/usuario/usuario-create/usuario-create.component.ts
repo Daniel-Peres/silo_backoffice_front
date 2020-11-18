@@ -6,6 +6,11 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 
+interface NivelAcesso {
+    value: string;
+    viewValue: string;
+}
+
 @Component({
     selector: 'app-usuario-create',
     templateUrl: './usuario-create.component.html',
@@ -15,7 +20,6 @@ export class UsuarioCreateComponent implements OnInit {
 
     userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
-    selectedEmpresa: number;
     usuarios = { content: [] };
     usuariosEmpresa = { content: [] };
     public pageSize = 10;
@@ -24,6 +28,7 @@ export class UsuarioCreateComponent implements OnInit {
     public pageSizeOptions: number[] = [5, 10, 25, 100];
 
     empresas = { content: [] };
+    selectedEmpresa: number;
 
     usuario: Usuario = {
         id: null,
@@ -33,17 +38,24 @@ export class UsuarioCreateComponent implements OnInit {
             id: null,
             empresa_nome: ''
         },
+        nivelAcesso: '',
         email: '',
         jwttoken: '',
         expireAt: 0
     }
 
-    senhaCheck: String = '';
+    niveis: NivelAcesso[] = [
+        { value: 'administrador', viewValue: 'Administrador' },
+        { value: 'usuario', viewValue: 'Usuario' }
+    ];
 
-    
+    selectedNivelAcesso: string;
+
+    senhaCheck: String = '';
 
     //variavel de controle do campo empresa: true desabilita / false habilita
     inputEmpresa = true;
+    inputNivelAcesso = true;
 
     constructor(private usuarioService: UsuarioService,
         private router: Router,
@@ -54,6 +66,7 @@ export class UsuarioCreateComponent implements OnInit {
         //se não for o usuário admin, desabilita e insere a empresa do usuário logado no campo empresa
         if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin') {
             this.inputEmpresa = false;
+            this.inputNivelAcesso = false;
         } else {
             this.selectedEmpresa = JSON.parse(localStorage.getItem('usuario')).empresa.id;
         }
@@ -62,6 +75,7 @@ export class UsuarioCreateComponent implements OnInit {
 
     createUsuario(): void {
         this.usuario.empresa.id = this.selectedEmpresa;
+        this.usuario.nivelAcesso = this.selectedNivelAcesso;
 
         if (this.checkCampos()) {
             this.usuarioService.showMessage2('Campos obrigatórios não preenchidos!');
@@ -92,8 +106,10 @@ export class UsuarioCreateComponent implements OnInit {
 
     // checar campos obrigatórios vazios
     checkCampos(): Boolean {
+        alert(this.usuario.nivelAcesso);
         if (this.usuario.nome === '' ||
-            this.usuario.senha === '' 
+            this.usuario.senha === '' ||
+            this.usuario.nivelAcesso === undefined
             // this.usuario.empresa.id === null
             // this.usuario.empresa === ''
         ) { return true; } else { return false; }

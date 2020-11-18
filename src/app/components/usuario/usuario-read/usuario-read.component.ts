@@ -26,7 +26,7 @@ export class UsuarioReadComponent implements OnInit {
   empresas = { content: [] };
   usuariosEmpresa = { content: [] };
   filter = '';
-  displayedColumns = [/*'id',*/'nome', /*'empresaId',*/ 'empresa', 'action']
+  displayedColumns = [/*'id',*/'nome', /*'empresaId',*/ 'empresa', 'nivelAcesso', 'action']
   public pageSize = 50;
   public currentPage = 0;
   public totalSize = 0;
