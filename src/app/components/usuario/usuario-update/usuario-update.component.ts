@@ -3,7 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario.model';
 import { Component, OnInit, NgModule } from '@angular/core';
-import { isNull } from '@angular/compiler/src/output/output_ast';
+
+interface NivelAcesso {
+    value: string;
+    viewValue: string;
+}
 
 @Component({
     selector: 'app-usuario-update',
@@ -28,12 +32,21 @@ export class UsuarioUpdateComponent implements OnInit {
             id: null,
             empresa_nome: ''
         },
+        nivelAcesso: '',
         email: '',
         jwttoken: '',
         expireAt: 0
     }
 
+    niveis: NivelAcesso[] = [
+        { value: 'administrador', viewValue: 'Administrador' },
+        { value: 'usuario', viewValue: 'Usuario' }
+    ];
+
+    selectedNivelAcesso: string;
+
     senhaCheck: String = '';
+    inputNivelAcesso = true;
     inputEmpresa = true;
     inputNome = true;
     inputSenha = true;
@@ -53,6 +66,8 @@ export class UsuarioUpdateComponent implements OnInit {
         this.usuarioService.readById(id).subscribe(usuario => {
             this.usuario = usuario;
             this.selectedEmpresa = usuario.empresa.id;
+            this.selectedNivelAcesso = usuario.nivelAcesso;
+
 
             //se for o usuário logado e selecionado for admin, habilita apenas campo de senha 
             if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin' && usuario.nome === 'admin') {
@@ -65,9 +80,18 @@ export class UsuarioUpdateComponent implements OnInit {
                 this.inputNome = false;
                 this.inputSenha = false;
                 this.inputConfirmacaoSenha = false;
+                this.inputNivelAcesso = false;
             }
-            //se o usuário logado não for admin e diferente do selecionado, desabilita todos os campos 
-            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome) {
+            //se o usuário logado não for admin , for diferente do selecionado e tiver nivel de admistrador, habilita todos os campos 
+            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome && usuario.nivelAcesso === 'administrador') {
+                this.inputEmpresa = false;
+                this.inputNome = false;
+                this.inputSenha = false;
+                this.inputConfirmacaoSenha = false;
+                this.inputNivelAcesso = false;
+            }
+            //se o usuário logado não for admin , for diferente do selecionado e  não tiver nivel de admistrador, desabilita todos os campos 
+            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome && usuario.nivelAcesso != 'administrador') {
                 this.inputEmpresa = true;
                 this.inputNome = true;
                 this.inputSenha = true;
@@ -84,6 +108,7 @@ export class UsuarioUpdateComponent implements OnInit {
 
     updateUsuario(): void {
         this.usuario.empresa.id = this.selectedEmpresa;
+        this.usuario.nivelAcesso = this.selectedNivelAcesso;
 
         if (this.checkCampos()) { // checando campos não preenchidos
             this.usuarioService.showMessage2('Campos obrigatórios não podem estar vazios!');

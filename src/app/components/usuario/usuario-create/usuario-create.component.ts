@@ -55,6 +55,7 @@ export class UsuarioCreateComponent implements OnInit {
 
     //variavel de controle do campo empresa: true desabilita / false habilita
     inputEmpresa = true;
+    //variavel de controle do campo nivelAcesso: true desabilita / false habilita
     inputNivelAcesso = true;
 
     constructor(private usuarioService: UsuarioService,

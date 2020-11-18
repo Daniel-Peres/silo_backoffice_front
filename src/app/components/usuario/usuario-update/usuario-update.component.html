@@ -13,12 +13,23 @@
         </mat-form-field>
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Senha</mat-label>
-            <input [disabled]="inputSenha" type="password" matInput [(ngModel)]="usuario.senha" name="senha" >
+            <input [disabled]="inputSenha" type="password" matInput [(ngModel)]="usuario.senha" name="senha">
         </mat-form-field>
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Confirmação Senha</mat-label>
-            <input [disabled]="inputConfirmacaoSenha" type="password" matInput [(ngModel)]="senhaCheck" name="senha" >
+            <input [disabled]="inputConfirmacaoSenha" type="password" matInput [(ngModel)]="senhaCheck" name="senha">
         </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent">
+            <mat-label>Nivel de Acesso</mat-label>
+            <select [disabled]="inputNivelAcesso" matNativeControl [(ngModel)]="selectedNivelAcesso" name="nivelAcesso" required>
+                <!-- <option value="usuario" selected></option> -->
+                <option *ngFor="let nivel of niveis" [value]="nivel.value">
+                    {{nivel.viewValue}}
+                </option>
+            </select>
+        </mat-form-field>
+
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
             <select [disabled]="inputEmpresa" matNativeControl [(ngModel)]="selectedEmpresa" name="empresa">
@@ -27,7 +38,7 @@
                     {{empresa.empresa_nome}}
             </select>
         </mat-form-field>
-        
+
     </form>
     <div class="botoes">
         <button [disabled]="adminButtons" class="botaoSalvar" mat-raised-button (click)="updateUsuario()">
