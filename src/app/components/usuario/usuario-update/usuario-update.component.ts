@@ -54,15 +54,11 @@ export class UsuarioUpdateComponent implements OnInit {
             this.usuario = usuario;
             this.selectedEmpresa = usuario.empresa.id;
 
-            //se for o usuário logado e selecionado for admin, desabilita todos os campos e o botão atualizar 
+            //se for o usuário logado e selecionado for admin, habilita apenas campo de senha 
             if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin' && usuario.nome === 'admin') {
-                this.inputEmpresa = true;
-                this.inputNome = true;
                 this.inputSenha = false;
                 this.inputConfirmacaoSenha = false;
-                // this.usuarioService.showMessage2("O usuário 'admin' não pode ser atualizado !!!");
-                // this.adminButtons = true;
-            } 
+            }
             //se for o usuário logado for admin e selecionado não, habilita todos os campos 
             else if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin' && usuario.nome != 'admin') {
                 this.inputEmpresa = false;
@@ -70,13 +66,20 @@ export class UsuarioUpdateComponent implements OnInit {
                 this.inputSenha = false;
                 this.inputConfirmacaoSenha = false;
             }
-            //se for o usuário logado não for admin, habilita campos senha 
+            //se o usuário logado não for admin e diferente do selecionado, desabilita todos os campos 
+            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome) {
+                this.inputEmpresa = true;
+                this.inputNome = true;
+                this.inputSenha = true;
+                this.inputConfirmacaoSenha = true;
+            }
+            //se o usuário logado não for admin, habilita campos senha 
             else {
                 this.inputSenha = false;
                 this.inputConfirmacaoSenha = false;
             }
-            
-        });        
+
+        });
     }
 
     updateUsuario(): void {
