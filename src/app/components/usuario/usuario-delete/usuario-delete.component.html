@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
 <app-header></app-header>
 <mat-card class="container">
     <mat-card-title>Excluir usuário</mat-card-title>
@@ -15,12 +16,16 @@
             <input type="number" matInput [value]="usuario.empresa.id" name="empresaId" disabled>
         </mat-form-field> -->
         <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
+            <mat-label>Nível de acesso</mat-label>
+            <input matInput [value]="usuario.nivelAcesso" name="nivelAcesso" disabled>
+        </mat-form-field>
+        <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
             <input matInput [value]="usuario.empresa.empresa_nome" name="empresa" disabled>
         </mat-form-field>
     </form>
     <div class="botoes">
-        <button class="botaoSalvar" mat-raised-button (click)="deleteUsuario()">
+        <button [disabled]="buttonExcluirDisabled" class="botaoSalvar" mat-raised-button (click)="deleteUsuario()">
             <mat-icon fontSet="material-icons-outlined">delete</mat-icon>
             <span class="textButton">Excluir</span>
         </button>
@@ -31,4 +36,3 @@
     </div>
 </mat-card>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>

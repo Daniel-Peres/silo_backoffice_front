@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
 <div>
   <div class="botoes">
     <div class="botoes1">
@@ -9,8 +10,8 @@
       <button [disabled]="buttonDisabled" mat-raised-button (click)="navigateToNovoUsuario()">
         <mat-icon fontSet="material-icons-outlined">person_add</mat-icon>
         <span class="textButton"> Novo Usuário</span>
-        
       </button>
+
     </div>
     <div class="botoes2">
       <button mat-raised-button (click)="listarUsuariosFiltro()">
@@ -70,7 +71,7 @@
             edit
           </i>
         </a>
-        <a [disabled]="buttonDisabled" routerLink="/usuarios/delete/{{ row.id }}" class="delete">
+        <a routerLink="/usuarios/delete/{{ row.id }}" class="delete">
           <i class="material-icons">
             delete
           </i>
@@ -83,7 +84,4 @@
   </table>
   <mat-paginator #matPaginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [pageIndex]="currentPage"
     [length]="totalSize" [showFirstLastButtons]="true" (page)="getPaginatorData($event)"></mat-paginator>
-
 </div>
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>

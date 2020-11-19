@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
 <app-header></app-header>
 <mat-card class="container">
     <mat-card-title>Cadastrar Usuário</mat-card-title>
@@ -26,17 +27,18 @@
 
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Nivel de Acesso</mat-label>
-            <select [disabled]="inputNivelAcesso" matNativeControl [(ngModel)]="selectedNivelAcesso" name="nivelAcesso" required>
-              <!-- <option value="usuario" selected></option> -->
-              <option *ngFor="let nivel of niveis" [value]="nivel.value">
-                {{nivel.viewValue}}
-              </option>
+            <select [disabled]="inputNivelAcesso" matNativeControl [(ngModel)]="selectedNivelAcesso" name="nivelAcesso"
+                required>
+                <!-- <option value="usuario" selected></option> -->
+                <option *ngFor="let nivel of niveis" [value]="nivel.value">
+                    {{nivel.viewValue}}
+                </option>
             </select>
-          </mat-form-field>
+        </mat-form-field>
 
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Empresa</mat-label>
-            <select [disabled]="inputEmpresa" matNativeControl [(ngModel)]="selectedEmpresa" name="empresa" >
+            <select [disabled]="inputEmpresa" matNativeControl [(ngModel)]="selectedEmpresa" name="empresa">
                 <option value="" selected></option>
                 <option *ngFor="let empresa of empresas.content" [value]="empresa.id">
                     {{empresa.empresa_nome}}
@@ -56,5 +58,3 @@
         </button>
     </div>
 </mat-card>
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>

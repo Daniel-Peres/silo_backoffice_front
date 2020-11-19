@@ -21,6 +21,13 @@
     display: flex;
     margin-right: 15px;
     align-items: center;
+    
+}
+
+.nivelAcesso {
+    font-size: 15px;
+    color: #B6D7A8;
+    margin-left: 5px;
 }
 
 .icon {

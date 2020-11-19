@@ -16,6 +16,11 @@ interface NivelAcesso {
 })
 export class UsuarioUpdateComponent implements OnInit {
 
+    // informações do usuário logado
+    userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
+    userName = JSON.parse(localStorage.getItem('usuario')).nome;
+    userNivelAcesso = JSON.parse(localStorage.getItem('usuario')).nivelAcesso;
+
     nome: {};
     selectedEmpresa: number;
     empresas = { content: [] };
@@ -38,14 +43,17 @@ export class UsuarioUpdateComponent implements OnInit {
         expireAt: 0
     }
 
+    //niveis de acesso que aparece no DropdownList
     niveis: NivelAcesso[] = [
         { value: 'administrador', viewValue: 'Administrador' },
         { value: 'usuario', viewValue: 'Usuario' }
     ];
 
+    //Nivel de acesso selecionado
     selectedNivelAcesso: string;
 
     senhaCheck: String = '';
+
     inputNivelAcesso = true;
     inputEmpresa = true;
     inputNome = true;
@@ -68,30 +76,31 @@ export class UsuarioUpdateComponent implements OnInit {
             this.selectedEmpresa = usuario.empresa.id;
             this.selectedNivelAcesso = usuario.nivelAcesso;
 
-
-            //se for o usuário logado e selecionado for admin, habilita apenas campo de senha 
-            if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin' && usuario.nome === 'admin') {
+            //Habilitar campos e botões de acordo com o nivel de acesso do usuário
+            //se o usuário logado e selecionado for o admin, habilita apenas campo de senha 
+            if (this.userName === 'admin' && usuario.nome === 'admin') {
                 this.inputSenha = false;
                 this.inputConfirmacaoSenha = false;
             }
             //se for o usuário logado for admin e selecionado não, habilita todos os campos 
-            else if (JSON.parse(localStorage.getItem('usuario')).nome === 'admin' && usuario.nome != 'admin') {
+            else if (this.userName === 'admin' && usuario.nome != 'admin') {
                 this.inputEmpresa = false;
                 this.inputNome = false;
                 this.inputSenha = false;
                 this.inputConfirmacaoSenha = false;
                 this.inputNivelAcesso = false;
             }
-            //se o usuário logado não for admin , for diferente do selecionado e tiver nivel de admistrador, habilita todos os campos 
-            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome && JSON.parse(localStorage.getItem('usuario')).nivelAcesso === 'administrador') {
-                // this.inputEmpresa = false;
-                this.inputNome = false;
-                this.inputSenha = false;
-                this.inputConfirmacaoSenha = false;
-                this.inputNivelAcesso = false;
+            //se o usuário logado não for admin , não é o selecionado e os 2 tem nivel de admistrador, desabilita todos os campos 
+            else if (this.userName != 'admin' && this.userName != usuario.nome && this.userNivelAcesso == 'administrador' && usuario.nivelAcesso == 'administrador') {
+                this.inputEmpresa = true;
+                this.inputNome = true;
+                this.inputSenha = true;
+                this.inputConfirmacaoSenha = true;
+                this.updateButtonDisabled = true;
+                this.usuarioService.showMessage2("Você não possui permissão para atualizar um administrador!!!");
             }
-            //se o usuário logado não for admin , for diferente do selecionado e  não tiver nivel de admistrador, desabilita todos os campos 
-            else if (JSON.parse(localStorage.getItem('usuario')).nome != usuario.nome && JSON.parse(localStorage.getItem('usuario')).nivelAcesso != 'administrador') {
+            //se o usuário logado não for admin , não é o selecionado e não tiver nivel de admistrador, desabilita todos os campos 
+            else if (this.userName != usuario.nome && this.userNivelAcesso != 'administrador') {
                 this.inputEmpresa = true;
                 this.inputNome = true;
                 this.inputSenha = true;
@@ -99,7 +108,14 @@ export class UsuarioUpdateComponent implements OnInit {
                 this.updateButtonDisabled = true;
                 this.usuarioService.showMessage2("Voce não possui permissão para atualizar outro usuário!!!");
             }
-            //se o usuário logado não for admin, habilita campos senha 
+            //se o usuário logado não for admin , for diferente do selecionado e tiver nivel de admistrador, habilita todos os campos menos empresa
+            else if (this.userName != usuario.nome && this.userNivelAcesso === 'administrador') {
+                this.inputNome = false;
+                this.inputSenha = false;
+                this.inputConfirmacaoSenha = false;
+                this.inputNivelAcesso = false;
+            }
+            //se o usuário logado não for admin, e o selecionado é ele mesmo, habilita campos senha 
             else {
                 this.inputSenha = false;
                 this.inputConfirmacaoSenha = false;
@@ -127,7 +143,6 @@ export class UsuarioUpdateComponent implements OnInit {
             }
         }
     }
-
 
     cancel(): void {
         this.router.navigate(['/manter_usuarios']);
