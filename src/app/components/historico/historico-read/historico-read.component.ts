@@ -15,7 +15,6 @@ export class HistoricoReadComponent implements OnInit {
 
   userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
-  // selectedValue: string;  
   selectedData: Date = null;
   data: string;
   dia: string;
@@ -23,7 +22,6 @@ export class HistoricoReadComponent implements OnInit {
   ano: string;
   veiculos = { content: [] };
   selectedVeiculo: string = "";
-  // veiculosEmpresa = { content: [] };
 
   dataSource: MatTableDataSource<any>;
   private paginator: MatPaginator;
@@ -54,25 +52,6 @@ export class HistoricoReadComponent implements OnInit {
     this.listarTodosVeiculos();
   }
 
-  // listarTodosHistoricos(): void {
-  //   this.historicoService.read('', this.pageSize, this.currentPage).subscribe(historico => {
-  //     this.historicos = historico;
-  //     this.totalSize = historico.totalElements;
-
-  //     // armazenando em historicosEmpresa apenas historicos da mesma empresa do usuário
-  //     this.historicosEmpresa.content = this.historicos.content.filter(x => x.veiculo.empresa.id == this.userEmpresaId);
-  //     // }
-
-  //     if (this.totalSize == 0)
-  //       this.historicoService.showMessage2('Nenhum registro encontrado.')
-
-  //     if (this.dataSource == undefined) {
-  //       this.dataSource = new MatTableDataSource(this.historicos.content);
-  //       this.dataSource.paginator = this.paginator;
-  //     }
-  //   })
-  // }
-
   listarTodosHistoricos(): void {
     this.historicoService.read2('', this.userEmpresaId, this.pageSize, this.currentPage).subscribe(historico => {
       this.historicos = historico;
@@ -89,46 +68,6 @@ export class HistoricoReadComponent implements OnInit {
       }
     })
   }
-
-
-  // listarTodosHistoricosComFiltros(): void {
-  //   if (this.selectedData != undefined) {
-  //     this.dia = this.selectedData.getUTCDate().toString();
-  //     this.dia = + this.dia < 10 ? '0' + this.dia : this.dia; // adicionando 0 em dias menores do que 10
-  //     this.mes = (this.selectedData.getUTCMonth() + 1).toString();
-  //     this.mes = + this.mes < 10 ? '0' + this.mes : this.mes; // adicionando 0 em dias menores do que 10
-  //     this.ano = this.selectedData.getUTCFullYear().toString();
-  //     this.data = this.dia + "/" + this.mes + "/" + this.ano;
-  //   }
-
-  //   this.historicoService.read('', this.pageSize, this.currentPage).subscribe(historico => {
-  //     this.historicos = historico;
-  //     this.totalSize = historico.totalElements;
-
-  //     if ((this.selectedVeiculo != '') && (this.selectedData != null)) {
-  //       // armazenando em historicosEmpresa apenas historicos da mesma empresa do usuário
-  //       this.historicosEmpresa.content = this.historicos.content.filter(
-  //         x => x.veiculo.empresa.id == this.userEmpresaId && x.datahora.match(this.data) && x.veiculo.placaVeiculo == this.selectedVeiculo);
-  //     } else if ((this.selectedVeiculo == '') && (this.selectedData != null)) {
-  //       this.historicosEmpresa.content = this.historicos.content.filter(
-  //         x => x.veiculo.empresa.id == this.userEmpresaId && x.datahora.match(this.data));
-  //     } else if ((this.selectedVeiculo != '') && (this.selectedData == null)) {
-  //       this.historicosEmpresa.content = this.historicos.content.filter(
-  //         x => x.veiculo.empresa.id == this.userEmpresaId && x.veiculo.placaVeiculo == this.selectedVeiculo);
-  //     } else {
-  //       this.historicosEmpresa.content = this.historicos.content.filter(
-  //         x => x.veiculo.empresa.id == this.userEmpresaId);
-  //     }
-
-  //     if (this.totalSize == 0)
-  //       this.historicoService.showMessage2('Nenhum registro encontrado.')
-
-  //     if (this.dataSource == undefined) {
-  //       this.dataSource = new MatTableDataSource(this.historicos.content);
-  //       this.dataSource.paginator = this.paginator;
-  //     }
-  //   })
-  // }
 
   listarTodosHistoricosComFiltros(): void {
     if (this.selectedData != undefined) {

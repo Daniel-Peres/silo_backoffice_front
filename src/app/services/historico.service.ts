@@ -19,15 +19,6 @@ export class HistoricoService {
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
-  
-  // create(historico: Historico): Observable<Historico> {
-  //   let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
-  //   return this.http.post<Historico>(this.baseCreateUrl, historico, { headers: httpOptions })
-  //     .pipe(
-  //       map((obj) => obj),
-  //       catchError(e => this.errorHandler(e))
-  //     );
-  // }
 
   read(datahora, pageSize, page): Observable<any> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
@@ -90,25 +81,6 @@ export class HistoricoService {
         catchError(e => this.errorHandler(e))
       );
   }
-
-  // update(historico: Historico): Observable<Historico> {
-  //   let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
-  //   return this.http.put<Historico>(this.baseUpdateUrl, historico, { headers: httpOptions })
-  //     .pipe(
-  //       map((obj) => obj),
-  //       catchError(e => this.errorHandler(e))
-  //     );
-  // }
-
-  // delete(id: number): Observable<Historico> {
-  //   let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
-  //   const url = `${this.baseDeleteUrl}${id}`;
-  //   return this.http.delete(url, { headers: httpOptions })
-  //     .pipe(
-  //       map((obj) => obj),
-  //       catchError(e => this.errorHandler(e))
-  //     );
-  // }
 
   showMessage(msg: string, isError: boolean = false): void {
     this.snackBar.open(msg, 'X', {

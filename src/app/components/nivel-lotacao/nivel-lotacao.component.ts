@@ -135,6 +135,5 @@ export class NivelLotacaoComponent implements OnInit {
 
   calculoLugaresDisponiveis(): void {
     this.lugaresDiponiveis = this.historico.veiculo.totalLugares - this.historico.qtdPassageiros;
-    // this.lugaresDiponiveisSentado = this.historico.veiculo.lugaresSentado < this.historico.qtdPassageiros ? 0 : this.historico.veiculo.lugaresSentado - this.historico.qtdPassageiros;
   }
 }

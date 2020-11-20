@@ -1,7 +1,7 @@
 import { Empresa } from './empresa.model';
 
 export interface Usuario {
-    id?: number 
+    id?: number
     nome: string
     empresa?: Empresa
     email?: string

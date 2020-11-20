@@ -1,6 +1,5 @@
 import { Equipamento } from './../models/equipamento.model';
 import { Injectable } from '@angular/core';
-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
@@ -21,7 +20,7 @@ export class EquipamentoService {
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
-  
+
   create(equipamento: Equipamento): Observable<Equipamento> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
     return this.http.post<Equipamento>(this.baseCreateUrl, equipamento, { headers: httpOptions })

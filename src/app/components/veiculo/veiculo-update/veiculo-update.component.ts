@@ -46,10 +46,7 @@ export class VeiculoUpdateComponent implements OnInit {
   equipamentos = { content: [] };
   equipamentosEmpresa = { content: [] };
 
-  //equipamentos utilizado para realizar o update no status do equipamento
-  oldEquipamento: Equipamento; // equipamento atual que vai ficar INATIVO
-  newEquipamento: Equipamento; // novo equipamento que vai ficar ATIVO
-
+  
   constructor(
     private veiculoService: VeiculoService,
     private equipamentoService: EquipamentoService,
@@ -63,9 +60,7 @@ export class VeiculoUpdateComponent implements OnInit {
       this.veiculo = veiculo;
       if(veiculo.equipamento)
         this.selectedEquipamento = veiculo.equipamento.id;
-
-      // atribuindo equipamento atual do veiculo ao equip antigo
-      this.oldEquipamento = veiculo.equipamento;
+              
     });
 
     // this.listarTodosVeiculos();
@@ -74,8 +69,6 @@ export class VeiculoUpdateComponent implements OnInit {
   }
 
   updateVeiculo(): void {
-
-    // this.alteraEquipamentoStatus();
 
     // if (this.checkCampos()) { // checando campos não preenchidos
     //   this.veiculoService.showMessage2('Campos obrigatórios não podem estar vazios!');
@@ -142,44 +135,7 @@ export class VeiculoUpdateComponent implements OnInit {
       // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário e inativos
       this.equipamentosEmpresa.content = this.equipamentos.content;
     });
-    console.log(this.equipamentos.content)
-    console.log(this.equipamentosEmpresa.content)
+    // console.log(this.equipamentos.content)
+    // console.log(this.equipamentosEmpresa.content)
   }
-
-  //update no novo equipamento ativo
-  // updateNewEquipamento(): void {
-  //   this.equipamentoService.update(this.newEquipamento).subscribe(() => {
-  //     console.log('Equipamento atualizado com sucesso!');
-  //   });
-  // }
-
-  // update no equipamento para Inativo
-  // updateOldEquipamento(): void {
-  //   this.equipamentoService.update(this.oldEquipamento).subscribe(() => {
-  //     console.log('Equipamento atualizado com sucesso!');
-  //   });
-  // }
-
-  // alteraEquipamentoStatus(): void {
-  //   this.equipamentosEmpresa.content.forEach(equipamento => {
-  //     if (equipamento.id == this.selectedEquipamento) {
-  //       this.newEquipamento = equipamento;
-  //       // console.log('Old Atual: ' + JSON.stringify(this.oldEquipamento));
-  //       // console.log('New Atual' + JSON.stringify(this.newEquipamento));
-  //     }
-  //   });
-
-  //   // Se o ID do equipamento instalado no veiculo for diferente do ID que foi selecionado,
-  //   // atualiza os dois equipamentos
-  //   if (this.veiculo.equipamento.id != this.newEquipamento.id) {
-  //     this.newEquipamento.statusEquipamento = 'ATIVO'
-  //     this.oldEquipamento.statusEquipamento = 'INATIVO'
-
-  //     // console.log('Old Alterado' + JSON.stringify(this.oldEquipamento));
-  //     // console.log('New Alterado' + JSON.stringify(this.newEquipamento));
-
-  //     this.updateNewEquipamento();
-  //     this.updateOldEquipamento();
-  //   }
-  // }
 }

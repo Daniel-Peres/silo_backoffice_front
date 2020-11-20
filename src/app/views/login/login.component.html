@@ -6,21 +6,28 @@
         <h1 class="subtitulo">LOGIN</h1>
     </div>
     <div class="form-wrapper">
+
         <form name="form" (ngSubmit)="f.form.valid && efetuarLogin()" #f="ngForm">
+
             <div class="input-block">
                 <label for="login-email">Usuário</label>
                 <input type="text" id="username" name="username" [(ngModel)]="model.username" />
             </div>
+
             <div class="input-block">
                 <label for="login-password">Senha</label>
                 <input type="password" id="pasword" name="password" [(ngModel)]="model.password" />
             </div>
+
             <div class="botoes">
+
                 <button class="botao" mat-raised-button type="submit">
                     <mat-icon class="corIcone">login</mat-icon>
                     <span class="textoBotao">Entrar</span>
                 </button>
+
             </div>
+            
         </form>
     </div>
 </section>

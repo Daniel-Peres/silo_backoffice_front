@@ -1,4 +1,4 @@
 export interface Empresa {
-    id?: number 
+    id?: number
     empresa_nome?: string
 }

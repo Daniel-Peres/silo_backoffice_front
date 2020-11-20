@@ -3,26 +3,30 @@
         <div class="filtro">
             <mat-form-field class="inputCodEquipamento" appearance="legacy" color="accent">
                 <mat-label class="texto">Veiculo</mat-label>
-                <select [disabled]="botaoStart" class="texto" matNativeControl [(ngModel)]="selectedVeiculo" name="veiculo">
+                <select [disabled]="botaoStart" class="texto" matNativeControl [(ngModel)]="selectedVeiculo"
+                    name="veiculo">
                     <option value="" selected></option>
                     <option *ngFor="let veiculo of veiculos.content" [value]="veiculo.id">
                         {{veiculo.placaVeiculo}} - {{veiculo.modeloVeiculo}}
                     </option>
                 </select>
             </mat-form-field>
-            
+
             <!-- <button mat-raised-button (click)="mostrarNivel()">
                 <mat-icon fontSet="material-icons-outlined">analytics</mat-icon>
                 <span class="textButton"> Mostrar Nivel de Lotação</span>
             </button> -->
+
             <button class="botaoStart" [disabled]="botaoStart" mat-raised-button (click)="mostrarNivel()">
                 <mat-icon fontSet="material-icons-outlined">play_circle_outlined</mat-icon>
                 <span class="textButton"> Start</span>
             </button>
+
             <button class="botaoStop" [disabled]="botaoStop" mat-raised-button (click)="stopMostrarNivel()">
                 <mat-icon fontSet="material-icons-outlined">stop_circle</mat-icon>
                 <span class="textButton"> Stop</span>
             </button>
+
         </div>
     </div>
     <div>
@@ -79,4 +83,4 @@
     </div>
 </div>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />

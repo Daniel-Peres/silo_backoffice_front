@@ -1,7 +1,6 @@
 import { Veiculo } from './../models/veiculo.model';
 import { Injectable } from '@angular/core';
 
-import { Usuario } from '../models/usuario.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
@@ -22,7 +21,7 @@ export class VeiculoService {
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
-  
+
   create(veiculo: Veiculo): Observable<Veiculo> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
     return this.http.post<Veiculo>(this.baseCreateUrl, veiculo, { headers: httpOptions })

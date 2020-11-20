@@ -1,11 +1,8 @@
 import { EmpresaService } from './../../../services/empresa.service';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
-import { Usuario } from '../../../models/usuario.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { tap } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -28,7 +25,7 @@ export class UsuarioReadComponent implements OnInit {
   empresas = { content: [] };
   usuariosEmpresa = { content: [] };
   filter = '';
-  displayedColumns = [/*'id',*/'nome', /*'empresaId',*/ 'empresa', 'nivelAcesso', 'action']
+  displayedColumns = ['nome', 'empresa', 'nivelAcesso', 'action']
   public pageSize = 50;
   public currentPage = 0;
   public totalSize = 0;
@@ -39,12 +36,10 @@ export class UsuarioReadComponent implements OnInit {
   ngOnInit(): void {
     this.listarTodosUsuarios();
     this.listarTodasEmpresas();
-    
-    if(JSON.parse(localStorage.getItem('usuario')).nivelAcesso === 'usuario'){
+
+    if (JSON.parse(localStorage.getItem('usuario')).nivelAcesso === 'usuario') {
       this.buttonDisabled = true;
     }
-    
-
   }
 
   navigateToNovoUsuario(): void {
@@ -156,6 +151,6 @@ export class UsuarioReadComponent implements OnInit {
     this.listarTodosUsuarios();
   }
 
-  
+
 
 }

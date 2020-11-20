@@ -2,19 +2,17 @@
 <mat-card class="container">
     <mat-card-title>Atualizar usuário</mat-card-title>
     <form class="formulario">
-        <!-- <span class="info">(*) preenchimento obrigatório</span> -->
-        <!-- <mat-form-field class="inputId" appearance="outline" color="accent">
-            <mat-label>Id</mat-label>
-            <input type="number" matInput [(ngModel)]="usuario.id" name="id" disabled>
-        </mat-form-field> -->
+
         <mat-form-field class="inputNome" appearance="outline" color="accent">
             <mat-label>Nome (usuário)</mat-label>
             <input [disabled]="inputNome" matInput [(ngModel)]="usuario.nome" name="nome" disabled>
         </mat-form-field>
+
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Senha</mat-label>
             <input [disabled]="inputSenha" type="password" matInput [(ngModel)]="usuario.senha" name="senha">
         </mat-form-field>
+
         <mat-form-field class="inputSenha" appearance="outline" color="accent">
             <mat-label>Confirmação Senha</mat-label>
             <input [disabled]="inputConfirmacaoSenha" type="password" matInput [(ngModel)]="senhaCheck" name="senha">
@@ -22,7 +20,8 @@
 
         <mat-form-field appearance="outline" color="accent">
             <mat-label>Nivel de Acesso</mat-label>
-            <select [disabled]="inputNivelAcesso" matNativeControl [(ngModel)]="selectedNivelAcesso" name="nivelAcesso" required>
+            <select [disabled]="inputNivelAcesso" matNativeControl [(ngModel)]="selectedNivelAcesso" name="nivelAcesso"
+                required>
                 <!-- <option value="usuario" selected></option> -->
                 <option *ngFor="let nivel of niveis" [value]="nivel.value">
                     {{nivel.viewValue}}
@@ -41,13 +40,16 @@
 
     </form>
     <div class="botoes">
+
         <button [disabled]="updateButtonDisabled" class="botaoSalvar" mat-raised-button (click)="updateUsuario()">
             <mat-icon>sync</mat-icon>
             <span class="textButton">Atualizar</span>
         </button>
+
         <button class="botaoCancelar" mat-raised-button (click)="cancel()">
             <mat-icon>close</mat-icon>
             <span class="textButton">Cancelar</span>
         </button>
+
     </div>
 </mat-card>

@@ -77,7 +77,6 @@ export class UsuarioService {
 
   update(usuario: Usuario): Observable<Usuario> {
     let httpOptions = { 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('usuario')).token };
-    //const url = `${this.baseUpdateUrl}${usuario.id}`;
     return this.http.put<Usuario>(this.baseUpdateUrl, usuario, { headers: httpOptions })
       .pipe(
         map((obj) => obj),

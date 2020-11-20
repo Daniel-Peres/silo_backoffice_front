@@ -19,16 +19,6 @@
             <input matInput [(ngModel)]="veiculo.numeroLinha" name="numeroLinha">
         </mat-form-field>
 
-        <!-- <mat-form-field class="inputEmpresaID" appearance="outline" color="accent">
-            <mat-label>Empresa ID</mat-label>
-            <input type="number" matInput [(ngModel)]="veiculo.empresaId" name="empresaId" required>
-        </mat-form-field>
-
-        <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
-            <mat-label>Empresa</mat-label>
-            <input matInput [(ngModel)]="veiculo.empresa" name="empresa" required>
-        </mat-form-field> -->
-
         <mat-form-field class="inputTotalLugares" appearance="outline" color="accent">
             <mat-label>Total de Lugares</mat-label>
             <input type="number" min="0" matInput [(ngModel)]="veiculo.totalLugares" (change)="calculaLugaresEmPe()"
@@ -54,7 +44,6 @@
                 <option *ngFor="let equipamento of equipamentosEmpresa.content" [value]="equipamento.id">
                     {{equipamento.codEquipamento}}   -
                     {{equipamento.descricaoEquipamento}}
-                    <!-- {{equipamento.statusEquipamento}} -->
                 </option>
             </select>
         </mat-form-field>
@@ -62,14 +51,12 @@
     </form>
     <div class="botoes">
         <button class="botaoSalvar" mat-raised-button (click)="createVeiculo()">
-            <mat-icon fontSet="material-icons-outlined">save</mat-icon>
+            <mat-icon>save</mat-icon>
             <span class="textButton">Salvar</span>
         </button>
         <button class="botaoCancelar" mat-raised-button (click)="cancel()">
-            <mat-icon fontSet="material-icons-outlined">close</mat-icon>
+            <mat-icon>close</mat-icon>
             <span class="textButton">Cancelar</span>
         </button>
     </div>
 </mat-card>
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>

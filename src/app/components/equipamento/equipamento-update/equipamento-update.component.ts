@@ -1,9 +1,7 @@
 import { EquipamentoService } from './../../../services/equipamento.service';
 import { Equipamento } from './../../../models/equipamento.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { VeiculoService } from './../../../services/veiculo.service';
 import { Component, OnInit } from '@angular/core';
-import { Veiculo } from 'src/app/models/veiculo.model';
 
 @Component({
   selector: 'app-equipamento-update',
@@ -46,18 +44,13 @@ export class EquipamentoUpdateComponent implements OnInit {
     this.equipamentoService.readById(id).subscribe(equipamento => {
       this.equipamento = equipamento;
     });
-    // this.listarTodosEquipamentos();
   }
 
   updateEquipamento(): void {
-    // if (this.checkCampos()) { // checando campos não preenchidos
-    //   this.equipamentoService.showMessage2('Campos obrigatórios não podem estar vazios!');
-    // } else {
     this.equipamentoService.update(this.equipamento).subscribe(() => {
       this.router.navigate(['/manter_equipamentos']);
       this.equipamentoService.showMessage('Equipamento atualizado com sucesso!');
     });
-    // }
   }
 
   cancel(): void {
@@ -71,7 +64,6 @@ export class EquipamentoUpdateComponent implements OnInit {
       this.equipamento.empresa.id === null ||
       this.equipamento.empresa === '' ||
       this.equipamento.statusEquipamento === ''
-      // this.equipamento.empresa === null
     ) { return true; } else { return false; }
   }
 

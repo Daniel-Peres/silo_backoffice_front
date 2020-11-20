@@ -1,9 +1,7 @@
 import { Equipamento } from './../../../models/equipamento.model';
 import { EquipamentoService } from './../../../services/equipamento.service';
 import { Router } from '@angular/router';
-import { VeiculoService } from './../../../services/veiculo.service';
 import { Component, OnInit } from '@angular/core';
-import { Veiculo } from 'src/app/models/veiculo.model';
 
 @Component({
   selector: 'app-equipamento-create',
@@ -15,8 +13,6 @@ export class EquipamentoCreateComponent implements OnInit {
   userEmpresaId = JSON.parse(localStorage.getItem('usuario')).empresa.id;
 
   selectedEquipamento: string;
-
-  // equipamentos = { content: [] };
 
   equipamentosEmpresa = { content: [] };
   public pageSize = 10;
@@ -46,8 +42,7 @@ export class EquipamentoCreateComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.listarTodosEquipamentos();
-    // this.preencheEmpresa()
+   
   }
 
   createEquipamento(): void {
@@ -75,26 +70,4 @@ export class EquipamentoCreateComponent implements OnInit {
       // this.equipamento.empresa === null
     ) { return true; } else { return false; }
   }
-
-  // preencheEmpresa(): void {
-  //   if (JSON.parse(localStorage.getItem('usuario')).empresaId === 1) {
-  //     this.equipamento.empresa = 'SPTrans';
-  //   } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 2) {
-  //     this.equipamento.empresa = 'ViaSul';
-  //   } else if (JSON.parse(localStorage.getItem('usuario')).empresaId === 3) {
-  //     this.equipamento.empresa = 'MoveBus';
-  //   } else {
-  //     this.equipamento.empresa = 'TransUniao';
-  //   }
-  // }
-
-  // listarTodosEquipamentos(): void {
-  //   this.equipamentoService.read('', this.pageSize, this.currentPage).subscribe(equipamento => {
-  //     this.equipamentos = equipamento;
-  //     this.totalSize = equipamento.totalElements;
-
-  //     // armazenando em equipamentosEmpresa apenas equipamentos da mesma empresa do usuário
-  //     this.equipamentosEmpresa.content = this.equipamentos.content.filter(x => x.empresaId == this.userEmpresaId);
-  //   })
-  // }
 }

@@ -3,11 +3,6 @@
     <mat-card-title>Excluir Veículo</mat-card-title>
     <form class="formulario">
 
-        <!-- <mat-form-field class="inputId" appearance="outline" color="accent">
-            <mat-label>Id</mat-label>
-            <input type="number" matInput [value]="veiculo.id" name="id" disabled>
-        </mat-form-field> -->
-
         <mat-form-field class="inputPlaca" appearance="outline" color="accent">
             <mat-label>Placa</mat-label>
             <input matInput [(ngModel)]="veiculo.placaVeiculo" name="placaVeiculo" disabled>
@@ -22,16 +17,6 @@
             <mat-label>Nº da Linha</mat-label>
             <input matInput [(ngModel)]="veiculo.numeroLinha" name="numeroLinha" disabled >
         </mat-form-field>
-
-        <!-- <mat-form-field class="inputEmpresaID" appearance="outline" color="accent">
-            <mat-label>Empresa ID</mat-label>
-            <input type="number" matInput [(ngModel)]="veiculo.empresaId" name="empresaId" disabled>
-        </mat-form-field>
-
-        <mat-form-field class="inputEmpresa" appearance="outline" color="accent">
-            <mat-label>Empresa</mat-label>
-            <input matInput [(ngModel)]="veiculo.empresa" name="empresa" disabled>
-        </mat-form-field> -->
 
         <mat-form-field class="inputTotalLugares" appearance="outline" color="accent">
             <mat-label>Total de Lugares</mat-label>
@@ -58,14 +43,12 @@
     </form>
     <div class="botoes">
         <button class="botaoSalvar" mat-raised-button (click)="deleteVeiculo()">
-            <mat-icon fontSet="material-icons-outlined">delete</mat-icon>
+            <mat-icon>delete</mat-icon>
             <span class="textButton">Excluir</span>
         </button>
         <button class="botaoCancelar" mat-raised-button (click)="cancel()">
-            <mat-icon fontSet="material-icons-outlined">close</mat-icon>
+            <mat-icon>close</mat-icon>
             <span class="textButton">Cancelar</span>
         </button>
     </div>
 </mat-card>
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
