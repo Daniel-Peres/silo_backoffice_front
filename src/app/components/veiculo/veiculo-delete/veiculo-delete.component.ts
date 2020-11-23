@@ -18,7 +18,8 @@ export class VeiculoDeleteComponent implements OnInit {
     placaVeiculo: '',
     empresa: null,
     equipamento: {
-      id: null
+      id: null,
+      codEquipamento: ''
     },
     numeroLinha: '',
     totalLugares: null,
@@ -40,7 +41,13 @@ export class VeiculoDeleteComponent implements OnInit {
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.veiculoService.readById(id).subscribe(veiculo => {
-      this.veiculo = veiculo;
+      //se veiculo não tem equipamento altera equipamento de null para vazio {}
+      if (veiculo.equipamento === null) {
+        this.veiculo = veiculo;
+        this.veiculo.equipamento = {};
+      } else {
+        this.veiculo = veiculo;
+      }
     })
   }
 
